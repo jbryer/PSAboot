@@ -1,0 +1,30 @@
+Package: PSAboot
+Type: Package
+Title: Bootstrapping for Propensity Score Analysis
+Version: 0.9
+Date: 2013-10-29
+Author: Jason Bryer <jason@bryer.org>
+Maintainer: Jason Bryer <jason@bryer.org>
+URL: http://jason.bryer.org/PSAboot, http://github.com/jbryer/PSAboot
+BugReports: https://github.com/jbryer/PSAboot/issues
+Description: Bootstrapping functions for propensity score analysis and matching.
+License: GPL
+LazyLoad: yes
+Depends:
+    R (>= 3.0),ggplot2,reshape,Matching,MatchIt,party
+ImportsFrom: parallel
+Suggests:
+    devtools
+Collate:
+    'psa.strata.R'
+    'PSAboot-package.R'
+    'PSAboot.R'
+    'boot.matching.R'
+    'boot.matchit.R'
+    'boot.strata.R'
+    'plot.PSAboot.R'
+    'print.PSAboot.R'
+    'summary.PSAboot.R'
+    'boot.ctree.R'
+    'boot.rpart.R'
+    'plot.PSAboot.matrix.R'

@@ -1,0 +1,7 @@
+PSAboot.dev.R
+PSAboot.Rproj
+README.md
+.gitignore
+.Rhistory
+^.*\.Rproj$
+^\.Rproj\.user$
