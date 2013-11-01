@@ -5,7 +5,7 @@
 boot.matchit <- function(Tr, Y, X, formu, ...) {
 	formu <- update.formula(formu, 'treat ~ .')
 	df <- cbind(treat=Tr, X)
-	mi <- matchit(formu, data=df)
+	mi <- matchit(formu, data=df, ...)
 	df$Y <- Y
 	ttest <- t.test(df[row.names(mi$match.matrix),]$Y, 
 					df[mi$match.matrix,]$Y, paired=TRUE)

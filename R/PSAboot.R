@@ -67,7 +67,7 @@ PSAboot <- function(Tr, Y, X, M=100,
 	for(m in seq_along(methods)) {
 		n <- names(methods)[[m]]
 		f <- methods[[m]]
-		r <- f(Tr=Tr, Y=Y, X=X, formu=formu)
+		r <- f(Tr=Tr, Y=Y, X=X, formu=formu, ...)
 		complete.details[[paste0('summary.', n)]] <- r$summary
 		complete.details[[paste0('details.', n)]] <- r$details
 		complete.summary <- rbind(complete.summary, data.frame(
@@ -93,7 +93,7 @@ PSAboot <- function(Tr, Y, X, M=100,
 			n <- names(methods)[[m]]
 			f <- methods[[m]]
 			tryCatch({
-				r <- f(Tr=Tr[rows], Y=Y[rows], X=X[rows,], formu=formu)
+				r <- f(Tr=Tr[rows], Y=Y[rows], X=X[rows,], formu=formu, ...)
 				result[[paste0('summary.', n)]] <- r$summary
 				result[[paste0('details.', n)]] <- r$details
 				result[['summary']] <- rbind(result[['summary']], data.frame(
