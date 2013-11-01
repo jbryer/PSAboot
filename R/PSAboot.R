@@ -89,15 +89,20 @@ PSAboot <- function(Tr, Y, X, M=100,
 		for(m in seq_along(methods)) {
 			n <- names(methods)[[m]]
 			f <- methods[[m]]
-			r <- f(Tr=Tr[rows], Y=Y[rows], X=X[rows,])
-			result[[paste0('summary.', n)]] <- r$summary
-			result[[paste0('details.', n)]] <- r$details
-			result[['summary']] <- rbind(result[['summary']], data.frame(
-				Method=n, 
-				estimate=unname(r$summary['estimate']),
-				ci.min=unname(r$summary['ci.min']),
-				ci.max=unname(r$summary['ci.max']),
-				stringsAsFactors=FALSE))
+			tryCatch({
+				r <- f(Tr=Tr[rows], Y=Y[rows], X=X[rows,])
+				result[[paste0('summary.', n)]] <- r$summary
+				result[[paste0('details.', n)]] <- r$details
+				result[['summary']] <- rbind(result[['summary']], data.frame(
+					Method=n, 
+					estimate=unname(r$summary['estimate']),
+					ci.min=unname(r$summary['ci.min']),
+					ci.max=unname(r$summary['ci.max']),
+					stringsAsFactors=FALSE))
+			}, error=function(e) { 
+				warning(paste0('Error occurred during iteration ', i,
+							   ' for ', n, ' method: ', e))
+			})
 		}
 		return(result)
 	}

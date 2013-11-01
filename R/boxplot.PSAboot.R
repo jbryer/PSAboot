@@ -9,8 +9,7 @@ boxplot.PSAboot <- function(x, ...) {
 	sum <- as.data.frame(summary(x))
 	p <- ggplot(x$pooled.summary, aes(y=estimate, x=method)) +
 		geom_hline(yintercept=0) +
-		geom_hline(yintercept=mean) +
-		geom_hline(yintercept=mean(x$pooled.summary$estimate), color='blue') +
+		geom_hline(yintercept=mean(x$pooled.summary$estimate, na.rm=TRUE), color='blue') +
 		geom_errorbar(data=sum, aes(x=method, y=bootstrap.estimate, ymin=bootstrap.ci.min, 
 					ymax=bootstrap.ci.max), color='green', width=0.5, size=3) +
 		geom_boxplot(alpha=.5) + 

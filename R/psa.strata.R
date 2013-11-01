@@ -6,8 +6,25 @@
 #' @param strata strata identifier.
 #' @param trim allows for a trimmed mean as outcome measure, where trim is from
 #'        0 to .5 (.5 implying median).
+#' @param minStrata minimum number of treatment or control unitis within a strata 
+#'        to include that strata.
 #' @export
-psa.strata <- function (Y, Tr, strata, trim = 0) {
+psa.strata <- function (Y, Tr, strata, trim = 0, minStrata=5) {
+	sizes <- melt(table(strata, Tr))
+	smallStrata <- unique(sizes[sizes$value < minStrata,]$strata)
+	if(length(smallStrata) == length(unique(strata))) {
+		stop('Not enough strata to continue.')
+	}
+	if(length(smallStrata) > 0) {
+		# TODO: Probably should print a warning
+		strata <- as.character(strata)
+		rows <- !strata %in% smallStrata
+		Tr <- Tr[rows]
+		Y <- Y[rows]
+		X <- X[rows,]
+		strata <- strata[rows]
+	}
+	
 	statistic = "mean" #TODO: put back as a parameter?
 	tr.mean <- function(x) {
 		mean(x, trim = trim)
@@ -35,14 +52,12 @@ psa.strata <- function (Y, Tr, strata, trim = 0) {
 	nc <- table(Tr)[1]
 	nt <- table(Tr)[2]
 	ord.Y <- Y[o]
-	var.0 <- tapply(ord.Y[1:nc], ord.strata[1:nc], 
-					var)
+	var.0 <- tapply(ord.Y[1:nc], ord.strata[1:nc], var)
 	ni.0 <- table(ord.strata[1:nc])
 	frac.0 <- var.0/ncontrol
 	ncp1 <- nc + 1
 	ncpnt <- nc + nt
-	var.1 <- tapply(ord.Y[ncp1:ncpnt], ord.strata[ncp1:ncpnt], 
-					var)
+	var.1 <- tapply(ord.Y[ncp1:ncpnt], ord.strata[ncp1:ncpnt], var)
 	ni.1 <- table(ord.strata[ncp1:ncpnt])
 	frac.1 <- var.1/ntreat
 	se.wtd <- ((sum(frac.0) + sum(frac.1))^0.5)/nstrat

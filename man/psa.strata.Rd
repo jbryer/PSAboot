@@ -2,7 +2,7 @@
 \alias{psa.strata}
 \title{Propensity Score Analysis using Stratification}
 \usage{
-  psa.strata(Y, Tr, strata, trim = 0)
+  psa.strata(Y, Tr, strata, trim = 0, minStrata = 5)
 }
 \arguments{
   \item{Y}{response variable.}
@@ -13,6 +13,9 @@
 
   \item{trim}{allows for a trimmed mean as outcome measure,
   where trim is from 0 to .5 (.5 implying median).}
+
+  \item{minStrata}{minimum number of treatment or control
+  unitis within a strata to include that strata.}
 }
 \description{
   Propensity Score Analysis using Stratification
