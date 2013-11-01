@@ -2,7 +2,9 @@
 \alias{PSAboot}
 \title{Bootstrap treatment units for propensity score analysis}
 \usage{
-  PSAboot(Tr, Y, X, M = 100, control.ratio = 3,
+  PSAboot(Tr, Y, X, M = 100,
+    formu = as.formula(paste0("treat ~ ", paste0(names(X), collapse = " + "))),
+    control.ratio = 3,
     control.sample.size = (control.ratio * min(table(Tr))),
     control.replace = FALSE,
     treated.sample.size = min(table(Tr)),
@@ -20,6 +22,10 @@
   estimate the propensity scores.}
 
   \item{M}{number of bootstrap samples to generate.}
+
+  \item{formu}{formula used for estimating propensity
+  scores. The default is to use all covariates in
+  \code{X}.}
 
   \item{control.ratio}{the ratio of control units to sample
   relative to the treatment units.}

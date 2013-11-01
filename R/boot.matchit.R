@@ -2,8 +2,8 @@
 #' 
 #' @inheritParams boot.strata
 #' @export
-boot.matchit <- function(Tr, Y, X, ...) {
-	formu <- formula(paste0('treat ~ ', paste(names(X), collapse=' + ')))
+boot.matchit <- function(Tr, Y, X, formu, ...) {
+	formu <- update.formula(formu, 'treat ~ .')
 	df <- cbind(treat=Tr, X)
 	mi <- matchit(formu, data=df)
 	df$Y <- Y

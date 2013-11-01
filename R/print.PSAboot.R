@@ -6,5 +6,5 @@
 #' @method print PSAboot
 #' @export
 print.PSAboot <- function(x, ...) {
-	summary(x, ...)
+	print(summary(x, ...))
 }

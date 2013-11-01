@@ -2,7 +2,7 @@
 \alias{boot.strata}
 \title{Stratification implementation for bootstrapping.}
 \usage{
-  boot.strata(Tr, Y, X, nstrata = 5, ...)
+  boot.strata(Tr, Y, X, formu, nstrata = 5, ...)
 }
 \arguments{
   \item{Tr}{vector indicating treatment assignment.}
@@ -10,6 +10,11 @@
   \item{Y}{vector of outcome.}
 
   \item{X}{matrix or data frame of covariates.}
+
+  \item{formu}{the formula to use to estimate propensity
+  scores. Note that the dependent varaible (i.e. treatment
+  variable) name will be updated using the \code{Tr}
+  vector.}
 
   \item{nstrata}{number of strata to divide the propensity
   scores.}

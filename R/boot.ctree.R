@@ -8,9 +8,10 @@
 #'         arbitrary object named details that contains the full results of the
 #'         analysis.
 #' @export
-boot.ctree <- function(Tr, Y, X, minStrata=5, ...) {
+boot.ctree <- function(Tr, Y, X, formu, minStrata=5, ...) {
 	require(party)
-	tree <- ctree(treat ~ ., data=cbind(treat=Tr, X))
+	formu <- update.formula(formu, 'treat ~ .')
+	tree <- ctree(formu, data=cbind(treat=Tr, X))
 	strata <- where(tree)
 	sizes <- melt(table(strata, Tr))
 	smallStrata <- sizes[sizes$value < minStrata,]$strata

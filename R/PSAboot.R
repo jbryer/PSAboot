@@ -5,6 +5,8 @@
 #' @param Y vector of outcome varaible.
 #' @param X matrix or data frame of covariates used to estimate the propensity scores.
 #' @param M number of bootstrap samples to generate.
+#' @param formu formula used for estimating propensity scores. The default is to use
+#'        all covariates in \code{X}.
 #' @param control.ratio the ratio of control units to sample relative to the treatment units.
 #' @param control.sample.size the size of each bootstrap sample of control units.
 #' @param control.replace whether to use replacement when sampling from control units.
@@ -33,7 +35,8 @@
 #' 		  \item{M}{number of bootstrap samples.}
 #' 		  }
 #' @export
-PSAboot <- function(Tr, Y, X, M=100, 
+PSAboot <- function(Tr, Y, X, M=100,
+					formu=as.formula(paste0('treat ~ ', paste0(names(X), collapse=' + '))),
 					control.ratio=3,
 					control.sample.size=(control.ratio*min(table(Tr))),
 					control.replace=FALSE,
@@ -64,7 +67,7 @@ PSAboot <- function(Tr, Y, X, M=100,
 	for(m in seq_along(methods)) {
 		n <- names(methods)[[m]]
 		f <- methods[[m]]
-		r <- f(Tr=Tr, Y=Y, X=X)
+		r <- f(Tr=Tr, Y=Y, X=X, formu=formu)
 		complete.details[[paste0('summary.', n)]] <- r$summary
 		complete.details[[paste0('details.', n)]] <- r$details
 		complete.summary <- rbind(complete.summary, data.frame(
@@ -90,7 +93,7 @@ PSAboot <- function(Tr, Y, X, M=100,
 			n <- names(methods)[[m]]
 			f <- methods[[m]]
 			tryCatch({
-				r <- f(Tr=Tr[rows], Y=Y[rows], X=X[rows,])
+				r <- f(Tr=Tr[rows], Y=Y[rows], X=X[rows,], formu=formu)
 				result[[paste0('summary.', n)]] <- r$summary
 				result[[paste0('details.', n)]] <- r$details
 				result[['summary']] <- rbind(result[['summary']], data.frame(

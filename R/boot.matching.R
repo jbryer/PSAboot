@@ -4,8 +4,9 @@
 #'        \code{\link{Match}} for more details. 
 #' @inheritParams boot.strata
 #' @export
-boot.matching <- function(Tr, Y, X, estimand='ATE', ...) {
-	ps <- fitted(glm(treat ~ ., data=cbind(treat=Tr, X), family='binomial'))
+boot.matching <- function(Tr, Y, X, formu, estimand='ATE', ...) {
+	formu <- update.formula(formu, 'treat ~ .')
+	ps <- fitted(glm(formu, data=cbind(treat=Tr, X), family='binomial'))
 	mr <- Match(Y=Y, Tr=Tr,	X=ps, M=1, estimand=estimand, ...)
 	ttest <- t.test(Y[mr$index.treated], Y[mr$index.control], paired=TRUE)
 	return(list(

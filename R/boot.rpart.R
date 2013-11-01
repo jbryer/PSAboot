@@ -8,9 +8,10 @@
 #'         arbitrary object named details that contains the full results of the
 #'         analysis.
 #' @export
-boot.rpart <- function(Tr, Y, X, minStrata=5, ...) {
+boot.rpart <- function(Tr, Y, X, formu, minStrata=5, ...) {
 	require(rpart)
-	tree <- rpart(treat ~ ., data=cbind(treat=Tr, X))
+	formu <- update.formula(formu, 'treat ~ .')
+	tree <- rpart(formu, data=cbind(treat=Tr, X))
 	strata <- tree$where
 	sizes <- melt(table(strata, Tr))
 	smallStrata <- sizes[sizes$value < minStrata,]$strata

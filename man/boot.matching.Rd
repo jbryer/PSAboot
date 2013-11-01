@@ -2,7 +2,7 @@
 \alias{boot.matching}
 \title{Matching package implementation for bootstrapping.}
 \usage{
-  boot.matching(Tr, Y, X, estimand = "ATE", ...)
+  boot.matching(Tr, Y, X, formu, estimand = "ATE", ...)
 }
 \arguments{
   \item{estimand}{character string for estimand, either
@@ -14,6 +14,11 @@
   \item{Y}{vector of outcome.}
 
   \item{X}{matrix or data frame of covariates.}
+
+  \item{formu}{the formula to use to estimate propensity
+  scores. Note that the dependent varaible (i.e. treatment
+  variable) name will be updated using the \code{Tr}
+  vector.}
 
   \item{...}{other parameters passed from
   \code{\link{PSAboot}}}
