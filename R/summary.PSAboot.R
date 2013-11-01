@@ -8,9 +8,9 @@
 #' @export
 summary.PSAboot <- function(object, ...) {
 	sum <- list()
-	for(i in unique(object$summary$method)) {
+	for(i in unique(object$pooled.summary$method)) {
 		sum2 <- list()
-		rows <- object$summary[object$summary$method == i,]
+		rows <- object$pooled.summary[object$pooled.summary$method == i,]
 		
 		sig.pos <- rows$ci.min > 0
 		sig.neg <- rows$ci.max < 0

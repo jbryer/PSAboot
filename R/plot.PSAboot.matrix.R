@@ -2,8 +2,9 @@
 #' 
 #' @param bm result from \code{\link{PSAboot}}.
 #' @export
-PSAboot.matrix.plot <- function(bm) {
-	tmp <- cast(bm$summary[,c('iter','method','estimate')], iter ~ method, value='estimate')
+matrixplot <- function(bm) {
+	tmp <- cast(bm$pooled.summary[,c('iter','method','estimate')], 
+				iter ~ method, value='estimate')
 	panel.hist <- function(x, ...) {
 		usr <- par("usr"); on.exit(par(usr))
 		par(usr = c(usr[1:2], 0, 1.5) )

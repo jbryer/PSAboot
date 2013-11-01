@@ -54,10 +54,19 @@
   \item{overall.summary}{Data frame with the results using
   the complete dateset (i.e. unboostrapped results).}
   \item{overall.details}{Objects returned from each method
-  for complete dataset.} \item{summary}{Data frame with
-  results of each boostrap sample.} \item{details}{List of
-  objects returned from each method for each boostrap
-  sample.} }
+  for complete dataset.} \item{pooled.summary}{Data frame
+  with results of each boostrap sample.}
+  \item{pooled.details}{List of objects returned from each
+  method for each boostrap sample.}
+  \item{control.sample.size}{sample size used for control
+  units.} \item{treated.sample.size}{sample size used for
+  treated units.} \item{control.replace}{whether control
+  units were sampled with replacement.}
+  \item{treated.replace}{whether treated units were sampled
+  with replacement.} \item{Tr}{vector of treatment
+  assignment.} \item{Y}{vector out outcome.}
+  \item{X}{matrix or data frame of covariates.}
+  \item{M}{number of bootstrap samples.} }
 }
 \description{
   Bootstrap treatment units for propensity score analysis

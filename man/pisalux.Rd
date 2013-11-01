@@ -1,9 +1,8 @@
 \docType{data}
-\name{pisausa}
-\alias{pisausa}
-\title{Programme of International Student Assessment (PISA) results from the United
-States in 2009.}
-\format{a data frame with 5,233 rows and 65 columns.
+\name{pisalux}
+\alias{pisalux}
+\title{Programme of International Student Assessment (PISA) results from the Luxembourg in 2009.}
+\format{a data frame with 4,622 rows and 65 columns.
 \describe{
 \item{\code{CNT}}{Country}
 \item{\code{SCHOOLID}}{SchoolID}

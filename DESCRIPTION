@@ -10,11 +10,12 @@ BugReports: https://github.com/jbryer/PSAboot/issues
 Description: Bootstrapping functions for propensity score analysis and matching.
 License: GPL
 LazyLoad: yes
+VignetteBuilder: knitr
 Depends:
     R (>= 3.0),ggplot2,reshape,Matching,MatchIt,party
 ImportsFrom: parallel
 Suggests:
-    devtools
+    devtools,knitr
 Collate:
     'psa.strata.R'
     'PSAboot-package.R'
@@ -28,3 +29,5 @@ Collate:
     'boot.ctree.R'
     'boot.rpart.R'
     'plot.PSAboot.matrix.R'
+    'boxplot.PSAboot.R'
+    'hist.PSAboot.R'

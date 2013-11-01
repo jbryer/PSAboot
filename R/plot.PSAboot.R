@@ -17,7 +17,7 @@ plot.PSAboot <- function(x, sort='all', ci.sig.color='red',
 						 plot.overall=FALSE,
 						 plot.bootstrap=TRUE,
 						 ...) {
-	results <- x$summary
+	results <- x$pooled.summary
 	results$sig <- results$ci.min > 0 | results$ci.max < 0
 	ci.min <- mean(results$estimate, na.rm=TRUE) - 2 * sd(results$estimate, na.rm=TRUE)
 	ci.max <- mean(results$estimate, na.rm=TRUE) + 2 * sd(results$estimate, na.rm=TRUE)
