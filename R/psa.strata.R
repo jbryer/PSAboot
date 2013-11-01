@@ -21,7 +21,6 @@ psa.strata <- function (Y, Tr, strata, trim = 0, minStrata=5) {
 		rows <- !strata %in% smallStrata
 		Tr <- Tr[rows]
 		Y <- Y[rows]
-		X <- X[rows,]
 		strata <- strata[rows]
 	}
 	
