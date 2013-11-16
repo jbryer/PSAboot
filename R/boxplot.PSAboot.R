@@ -12,7 +12,7 @@ boxplot.PSAboot <- function(x, ...) {
 	pooled.ci <- c(ci.min=pooled.mean - (qnorm(0.975) * pooled.sd/sqrt(x$M)),
 				   ci.max=pooled.mean + (qnorm(0.975) * pooled.sd/sqrt(x$M)))
 	p <- ggplot(x$pooled.summary, aes(y=estimate, x=method)) +
-		geom_hline(yintercept=0, alpha=.5) +
+		geom_hline(yintercept=0, alpha=.5, size=2) +
 		geom_hline(yintercept=pooled.ci, color='green') + 
 		geom_hline(yintercept=pooled.mean, color='blue') +
 		geom_errorbar(data=sum, aes(x=method, y=bootstrap.estimate, ymin=bootstrap.ci.min, 

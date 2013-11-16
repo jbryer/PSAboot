@@ -1,6 +1,7 @@
 #' Bootstrap treatment units for propensity score analysis
 #' 
 #' 
+#' 
 #' @param Tr numeric (0 or 1) or logical vector of treatment indicators. 
 #' @param Y vector of outcome varaible.
 #' @param X matrix or data frame of covariates used to estimate the propensity scores.
@@ -37,21 +38,23 @@
 #' @export
 PSAboot <- function(Tr, Y, X, M=100,
 					formu=as.formula(paste0('treat ~ ', paste0(names(X), collapse=' + '))),
-					control.ratio=3,
-					control.sample.size=(control.ratio*min(table(Tr))),
-					control.replace=FALSE,
+					control.ratio=5,
+					control.sample.size=min(control.ratio*min(table(Tr)),
+											max(table(Tr))),
+					control.replace=TRUE,
 					treated.sample.size=min(table(Tr)),
-					treated.replace=FALSE,
+					treated.replace=TRUE,
 					methods=c('Stratification'=boot.strata,
 							  'ctree'=boot.ctree,
 							  'rpart'=boot.rpart,
 						      'Matching'=boot.matching,
 					  		  'MatchIt'=boot.matchit),
-					parallel=TRUE,
+					parallel=FALSE,
 					seed=NULL,
 					  ...) {
 	if('factor' %in% class(Tr)) {
-		groups <- levels(Tr)	
+		groups <- levels(Tr)
+		message(paste0('Using ', groups[2], ' as treatment group.'))
 	} else {
 		groups <- 0:1
 	}
@@ -61,6 +64,17 @@ PSAboot <- function(Tr, Y, X, M=100,
 		stop('Sample size cannot be larger than the number of control units. 
 			 Try a smaller control.ratio or specify control.replace=TRUE.')
 	}
+	
+	message(paste0(
+		   M, ' bootstrap samples using ', length(methods), ' methods.\n',
+		   'Bootstrap sample sizes:\n',
+		   '   Treated=', length(index.treated), ' (', 
+		   round(treated.sample.size / length(index.treated) * 100), '%); with', 
+		   ifelse(treated.replace, '', 'out'), ' replacement.\n',
+		   '   Control=', length(index.control), ' (', 
+		   round(control.sample.size / length(index.control) * 100), '%); with', 
+		   ifelse(control.replace, '', 'out'), ' replacement.'
+	))
 	
 	complete.summary <- data.frame()
 	complete.details <- list()
@@ -77,6 +91,8 @@ PSAboot <- function(Tr, Y, X, M=100,
 			ci.max=unname(r$summary['ci.max']),
 			stringsAsFactors=FALSE))
 	}
+	
+	pb <- txtProgressBar(1,M,style=3)
 	
 	bootfun <- function(i) {
 		if(!is.null(seed)) { set.seed(seed + i) }
@@ -107,14 +123,17 @@ PSAboot <- function(Tr, Y, X, M=100,
 							   ' for ', n, ' method: ', e))
 			})
 		}
+		setTxtProgressBar(pb, i); flush.console()
 		return(result)
 	}
 	
 	if(parallel) {
-		tmp <- mclapply(seq_len(M), FUN=bootfun)		
+		tmp <- mclapply(seq_len(M), FUN=bootfun)
 	} else {
 		tmp <- lapply(seq_len(M), FUN=bootfun)
 	}
+	
+	close(pb)
 	
 	summary <- data.frame(iter=rep(1:M, each=length(methods)),
 						  method=rep(names(methods), M),
