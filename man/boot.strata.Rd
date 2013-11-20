@@ -2,7 +2,7 @@
 \alias{boot.strata}
 \title{Stratification implementation for bootstrapping.}
 \usage{
-  boot.strata(Tr, Y, X, formu, nstrata = 5, ...)
+  boot.strata(Tr, Y, X, X.trans, formu, nstrata = 5, ...)
 }
 \arguments{
   \item{Tr}{vector indicating treatment assignment.}
@@ -10,6 +10,9 @@
   \item{Y}{vector of outcome.}
 
   \item{X}{matrix or data frame of covariates.}
+
+  \item{X.trans}{a data frame of \code{X} with factors
+  recoded. See \code{\link{cv.trans.psa}}}
 
   \item{formu}{the formula to use to estimate propensity
   scores. Note that the dependent varaible (i.e. treatment
@@ -23,10 +26,15 @@
   \code{\link{PSAboot}}}
 }
 \value{
-  a list with two elements: a named vector (with at minimum
-  estimate, ci.min, and ci.max but other values allowd)
-  named summary; and an arbitrary object named details that
-  contains the full results of the analysis.
+  a list with three elements: \describe{
+  \item{\code{summary}}{a named numeric vector (with at
+  minimum \code{estimate}, \code{ci.min}, and \code{ci.max}
+  but other values allowed)} \item{\code{balance}}{a named
+  numeric vector with one element per covariate listed in
+  \code{X.trans} representing a balance statistic (usually
+  standardized effect size after adjustment)}
+  \item{\code{details}}{an arbitrary object that contains
+  the full results of the analysis} }
 }
 \description{
   Stratification implementation for bootstrapping.

@@ -1,0 +1,29 @@
+\name{plot.PSAboot.balance}
+\alias{plot.PSAboot.balance}
+\title{Plot method for balance.}
+\usage{
+  \method{plot}{PSAboot.balance} (x,
+    unadjusted.color = "red", complete.color = "blue",
+    pooled.color = "black", ...)
+}
+\arguments{
+  \item{x}{results from \code{\link{balance}}}
+
+  \item{unadjusted.color}{color of the vertical line
+  representing the mean unadjusted effect size for all
+  covariates.}
+
+  \item{complete.color}{color of the vertical line
+  representing the mean adjusted effect size for all
+  covariates using the complete dataset.}
+
+  \item{pooled.color}{color of the vertical line
+  represeting the mean adjusted effect size for all
+  covariates across all bootstrapped samples.}
+
+  \item{...}{currently unused.}
+}
+\description{
+  Plot method for balance.
+}
+

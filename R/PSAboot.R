@@ -49,7 +49,7 @@ PSAboot <- function(Tr, Y, X, M=100,
 							  'rpart'=boot.rpart,
 						      'Matching'=boot.matching,
 					  		  'MatchIt'=boot.matchit),
-					parallel=FALSE,
+					parallel=TRUE,
 					seed=NULL,
 					  ...) {
 	if('factor' %in% class(Tr)) {
@@ -76,14 +76,20 @@ PSAboot <- function(Tr, Y, X, M=100,
 		   ifelse(control.replace, '', 'out'), ' replacement.'
 	))
 	
+	if('factor' %in% sapply(X, class)) {
+		X.trans <- cv.trans.psa(X)[[1]]
+	} else {
+		X.trans <- X
+	}
 	complete.summary <- data.frame()
 	complete.details <- list()
 	for(m in seq_along(methods)) {
 		n <- names(methods)[[m]]
 		f <- methods[[m]]
-		r <- f(Tr=Tr, Y=Y, X=X, formu=formu, ...)
+		r <- f(Tr=Tr, Y=Y, X=X, X.trans=X.trans, formu=formu, ...)
 		complete.details[[paste0('summary.', n)]] <- r$summary
 		complete.details[[paste0('details.', n)]] <- r$details
+		complete.details[[paste0('balance.', n)]] <- r$balance
 		complete.summary <- rbind(complete.summary, data.frame(
 			method=n, 
 			estimate=unname(r$summary['estimate']),
@@ -109,9 +115,11 @@ PSAboot <- function(Tr, Y, X, M=100,
 			n <- names(methods)[[m]]
 			f <- methods[[m]]
 			tryCatch({
-				r <- f(Tr=Tr[rows], Y=Y[rows], X=X[rows,], formu=formu, ...)
+				r <- f(Tr=Tr[rows], Y=Y[rows], X=X[rows,], X.trans=X.trans[rows,], 
+					   formu=formu, ...)
 				result[[paste0('summary.', n)]] <- r$summary
 				result[[paste0('details.', n)]] <- r$details
+				result[[paste0('balance.', n)]] <- r$balance
 				result[['summary']] <- rbind(result[['summary']], data.frame(
 					Method=n, 
 					estimate=unname(r$summary['estimate']),

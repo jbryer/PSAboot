@@ -1,0 +1,21 @@
+\name{balance.matching}
+\alias{balance.matching}
+\title{Returns balance for each covariate using \code{\link{Match}}}
+\usage{
+  balance.matching(mr, covs)
+}
+\arguments{
+  \item{mr}{the results of \code{\link{Match}}}
+
+  \item{covs}{data frame or matrix of covariates. Factors
+  should already be recoded.  See
+  \code{\link{cv.trans.psa}}}
+}
+\value{
+  a named vector with one element per covariate.
+}
+\description{
+  Returns balance for each covariate using
+  \code{\link{Match}}
+}
+

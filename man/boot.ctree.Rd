@@ -2,7 +2,7 @@
 \alias{boot.ctree}
 \title{Stratification using classification trees for bootstrapping.}
 \usage{
-  boot.ctree(Tr, Y, X, formu, minStrata = 5, ...)
+  boot.ctree(Tr, Y, X, X.trans, formu, minStrata = 5, ...)
 }
 \arguments{
   \item{minStrata}{minimum number of treatment or control
@@ -14,6 +14,9 @@
 
   \item{X}{matrix or data frame of covariates.}
 
+  \item{X.trans}{a data frame of \code{X} with factors
+  recoded. See \code{\link{cv.trans.psa}}}
+
   \item{formu}{the formula to use to estimate propensity
   scores. Note that the dependent varaible (i.e. treatment
   variable) name will be updated using the \code{Tr}
@@ -21,12 +24,6 @@
 
   \item{...}{other parameters passed from
   \code{\link{PSAboot}}}
-}
-\value{
-  a list with two elements: a named vector (with at minimum
-  estimate, ci.min, and ci.max but other values allowd)
-  named summary; and an arbitrary object named details that
-  contains the full results of the analysis.
 }
 \description{
   Stratification using classification trees for

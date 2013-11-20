@@ -12,7 +12,7 @@ License: GPL
 LazyLoad: yes
 VignetteBuilder: knitr
 Depends:
-    R (>= 3.0),ggplot2,reshape,Matching,MatchIt,party
+    R (>= 3.0),ggplot2,reshape,Matching,MatchIt,party,PSAgraphics,TriMatch
 ImportsFrom: parallel, multicore, utils
 Suggests:
     devtools,knitr
@@ -31,3 +31,7 @@ Collate:
     'plot.PSAboot.matrix.R'
     'boxplot.PSAboot.R'
     'hist.PSAboot.R'
+    'balance.R'
+    'balance.boxplot.R'
+    'balance.plot.R'
+    'balance.print.R'

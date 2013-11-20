@@ -5,7 +5,8 @@ document('PSAboot')
 check_doc('PSAboot')
 install('PSAboot')
 check('PSAboot')
-
+build('PSAboot')
+build_vignettes('PSAboot')
 
 
 
