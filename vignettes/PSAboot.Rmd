@@ -24,7 +24,7 @@ As the popularity of propensity score methods for estimating causal effects in o
 
 # Introduction
 
-
+\
 The latest version of the `PSAboot` package can be downloaded from Github using the `devtools` package.
 
 ```{r, eval=FALSE}
@@ -93,14 +93,19 @@ The `PSAboot` function returns an object of class `PSAboot`. The following S3 me
 
 The `lalonde` (Lalonde, 1986) has become the *de defacto* teaching dataset in PSA since Dehejia and Wahba's (1999) re-examination of the National Supported Work Demonstration (NSW) and the Current Population Survey (CPS). 
 
+The `lalonde` data set is included in the `MatchIt` package. The crosstab shows that there are 429 control units and 185 treatment units. Here, we model 
 ```{r lalonde.load}
 data(lalonde, package='MatchIt')
 table(lalonde$treat)
 ```
 ```{r lalonde.boot, cache=TRUE}
+lalonde.formu <- treat ~ age + I(age^2) + educ + I(educ^2) + black +
+	hispan + married + nodegree + re74  + I(re74^2) + re75 + I(re75^2) +
+	re74 + re75
+
 boot.lalonde <- PSAboot(Tr=lalonde$treat, Y=lalonde$re78,
-						X=lalonde[,c('re74','re75','educ','black','hispan','age')],
-						M=100, seed=2112, parallel=TRUE,
+						X=lalonde[,c('re74','re75','educ','black','hispan','age','married','nodegree')],
+						M=100, seed=2112,
 						control.sample.size=429, control.replace=TRUE,
 						treated.sample.size=185, treated.replace=TRUE)
 ```

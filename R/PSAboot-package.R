@@ -5,6 +5,9 @@
 #' @title An R Package for Propensity Score Analysis
 #' @author Jason Bryer \email{jason@@bryer.org}
 #' @keywords propensity score analysis psa graphics bootstrapping
+#' @import parallel
+#' @import utils
+#' @import psych
 NA
 
 #' Programme of International Student Assessment (PISA) results from the United
