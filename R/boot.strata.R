@@ -33,5 +33,5 @@ boot.strata <- function(Tr, Y, X, X.trans, formu, nstrata=5, ...) {
 				  se.wtd=strata.results$se.wtd,
 				  approx.t=strata.results$approx.t),
 		details=strata.results,
-		balance=covariateBalance(X.trans, Tr, ps, strata)$effect.sizes[,'stES_adj'] ))
+		balance=TriMatch::covariateBalance(X.trans, Tr, ps, strata)$effect.sizes[,'stES_adj'] ))
 }

@@ -52,6 +52,9 @@ PSAboot <- function(Tr, Y, X, M=100,
 					parallel=TRUE,
 					seed=NULL,
 					  ...) {
+	if(length(Tr) != length(Y) != nrow(X)) {
+		stop('The length of Tr and Y and the number of rows of X must be the same!')
+	}
 	if('factor' %in% class(Tr)) {
 		groups <- levels(Tr)
 		message(paste0('Using ', groups[2], ' as treatment group.'))
