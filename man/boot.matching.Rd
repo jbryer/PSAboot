@@ -10,6 +10,9 @@
   ATE, ATT, or ATC. See \code{\link{Match}} for more
   details.}
 
+  \item{...}{other parameters passed to
+  \code{\link{Match}}.}
+
   \item{Tr}{vector indicating treatment assignment.}
 
   \item{Y}{vector of outcome.}
@@ -23,9 +26,6 @@
   scores. Note that the dependent varaible (i.e. treatment
   variable) name will be updated using the \code{Tr}
   vector.}
-
-  \item{...}{other parameters passed from
-  \code{\link{PSAboot}}}
 }
 \description{
   Matching package implementation for bootstrapping.

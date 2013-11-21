@@ -12,8 +12,8 @@ License: GPL
 LazyLoad: yes
 VignetteBuilder: knitr
 Depends:
-    R (>= 3.0),ggplot2,reshape,Matching,MatchIt,party,PSAgraphics,TriMatch
-ImportsFrom: parallel, multicore, utils
+    R (>= 3.0),ggplot2,Matching,MatchIt,party,TriMatch,psych
+Imports: parallel, multicore, utils, psych, PSAgraphics, reshape
 Suggests:
     devtools,knitr
 Collate:

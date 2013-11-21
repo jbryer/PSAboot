@@ -2,12 +2,13 @@
 #' 
 #' @param estimand character string for estimand, either ATE, ATT, or ATC. See
 #'        \code{\link{Match}} for more details. 
+#' @param ... other parameters passed to \code{\link{Match}}.
 #' @inheritParams boot.strata
 #' @export
 boot.matching <- function(Tr, Y, X, X.trans, formu, estimand='ATE', ...) {
 	formu <- update.formula(formu, 'treat ~ .')
 	ps <- fitted(glm(formu, data=cbind(treat=Tr, X), family='binomial'))
-	mr <- Match(Y=Y, Tr=Tr,	X=ps, M=1, estimand=estimand, ...)
+	mr <- Match(Y=Y, Tr=Tr,	X=ps, estimand=estimand, ...)
 	ttest <- t.test(Y[mr$index.treated], Y[mr$index.control], paired=TRUE)
 	return(list(
 		summary=c(estimate=unname(ttest$estimate),

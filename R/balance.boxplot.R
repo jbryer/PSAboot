@@ -11,8 +11,8 @@
 #' @method boxplot PSAboot.balance
 #' @export
 boxplot.PSAboot.balance <- function(x, 								 
-									unadjusted.color='red', 
-									pooled.color='blue', 
+									unadjusted.color='red',
+									pooled.color='blue',
 									point.size=3, 
 									point.alpha=.5, 
 									...) {
@@ -27,12 +27,16 @@ boxplot.PSAboot.balance <- function(x,
 	tmp2 <- as.data.frame(x$unadjusted)
 	names(tmp2) <- 'value'
 	tmp2$variable <- row.names(tmp2)
+	tmp3 <- describeBy(tmp$value, group=list(tmp$Method, tmp$variable), mat=TRUE, skew=FALSE)
+	tmp3 <- tmp3[,c('group1', 'group2', 'mean')]
+	names(tmp3) <- c('Method', 'variable', 'value')
 	p <- ggplot(tmp, aes(x=variable, y=value)) + 
 		geom_boxplot() + 
 		geom_point(data=tmp2, color=unadjusted.color, 
 				   size=point.size, alpha=point.alpha) +
-		geom_point(aes(y=mean(value, na.rm=TRUE)), color=pooled.color, 
+		geom_point(data=tmp3, color=pooled.color, 
 				   size=point.size, alhpa=point.alpha) +
-		facet_wrap(~ Method, ...) + coord_flip()
+		facet_wrap(~ Method, ...) + coord_flip() + 
+		xlab('Covariate') + ylab('Balance (Effect Size)')
 	return(p)
 }

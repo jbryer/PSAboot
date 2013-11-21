@@ -2,16 +2,28 @@ require(TriMatch)
 require(PSAboot)
 data(tutoring, package='TriMatch')
 
+boot.matching.1to3 <- function(Tr, Y, X, X.trans, formu, ...) {
+	return(boot.matching(Tr=Tr, Y=Y, X=X, X.trans=X.trans, formu=formu, M=3, ...))
+}
+
 tutoring$treatbool <- tutoring$treat != 'Control'
 covs <- tutoring[,c('Gender', 'Ethnicity', 'Military', 'ESL', 'EdMother', 'EdFather',
 					'Age', 'Employment', 'Income', 'Transfer', 'GPA')]
-Y  <- tutoring$Grade
-Tr <- tutoring$treatbool
 
 table(tutoring$treatbool)
-tutoring.boot <- PSAboot(Tr=Tr, Y=Y, X=covs, seed=2112,
+tutoring.boot <- PSAboot(Tr=tutoring$treatbool, 
+						 Y=tutoring$Grade, 
+						 X=covs, 
+						 seed=2112,
 						 control.sample.size=918, control.replace=TRUE,
-						 treated.sample.size=224, treated.replace=TRUE)
+						 treated.sample.size=224, treated.replace=TRUE,
+						 methods=c('Stratification'=boot.strata,
+						 		  'ctree'=boot.ctree,
+						 		  'rpart'=boot.rpart,
+						 		  'Matching'=boot.matching,
+						 		  'Matching-1-to-3'=boot.matching.1to3,
+						 		  'MatchIt'=boot.matchit)
+)
 summary(tutoring.boot)
 as.data.frame(summary(tutoring.boot))
 plot(tutoring.boot)
@@ -27,5 +39,3 @@ boxplot(tutoring.bal)
 tutoring.bal$unadjusted
 tutoring.bal$complete
 tutoring.bal$pooled
-
-
