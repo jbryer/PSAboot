@@ -72,13 +72,17 @@ PSAboot <- function(Tr, Y, X, M=100,
 		   M, ' bootstrap samples using ', length(methods), ' methods.\n',
 		   'Bootstrap sample sizes:\n',
 		   '   Treated=', length(index.treated), ' (', 
-		   round(treated.sample.size / length(index.treated) * 100), '%); with', 
+		   round(treated.sample.size / length(index.treated) * 100), '%) with', 
 		   ifelse(treated.replace, '', 'out'), ' replacement.\n',
 		   '   Control=', length(index.control), ' (', 
-		   round(control.sample.size / length(index.control) * 100), '%); with', 
+		   round(control.sample.size / length(index.control) * 100), '%) with', 
 		   ifelse(control.replace, '', 'out'), ' replacement.'
 	))
 	
+	tmp.formu <- update.formula(formu, 'treat ~ .')
+	vars <- all.vars(tmp.formu)
+	vars <- vars[2:length(vars)] #Keep only the right hand variables
+	X <- X[,vars] #This will ensure that X contains only the covariates
 	if('factor' %in% sapply(X, class)) {
 		X.trans <- cv.trans.psa(X)[[1]]
 	} else {
