@@ -22,8 +22,8 @@ tutoring.boot <- PSAboot(Tr=tutoring$treatbool,
 						 		  'rpart'=boot.rpart,
 						 		  'Matching'=boot.matching,
 						 		  'Matching-1-to-3'=boot.matching.1to3,
-						 		  'MatchIt'=boot.matchit)
-)
+						 		  'MatchIt'=boot.matchit) )
+
 summary(tutoring.boot)
 as.data.frame(summary(tutoring.boot))
 plot(tutoring.boot)

@@ -19,17 +19,11 @@ lalonde.formu <- treat ~ age + I(age^2) + educ + I(educ^2) + black +
 table(lalonde$treat)
 boot.lalonde <- PSAboot(Tr=lalonde$treat, 
 						Y=lalonde$re78,
-						X=lalonde[,c('re74','re75','educ','black','hispan','age',
-									 'married','nodegree')],
+						X=lalonde,
 						formu=lalonde.formu,
 						M=100, seed=2112, parallel=TRUE,
 						control.sample.size=429, control.replace=TRUE,
-						treated.sample.size=185, treated.replace=TRUE,
-						methods=c('Stratification'=boot.strata,
-								  'ctree'=boot.ctree,
-								  'rpart'=boot.rpart,
-								  'Matching'=boot.matching,
-								  'MatchIt'=boot.matchit ) )
+						treated.sample.size=185, treated.replace=TRUE )
 
 summary(boot.lalonde)
 plot(boot.lalonde)
