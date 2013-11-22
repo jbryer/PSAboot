@@ -35,7 +35,7 @@ plot.PSAboot.balance <- function(x,
 													'Unadjusted'=unadjusted.color,
 													'Complete'=complete.color)) +
 		xlab('Balance (Effect Size)') + ylab('') + 
-		xlim(c(0, 1.05 * max(c(x$pooled, .1)))) +
+		xlim(c(0, 1.05 * max(c(x$pooled, .1, df.unadj$value)))) +
 		facet_wrap(~ X2, ncol=1)
 	return(p)
 }
