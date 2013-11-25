@@ -26,10 +26,12 @@ table(lalonde$treat)
 lalonde.formu <- treat ~ age + I(age^2) + educ + I(educ^2) + black +
 	hispan + married + nodegree + re74  + I(re74^2) + re75 + I(re75^2) +
 	re74 + re75
-
-boot.lalonde <- PSAboot(Tr=lalonde$treat, Y=lalonde$re78,
-						X=lalonde[,c('re74','re75','educ','black','hispan','age','married','nodegree')],
-						M=boot.M, seed=2112)
+boot.lalonde <- PSAboot(Tr=lalonde$treat, 
+						Y=lalonde$re78,
+						X=lalonde,
+						formu=lalonde.formu,
+						M=boot.M, 
+						seed=2112)
 
 
 ## ------------------------------------------------------------------------

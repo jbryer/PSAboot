@@ -1,6 +1,6 @@
 \name{PSAboot}
 \alias{PSAboot}
-\title{Bootstrap treatment units for propensity score analysis}
+\title{Bootstraping for propensity score analysis}
 \usage{
   PSAboot(Tr, Y, X, M = 100,
     formu = as.formula(paste0("treat ~ ", paste0(names(X), collapse = " + "))),
@@ -75,6 +75,19 @@
   \item{M}{number of bootstrap samples.} }
 }
 \description{
-  Bootstrap treatment units for propensity score analysis
+  Bootstrapping has become a popular resampling method for
+  estimating sampling distributions. And propensity score
+  analysis (PSA) has become popular for estimating causal
+  effects in observational studies. This function
+  implements bootstrapping specifically for PSA. Like
+  typical bootstrapping methods, this function estiamtes
+  treatment effects for M random samples. However, unlike
+  typical bootstrap methods, this function allows for
+  separate sample sizes for treatment and control units.
+  That is, under certain circumstances (e.g. when the ratio
+  of treatment-to-control units is large) bootstrapping
+  only the control units may be desirable. Additionally,
+  this function provides a framework to use multiple PSA
+  methods for each bootstrap sample.
 }
 

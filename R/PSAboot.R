@@ -1,6 +1,15 @@
-#' Bootstrap treatment units for propensity score analysis
+#' Bootstraping for propensity score analysis
 #' 
-#' 
+#' Bootstrapping has become a popular resampling method for estimating sampling
+#' distributions. And propensity score analysis (PSA) has become popular for estimating
+#' causal effects in observational studies. This function implements bootstrapping
+#' specifically for PSA. Like typical bootstrapping methods, this function estiamtes
+#' treatment effects for M random samples. However, unlike typical bootstrap methods,
+#' this function allows for separate sample sizes for treatment and control units.
+#' That is, under certain circumstances (e.g. when the ratio of treatment-to-control
+#' units is large) bootstrapping only the control units may be desirable. Additionally,
+#' this function provides a framework to use multiple PSA methods for each bootstrap
+#' sample.
 #' 
 #' @param Tr numeric (0 or 1) or logical vector of treatment indicators. 
 #' @param Y vector of outcome varaible.
