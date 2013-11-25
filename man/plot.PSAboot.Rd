@@ -1,13 +1,13 @@
 \name{plot.PSAboot}
 \alias{plot.PSAboot}
-\title{Plot the results of bootmatch}
+\title{Plot the results of PSAboot}
 \usage{
   \method{plot}{PSAboot} (x, sort = "all",
     ci.sig.color = "red", plot.overall = FALSE,
     plot.bootstrap = TRUE, ...)
 }
 \arguments{
-  \item{x}{result of \code{\link{bootmatch}}.}
+  \item{x}{result of \code{\link{PSAboot}}.}
 
   \item{sort}{how the sort the rows by mean difference.
   Options are to sort using the mean difference from
@@ -27,6 +27,6 @@
   \item{...}{currently unused.}
 }
 \description{
-  Plot the results of bootmatch
+  Plot the results of PSAboot
 }
 

@@ -17,16 +17,16 @@ plot.PSAboot.balance <- function(x,
 								 pooled.color='black', 
 								 ...) {
 	df.complete <- x$complete
-	df.complete <- melt(apply(df.complete, 1, mean, na.rm=TRUE))
+	df.complete <- reshape2::melt(apply(df.complete, 1, mean, na.rm=TRUE))
 	df.complete$color <- 'Complete'
 	df.complete$X2 <- row.names(df.complete)
 	df.pool <- x$pooled
-	df.pool <- melt(apply(df.pool, 2, mean, na.rm=TRUE))
+	df.pool <- reshape2::melt(apply(df.pool, 2, mean, na.rm=TRUE))
 	df.pool$X2 <- row.names(df.pool)
 	df.pool$color <- 'Pooled'
 	df.unadj <- data.frame(method='Unadjusted', value=mean(x$unadjusted))
 	df.unadj$color <- 'Unadjusted'
-	p <- ggplot(melt(x$pooled)) + 
+	p <- ggplot(reshape2::melt(x$pooled)) + 
 		geom_vline(data=df.pool, aes(xintercept=value, color=color), alpha=1) +
 		geom_vline(data=df.unadj, aes(xintercept=value, color=color), alhpa=.75) + 
 		geom_vline(data=df.complete, aes(xintercept=value, color=color), alhpa=.75) +

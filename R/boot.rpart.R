@@ -5,11 +5,10 @@
 #'        to include that strata.
 #' @export
 boot.rpart <- function(Tr, Y, X, X.trans, formu, minStrata=5, ...) {
-	require(rpart)
 	formu <- update.formula(formu, 'treat ~ .')
-	tree <- rpart(formu, data=cbind(treat=Tr, X))
+	tree <- rpart::rpart(formu, data=cbind(treat=Tr, X))
 	strata <- tree$where
-	sizes <- melt(table(strata, Tr))
+	sizes <- reshape2::melt(table(strata, Tr))
 	smallStrata <- sizes[sizes$value < minStrata,]$strata
 	if(length(smallStrata) > 0) {
 		rows <- !strata %in% smallStrata

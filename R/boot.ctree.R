@@ -5,11 +5,10 @@
 #'        to include that strata.
 #' @export
 boot.ctree <- function(Tr, Y, X, X.trans, formu, minStrata=5, ...) {
-	require(party)
 	formu <- update.formula(formu, 'treat ~ .')
-	tree <- ctree(formu, data=cbind(treat=Tr, X))
-	strata <- where(tree)
-	sizes <- melt(table(strata, Tr))
+	tree <- party::ctree(formu, data=cbind(treat=Tr, X))
+	strata <- party::where(tree)
+	sizes <- reshape2::melt(table(strata, Tr))
 	smallStrata <- sizes[sizes$value < minStrata,]$strata
 	if(length(smallStrata) > 0) {
 		rows <- !strata %in% smallStrata
@@ -20,6 +19,7 @@ boot.ctree <- function(Tr, Y, X, X.trans, formu, minStrata=5, ...) {
 		strata <- strata[rows]
 	}
 	strata.results <- psa.strata(Y=Y, Tr=Tr, strata=strata, ...)
+	ps <- modeltools::Predict(tree)
 	return(list(
 		summary=c(estimate=strata.results$ATE,
 				  ci.min=strata.results$CI.95[1],
@@ -27,5 +27,5 @@ boot.ctree <- function(Tr, Y, X, X.trans, formu, minStrata=5, ...) {
 				  se.wtd=strata.results$se.wtd,
 				  approx.t=strata.results$approx.t),
 		details=strata.results,
-		balance=TriMatch::covariateBalance(X.trans, Tr, Predict(tree), strata)$effect.sizes[,'stES_adj'] ))
+		balance=TriMatch::covariateBalance(X.trans, Tr, ps, strata)$effect.sizes[,'stES_adj'] ))
 }

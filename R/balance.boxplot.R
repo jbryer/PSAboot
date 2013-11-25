@@ -23,11 +23,11 @@ boxplot.PSAboot.balance <- function(x,
 		tmp$Method <- method
 		combined <- rbind(combined, tmp)
 	}
-	tmp <- melt(combined, id='Method')
+	tmp <- reshape2::melt(combined, id='Method')
 	tmp2 <- as.data.frame(x$unadjusted)
 	names(tmp2) <- 'value'
 	tmp2$variable <- row.names(tmp2)
-	tmp3 <- describeBy(tmp$value, group=list(tmp$Method, tmp$variable), mat=TRUE, skew=FALSE)
+	tmp3 <- psych::describeBy(tmp$value, group=list(tmp$Method, tmp$variable), mat=TRUE, skew=FALSE)
 	tmp3 <- tmp3[,c('group1', 'group2', 'mean')]
 	names(tmp3) <- c('Method', 'variable', 'value')
 	p <- ggplot(tmp, aes(x=variable, y=value)) + 

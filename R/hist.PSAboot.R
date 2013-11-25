@@ -1,3 +1,5 @@
+utils::globalVariables(c('estimate'))
+
 #' Histogram of PSA bootstrap results
 #' 
 #' 

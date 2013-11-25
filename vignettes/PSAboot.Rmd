@@ -14,6 +14,8 @@ require(knitr)
 require(reshape)
 opts_chunk$set(comment='')
 require(PSAboot)
+
+boot.M <- 50 # Change for the final version
 ```
 
 # Abstract
@@ -24,7 +26,6 @@ As the popularity of propensity score methods for estimating causal effects in o
 
 # Introduction
 
-\
 The latest version of the `PSAboot` package can be downloaded from Github using the `devtools` package.
 
 ```{r, eval=FALSE}
@@ -55,8 +56,8 @@ Other parameters can be passed to `methods` using the `...` parameter.
 The `methods` parameter on the `PSAboot` function specifies the different propensity score methods that will be used. Five methods are included, they are:
 
 * `boot.strata` - This method estimates propensity scores using logistic regression and stratifies using quintiles on the propensity scores. Effects within each strata are estimated and aggregated.
-* `boot.ctree` - This method creates strata using conditional inference trees vis-à-vis the `ctree` function in the `party` package. Effects within each strata (i.e. leaf node) are estimated and aggregated.
-* `boot.rpart` - This method creates strata using classification trees vis-à-vis the `rpart` function. Effects within each strata (i.e. leaf node) are estimated and aggregated.
+* `boot.ctree` - This method creates strata using conditional inference trees vis-??-vis the `ctree` function in the `party` package. Effects within each strata (i.e. leaf node) are estimated and aggregated.
+* `boot.rpart` - This method creates strata using classification trees vis-??-vis the `rpart` function. Effects within each strata (i.e. leaf node) are estimated and aggregated.
 * `boot.matching` - This method finds matched pairs using the `Match` function in the `Matching` package. A paired dependent sample t-test is used to estimate effect sizes.
 * `boot.matchit` - This method finds match pairs using the `matchit` function in the `MatchIt` package. A paired dependent sample t-ttest is used to estimate effect sizes.
 
@@ -106,7 +107,7 @@ lalonde.formu <- treat ~ age + I(age^2) + educ + I(educ^2) + black +
 
 boot.lalonde <- PSAboot(Tr=lalonde$treat, Y=lalonde$re78,
 						X=lalonde[,c('re74','re75','educ','black','hispan','age','married','nodegree')],
-						M=100, seed=2112)
+						M=boot.M, seed=2112)
 ```
 
 ```{r}
@@ -165,6 +166,7 @@ tutoring.boot <- PSAboot(Tr=tutoring$treatbool,
 						 Y=tutoring$Grade, 
 						 X=covs, 
 						 seed=2112,
+						 M=boot.M,
 						 control.sample.size=918, control.replace=TRUE,
 						 treated.sample.size=224, treated.replace=TRUE,
 						 methods=c('Stratification'=boot.strata,

@@ -1,6 +1,9 @@
-#' Plot the results of bootmatch
+utils::globalVariables(c('iter','estimate','sig','bootstrap.estimate','bootstrap.ci.min',
+						 'bootstrap.ci.max','value','color'))
+
+#' Plot the results of PSAboot
 #' 
-#' @param x result of \code{\link{bootmatch}}.
+#' @param x result of \code{\link{PSAboot}}.
 #' @param sort how the sort the rows by mean difference. Options are to sort
 #'        using the mean difference from matching, stratificaiton, both 
 #'        individually, or no sorting.
@@ -29,11 +32,11 @@ plot.PSAboot <- function(x, sort='all', ci.sig.color='red',
 			results[rows,]$iter <- 1:length(rows)
 		}
 	} else if(sort %in% unique(results$method)) {
-		results.estimate <- cast(results[,c('iter','method','estimate')], 
+		results.estimate <- reshape2::dcast(results[,c('iter','method','estimate')], 
 								 iter ~ method, value='estimate')
-		results.ci.min <- cast(results[,c('iter','method','ci.min')], 
+		results.ci.min <- reshape2::dcast(results[,c('iter','method','ci.min')], 
 							   iter ~ method, value='ci.min')
-		results.ci.max <- cast(results[,c('iter','method','ci.max')], 
+		results.ci.max <- reshape2::dcast(results[,c('iter','method','ci.max')], 
 							   iter ~ method, value='ci.max')		
 		o <- order(results.estimate[,sort])
 		results.estimate <- results.estimate[o,]
@@ -41,9 +44,9 @@ plot.PSAboot <- function(x, sort='all', ci.sig.color='red',
 		results.ci.max <- results.ci.max[o,]
 		results.estimate$iter <- results.ci.min$iter <- 
 			results.ci.max$iter <- 1:nrow(results.estimate)
-		results.estimate <- melt(results.estimate, id='iter')
-		results.ci.min <- melt(results.ci.min, id='iter')
-		results.ci.max <- melt(results.ci.max, id='iter')
+		results.estimate <- reshape2::melt(results.estimate, id='iter')
+		results.ci.min <- reshape2::melt(results.ci.min, id='iter')
+		results.ci.max <- reshape2::melt(results.ci.max, id='iter')
 		results <- cbind(results.estimate, results.ci.min$value, results.ci.max$value)
 		names(results) <- c('iter', 'estimate','method','ci.min','ci.max')
 		results$sig <- results$ci.min > 0 | results$ci.max < 0

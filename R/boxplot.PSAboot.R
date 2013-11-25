@@ -1,3 +1,6 @@
+utils::globalVariables(c('estimate','method','bootstrap.estimate','bootstrap.ci.min',
+						 'bootstrap.ci.max','variable'))
+
 #' Boxplot of PSA boostrap results.
 #' 
 #' @param x result of \code{\link{PSAboot}}.

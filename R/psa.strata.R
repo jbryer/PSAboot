@@ -10,7 +10,7 @@
 #'        to include that strata.
 #' @export
 psa.strata <- function (Y, Tr, strata, trim = 0, minStrata=5) {
-	sizes <- melt(table(strata, Tr))
+	sizes <- reshape2::melt(table(strata, Tr))
 	smallStrata <- unique(sizes[sizes$value < minStrata,]$strata)
 	if(length(smallStrata) == length(unique(strata))) {
 		stop('Not enough strata to continue.')

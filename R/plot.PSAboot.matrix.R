@@ -3,8 +3,8 @@
 #' @param bm result from \code{\link{PSAboot}}.
 #' @export
 matrixplot <- function(bm) {
-	tmp <- cast(bm$pooled.summary[,c('iter','method','estimate')], 
-				iter ~ method, value='estimate')
+	tmp <- reshape2::dcast(bm$pooled.summary[,c('iter','method','estimate')], 
+				iter ~ method, value.var='estimate')
 	panel.hist <- function(x, ...) {
 		usr <- par("usr"); on.exit(par(usr))
 		par(usr = c(usr[1:2], 0, 1.5) )

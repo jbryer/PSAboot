@@ -2,13 +2,22 @@
 #' 
 #' @name PSAboot-package
 #' @docType package
-#' @title An R Package for Propensity Score Analysis
-#' @author Jason Bryer \email{jason@@bryer.org}
-#' @keywords propensity score analysis psa graphics bootstrapping
-#' @import parallel
+#' @title Bootstrapping for Propensity Score Analysis
+#' @import ggplot2
+#' @import graphics
+#' @import PSAgraphics
 #' @import utils
-#' @import psych
-NA
+#' @import Matching
+#' @import MatchIt
+#' @import modeltools
+#' @import parallel
+#' @import party
+#' @import reshape2
+#' @import rpart
+#' @import TriMatch
+#' @importFrom psych describe
+#' @importFrom psych describeBy
+NULL
 
 #' Programme of International Student Assessment (PISA) results from the United
 #' States in 2009.
@@ -79,7 +88,7 @@ NA
 #' \item{\code{PUBPRIV}}{Public or private school}
 #' \item{\code{STRATIO}}{Student to teacher ratio in school}
 #' }
-NA
+NULL
 
 #' Programme of International Student Assessment (PISA) results from the Luxembourg in 2009.
 #' 
@@ -149,7 +158,7 @@ NA
 #' \item{\code{PUBPRIV}}{Public or private school}
 #' \item{\code{STRATIO}}{Student to teacher ratio in school}
 #' }
-NA
+NULL
 
 #' Character vector representing the list of covariates used for estimating
 #' propensity scores.

@@ -1,6 +1,6 @@
-#' Summary of pooled results from bootmatch
+#' Summary of pooled results from PSAboot
 #' 
-#' @param object result of \code{\link{bootmatch}}.
+#' @param object result of \code{\link{PSAboot}}.
 #' @param ... currently unused.
 #' @return a list with pooled summary statistics.
 #' @S3method summary PSAboot
@@ -43,6 +43,7 @@ summary.PSAboot <- function(object, ...) {
 #' @param ... unused.
 #' @S3method print PSAbootSummary
 #' @method print PSAbootSummary
+#' @export
 print.PSAbootSummary <- function(x, digits=3, ...) {
 	for(i in names(x)) {
 		sum2 <- x[[i]]

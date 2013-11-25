@@ -8,7 +8,7 @@ boot.matchit <- function(Tr, Y, X, X.trans, formu, ...) {
 	row.names(df) <- 1:nrow(df)
 	row.names(X) <- 1:nrow(df)
 	row.names(X.trans) <- 1:nrow(df)
-	mi <- matchit(formu, data=df, ...)
+	mi <- MatchIt::matchit(formu, data=df, ...)
 	df$Y <- Y
 	index.treated <- row.names(mi$match.matrix)
 	index.control <- mi$match.matrix[,1]
@@ -47,4 +47,3 @@ balance.matchit <- function(mi, covs) {
 	}
 	return(bal)
 }
-

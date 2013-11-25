@@ -1,4 +1,3 @@
-require(TriMatch)
 require(PSAboot)
 data(tutoring, package='TriMatch')
 

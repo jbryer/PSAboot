@@ -1,6 +1,6 @@
-#' Print results of bootmatch
+#' Print results of PSAboot
 #' 
-#' @param x result of \code{\link{bootmatch}}.
+#' @param x result of \code{\link{PSAboot}}.
 #' @param ... currently unused.
 #' @S3method print PSAboot
 #' @method print PSAboot
