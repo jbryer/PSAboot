@@ -1,7 +1,6 @@
 
 ## ----, echo=FALSE, results='hide', message=FALSE, warning=FALSE----------
 require(knitr)
-require(reshape)
 opts_chunk$set(comment='')
 require(PSAboot)
 
