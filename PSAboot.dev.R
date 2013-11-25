@@ -4,7 +4,7 @@ require(devtools)
 document('PSAboot')
 check_doc('PSAboot')
 install('PSAboot')
-check('PSAboot')
+check('PSAboot', cran=TRUE)
 build('PSAboot')
 build_vignettes('PSAboot')
 

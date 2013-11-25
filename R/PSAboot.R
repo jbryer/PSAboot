@@ -44,6 +44,19 @@
 #' 		  \item{X}{matrix or data frame of covariates.}
 #' 		  \item{M}{number of bootstrap samples.}
 #' 		  }
+#' @usage PSAboot(Tr, Y, X, M = 100,
+#' formu = as.formula(paste0("treat ~ ", paste0(names(X), collapse = " + "))),
+#' control.ratio = 5,
+#' control.sample.size = min(control.ratio * min(table(Tr)), max(table(Tr))),
+#' control.replace = TRUE,
+#' treated.sample.size = min(table(Tr)),
+#' treated.replace = TRUE,
+#' methods = c(Stratification = boot.strata, 
+#'             ctree = boot.ctree, 
+#'             rpart = boot.rpart,
+#'             Matching = boot.matching, 
+#'             MatchIt = boot.matchit),
+#' parallel = TRUE, seed = NULL, ...)
 #' @export
 PSAboot <- function(Tr, Y, X, M=100,
 					formu=as.formula(paste0('treat ~ ', paste0(names(X), collapse=' + '))),
