@@ -1,7 +1,7 @@
 Package: PSAboot
 Type: Package
 Title: Bootstrapping for Propensity Score Analysis
-Version: 1.0
+Version: 1.1
 Date: 2013-10-29
 Author: Jason Bryer <jason@bryer.org>
 Maintainer: Jason Bryer <jason@bryer.org>
@@ -16,7 +16,7 @@ Depends:
 Imports:
     utils,Matching,MatchIt,modeltools,parallel,party,psych,reshape2,rpart,TriMatch
 Suggests:
-    devtools,knitr
+    devtools,knitr,ggthemes
 Collate:
     'psa.strata.R'
     'PSAboot.R'

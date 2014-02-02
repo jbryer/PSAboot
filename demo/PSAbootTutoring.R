@@ -27,6 +27,7 @@ summary(tutoring.boot)
 as.data.frame(summary(tutoring.boot))
 plot(tutoring.boot)
 boxplot(tutoring.boot)
+boxplot(tutoring.boot, tufte=TRUE, bootstrap.ci.size=NA)
 matrixplot(tutoring.boot)
 
 tutoring.bal <- balance(tutoring.boot)

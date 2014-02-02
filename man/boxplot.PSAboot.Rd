@@ -2,10 +2,34 @@
 \alias{boxplot.PSAboot}
 \title{Boxplot of PSA boostrap results.}
 \usage{
-  \method{boxplot}{PSAboot} (x, ...)
+  \method{boxplot}{PSAboot} (x,
+    bootstrap.mean.color = "blue",
+    bootstrap.ci.color = "green", bootstrap.ci.width = 0.5,
+    bootstrap.ci.size = 3, overall.mean.color = "red",
+    tufte = FALSE, coord.flip = TRUE, ...)
 }
 \arguments{
   \item{x}{result of \code{\link{PSAboot}}.}
+
+  \item{tufte}{use Tufte's boxplot style. Requires the
+  \code{ggthemes} package.}
+
+  \item{coord.flip}{Whether to flip the coordinates.}
+
+  \item{bootstrap.mean.color}{the color of the point for
+  the boostrap mean, or NA to omit.}
+
+  \item{bootstrap.ci.color}{the color of the confidence
+  intervals of the bootstrap samples, or NA to omit.}
+
+  \item{bootstrap.ci.width}{the width of the confidence
+  interval lines at the end.}
+
+  \item{bootstrap.ci.size}{the size of the confidence
+  interval lines.}
+
+  \item{overall.mean.color}{the color of the point for the
+  overall (before bootstrapping) mean, or NA to omit.}
 
   \item{...}{unused}
 }

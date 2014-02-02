@@ -1,3 +1,8 @@
+Version 1.0.1
+
+* Added getPSAbootMethods and global R option "PSAboot.methods" that will return the default set of functions to use in PSAboot.
+* Added a number of parameters to the boxplot function including a tufte style from the ggthemes package.
+
 Version 1.0
 
 * Initial version of PSAboot package for bootstrapping propensity score analysis.

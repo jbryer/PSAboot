@@ -1,3 +1,30 @@
+#' Returns a vector with the default methods used by \code{\link{PSAboot}}.
+#' 
+#' The current default methods are:
+#' \describe{
+#' \item{Stratification}{\code{\link{boot.strata}}}
+#' \item{ctree}{\code{\link{boot.ctree}}}
+#' \item{rpart}{\code{\link{boot.rpart}}}
+#' \item{Matching}{\code{\link{boot.matching}}}
+#' \item{MatchIt}{\code{\link{boot.matchit}}}
+#' }
+#' 
+#' The default methods can be changed by setting the \code{PSAboot.methods} option
+#' using \code{options('PSAboot.methods'=c(...))} where \code{...} is a named
+#' list of functions.
+#' 
+#' @export
+#' @return a vector of methods for use by \code{\link{PSAboot}}
+getPSAbootMethods <- function() {
+	methods <- getOption('PSAboot.methods', default=c(
+		'Stratification'=boot.strata,
+		'ctree'=boot.ctree,
+		'rpart'=boot.rpart,
+		'Matching'=boot.matching,
+		'MatchIt'=boot.matchit))
+	invisible(methods)
+}
+
 #' Bootstraping for propensity score analysis
 #' 
 #' Bootstrapping has become a popular resampling method for estimating sampling
@@ -44,19 +71,7 @@
 #' 		  \item{X}{matrix or data frame of covariates.}
 #' 		  \item{M}{number of bootstrap samples.}
 #' 		  }
-#' @usage PSAboot(Tr, Y, X, M = 100,
-#' formu = as.formula(paste0("treat ~ ", paste0(names(X), collapse = " + "))),
-#' control.ratio = 5,
-#' control.sample.size = min(control.ratio * min(table(Tr)), max(table(Tr))),
-#' control.replace = TRUE,
-#' treated.sample.size = min(table(Tr)),
-#' treated.replace = TRUE,
-#' methods = c(Stratification = boot.strata, 
-#'             ctree = boot.ctree, 
-#'             rpart = boot.rpart,
-#'             Matching = boot.matching, 
-#'             MatchIt = boot.matchit),
-#' parallel = TRUE, seed = NULL, ...)
+#' @seealso getPSAbootMethods
 #' @export
 PSAboot <- function(Tr, Y, X, M=100,
 					formu=as.formula(paste0('treat ~ ', paste0(names(X), collapse=' + '))),
@@ -66,11 +81,7 @@ PSAboot <- function(Tr, Y, X, M=100,
 					control.replace=TRUE,
 					treated.sample.size=min(table(Tr)),
 					treated.replace=TRUE,
-					methods=c('Stratification'=boot.strata,
-							  'ctree'=boot.ctree,
-							  'rpart'=boot.rpart,
-						      'Matching'=boot.matching,
-					  		  'MatchIt'=boot.matchit),
+					methods=getPSAbootMethods(),
 					parallel=TRUE,
 					seed=NULL,
 					...) {

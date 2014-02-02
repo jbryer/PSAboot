@@ -2,15 +2,14 @@
 \alias{PSAboot}
 \title{Bootstraping for propensity score analysis}
 \usage{
-  PSAboot(Tr, Y, X, M = 100, formu =
-    as.formula(paste0("treat ~ ", paste0(names(X), collapse
-    = " + "))), control.ratio = 5, control.sample.size =
-    min(control.ratio * min(table(Tr)), max(table(Tr))),
-    control.replace = TRUE, treated.sample.size =
-    min(table(Tr)), treated.replace = TRUE, methods =
-    c(Stratification = boot.strata, ctree = boot.ctree,
-    rpart = boot.rpart, Matching = boot.matching, MatchIt =
-    boot.matchit), parallel = TRUE, seed = NULL, ...)
+  PSAboot(Tr, Y, X, M = 100,
+    formu = as.formula(paste0("treat ~ ", paste0(names(X), collapse = " + "))),
+    control.ratio = 5,
+    control.sample.size = min(control.ratio * min(table(Tr)), max(table(Tr))),
+    control.replace = TRUE,
+    treated.sample.size = min(table(Tr)),
+    treated.replace = TRUE, methods = getPSAbootMethods(),
+    parallel = TRUE, seed = NULL, ...)
 }
 \arguments{
   \item{Tr}{numeric (0 or 1) or logical vector of treatment
@@ -89,5 +88,8 @@
   only the control units may be desirable. Additionally,
   this function provides a framework to use multiple PSA
   methods for each bootstrap sample.
+}
+\seealso{
+  getPSAbootMethods
 }
 
