@@ -5,7 +5,6 @@ utils::globalVariables(c('estimate'))
 #' 
 #' @param x result of \code{\link{PSAboot}}.
 #' @param ... other parameters passed to \code{\link{geom_histogram}}
-#' @S3method hist PSAboot
 #' @method hist PSAboot
 #' @export
 hist.PSAboot <- function(x, ...) {

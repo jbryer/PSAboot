@@ -8,7 +8,6 @@
 #' @param pooled.color color of the vertical line represeting the mean adjusted
 #'        effect size for all covariates across all bootstrapped samples.
 #' @param ... currently unused.
-#' @S3method plot PSAboot.balance
 #' @method plot PSAboot.balance
 #' @export
 plot.PSAboot.balance <- function(x, 
@@ -17,16 +16,19 @@ plot.PSAboot.balance <- function(x,
 								 pooled.color='black', 
 								 ...) {
 	df.complete <- x$complete
-	df.complete <- reshape2::melt(apply(df.complete, 1, mean, na.rm=TRUE))
+	df.complete <- reshape2::melt(apply(df.complete, 1, x$pool.fun, na.rm=TRUE))
 	df.complete$color <- 'Complete'
 	df.complete$X2 <- row.names(df.complete)
 	df.pool <- x$pooled
-	df.pool <- reshape2::melt(apply(df.pool, 2, mean, na.rm=TRUE))
+	df.pool <- reshape2::melt(apply(df.pool, 2, x$pool.fun, na.rm=TRUE))
 	df.pool$X2 <- row.names(df.pool)
 	df.pool$color <- 'Pooled'
-	df.unadj <- data.frame(method='Unadjusted', value=mean(x$unadjusted))
+	df.unadj <- data.frame(method='Unadjusted', value=x$pool.fun(x$unadjusted))
 	df.unadj$color <- 'Unadjusted'
-	p <- ggplot(reshape2::melt(x$pooled)) + 
+	tmp <- reshape2::melt(x$pooled)
+	names(tmp) <- c('Var1', 'X2', 'value')
+	tmp$color <- 'Pooled'
+	p <- ggplot(tmp) + 
 		geom_vline(data=df.pool, aes(xintercept=value, color=color), alpha=1) +
 		geom_vline(data=df.unadj, aes(xintercept=value, color=color), alhpa=.75) + 
 		geom_vline(data=df.complete, aes(xintercept=value, color=color), alhpa=.75) +

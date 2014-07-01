@@ -5,6 +5,10 @@
 #' @param psaboot results from \code{\link{PSAboot}}.
 #' @param na.rm should NAs be removed. NAs generally occur when there is insufficient
 #'        sample for a particular covariate or an unused level.
+#' @param pool.fun a function specifying how the effect sizes across all covariates
+#'        should be combined. Possible values include \code{mean} (default),
+#'        \code{median}, \code{max}, or any function that takes a vector of numeric
+#'        values.
 #' @return a list with three elements:
 #' \describe{
 #' 	\item{unadjusted}{named numeric vector with unadjusted effect size before
@@ -16,7 +20,7 @@
 #' 	\item{balances}{a list with an M x n covariates matrix for each method.}
 #' }
 #' @export
-balance <- function(psaboot, na.rm=TRUE) {
+balance <- function(psaboot, na.rm=TRUE, pool.fun=mean) {
 	if('factor' %in% sapply(psaboot$X, class)) {
 		X.trans <- cv.trans.psa(psaboot$X)[[1]]
 	} else {
@@ -33,7 +37,7 @@ balance <- function(psaboot, na.rm=TRUE) {
 	index.balance <- which(substr(names(psaboot$complete.details), 1, 8) == 'balance.')
 	index.names <- substr(names(psaboot$complete.details)[index.balance], 9, 
 						  max(nchar(names(psaboot$complete.details))))
-	bal <- psaboot$complete.details[[index.balance[1] ]]
+	bal <- psaboot$complete.details[[ index.balance[1] ]]
 	bal <- c()
 	for(i in index.balance) {
 		bal <- rbind(bal, psaboot$complete.details[[ i ]])
@@ -55,7 +59,7 @@ balance <- function(psaboot, na.rm=TRUE) {
 		for(j in seq_along(index.balance)) {
 			balances[[index.names[j]]] <- rbind(balances[[index.names[j]]], 
 								   abs(psaboot$pooled.details[[i]][[ index.balance[j] ]]))
-			boot.bal[i,index.names[j]] <- mean(abs(
+			boot.bal[i,index.names[j]] <- pool.fun(abs(
 				psaboot$pooled.details[[i]][[ index.balance[j] ]]), 
 											   na.rm=na.rm)
 		}
@@ -66,6 +70,7 @@ balance <- function(psaboot, na.rm=TRUE) {
 	results$pooled <- abs(boot.bal)
 	results$unadjusted <- abs(bal.unadj)
 	results$balances <- balances
+	results$pool.fun <- pool.fun
 	class(results) <- 'PSAboot.balance'
 	return(results)
 }

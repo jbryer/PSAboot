@@ -17,22 +17,3 @@ Imports:
     utils,Matching,MatchIt,modeltools,parallel,party,psych,reshape2,rpart,TriMatch
 Suggests:
     devtools,knitr,ggthemes
-Collate:
-    'psa.strata.R'
-    'PSAboot.R'
-    'boot.matching.R'
-    'boot.matchit.R'
-    'boot.strata.R'
-    'plot.PSAboot.R'
-    'print.PSAboot.R'
-    'summary.PSAboot.R'
-    'boot.ctree.R'
-    'boot.rpart.R'
-    'plot.PSAboot.matrix.R'
-    'boxplot.PSAboot.R'
-    'hist.PSAboot.R'
-    'balance.R'
-    'balance.boxplot.R'
-    'balance.plot.R'
-    'balance.print.R'
-    'PSAboot-package.R'

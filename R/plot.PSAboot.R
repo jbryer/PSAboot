@@ -13,7 +13,6 @@ utils::globalVariables(c('iter','estimate','sig','bootstrap.estimate','bootstrap
 #' @param plot.bootstrap whether to plot vertical lines for the bootstrap pooled
 #'        estimate and confidence interval.
 #' @param ... currently unused.
-#' @S3method plot PSAboot
 #' @method plot PSAboot
 #' @export
 plot.PSAboot <- function(x, sort='all', ci.sig.color='red', 

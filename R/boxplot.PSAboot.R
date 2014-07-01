@@ -15,7 +15,6 @@ utils::globalVariables(c('estimate','method','bootstrap.estimate','bootstrap.ci.
 #' @param overall.mean.color the color of the point for the overall (before bootstrapping)
 #'        mean, or NA to omit.
 #' @param ... unused
-#' @S3method boxplot PSAboot
 #' @method boxplot PSAboot
 #' @export
 boxplot.PSAboot <- function(x,

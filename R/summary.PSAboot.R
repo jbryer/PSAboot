@@ -3,11 +3,11 @@
 #' @param object result of \code{\link{PSAboot}}.
 #' @param ... currently unused.
 #' @return a list with pooled summary statistics.
-#' @S3method summary PSAboot
 #' @method summary PSAboot
 #' @export
 summary.PSAboot <- function(object, ...) {
 	sum <- list()
+	bal <- balance(object, ...)
 	for(i in unique(object$pooled.summary$method)) {
 		sum2 <- list()
 		rows <- object$pooled.summary[object$pooled.summary$method == i,]
@@ -20,6 +20,9 @@ summary.PSAboot <- function(object, ...) {
 											   levels=c('TRUE','FALSE')))) * 100
 		
 		m <- mean(rows$estimate, na.rm=TRUE)
+		wm <- weighted.mean(rows$estimate, 
+							1 / apply(bal$balances[[i]], 1, mean), 
+							na.rm=TRUE)
 		ci <- c(m - 2 * sd(rows$estimate, na.rm=TRUE),
 				m + 2 * sd(rows$estimate, na.rm=TRUE) )
 		
@@ -27,6 +30,7 @@ summary.PSAboot <- function(object, ...) {
 		
 		sum2[['bootstrap.mean']] <- m
 		sum2[['bootstrap.ci']] <- ci
+		sum2[['bootstrap.weighted.mean']] <- wm
 		sum2[['percent.sig']] <- table(sig.pos | sig.neg)
 		sum2[['complete']] <- complete
 		sum[[i]] <- sum2
@@ -41,7 +45,6 @@ summary.PSAboot <- function(object, ...) {
 #' @param x result of \code{\link{summary.PSAboot}}
 #' @param digits desired number of digits after the decimal point.
 #' @param ... unused.
-#' @S3method print PSAbootSummary
 #' @method print PSAbootSummary
 #' @export
 print.PSAbootSummary <- function(x, digits=3, ...) {
@@ -49,6 +52,7 @@ print.PSAbootSummary <- function(x, digits=3, ...) {
 		sum2 <- x[[i]]
 		complete <- x[[i]][['complete']]
 		m <- x[[i]][['bootstrap.mean']]
+		wm <- x[[i]][['bootstrap.weighted.mean']]
 		ci <- x[[i]][['bootstrap.ci']]
 		sig.tot.per <- x[[i]][['sig.tot.per']]
 		sig.pos.per <- x[[i]][['sig.pos.per']]
@@ -58,6 +62,7 @@ print.PSAbootSummary <- function(x, digits=3, ...) {
 		cat(paste0('\n   Complete CI = [', prettyNum(complete$ci.min, digits=digits), ', ',
 				   prettyNum(complete$ci.max, digits=digits), ']'))
 		cat(paste0('\n   Bootstrap pooled estimate = ', prettyNum(m, digits=digits), 
+				   '\n   Bootstrap weighted pooled estimate = ', prettyNum(wm, digits=digits),
 				   '\n   Bootstrap pooled CI = [', prettyNum(ci[1], digits=digits), ', ', 
 				   prettyNum(ci[2], digits=digits), ']\n'))
 		
@@ -76,7 +81,6 @@ print.PSAbootSummary <- function(x, digits=3, ...) {
 #' @param row.names row names.
 #' @param optional unused.
 #' @param ... unused.
-#' @S3method as.data.frame PSAbootSummary
 #' @method as.data.frame PSAbootSummary
 #' @export
 as.data.frame.PSAbootSummary <- function(x, row.names=NULL, optional=FALSE, ...) {

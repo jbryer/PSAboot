@@ -8,11 +8,10 @@
 #' @param x results from \code{\link{balance}}.
 #' @param na.rm whether NA balance statistics should be removed before averaging them.
 #' @param ... currently unused.
-#' @S3method print PSAboot.balance
 #' @method print PSAboot.balance
 #' @export
 print.PSAboot.balance <- function(x, na.rm=TRUE, ...) {
-	cat(paste0('Unadjusted balance: ', mean(x$unadjusted), '\n'))
-	print(cbind(Complete=apply(x$complete, 1, mean, na.rm=na.rm),
-				Bootstrap=apply(x$pooled, 2, mean)))
+	cat(paste0('Unadjusted balance: ', x$pool.fun(x$unadjusted), '\n'))
+	print(cbind(Complete=apply(x$complete, 1, x$pool.fun, na.rm=na.rm),
+				Bootstrap=apply(x$pooled, 2, x$pool.fun)))
 }
