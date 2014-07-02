@@ -3,10 +3,15 @@
 \alias{q25}
 \title{Return the 25th percentile.}
 \usage{
-q25(x)
+q25(x, na.rm = FALSE, ...)
 }
 \arguments{
 \item{x}{numeric vector.}
+
+\item{na.rm}{logical; if true, any NA and NaN's are removed from x before the
+quantiles are computed}
+
+\item{...}{other parameters passed to \code{\link{quantile}}.}
 }
 \value{
 the 25th percetile.

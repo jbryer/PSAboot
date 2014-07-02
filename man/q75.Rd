@@ -3,10 +3,15 @@
 \alias{q75}
 \title{Returns the 75th percentile.}
 \usage{
-q75(x)
+q75(x, na.rm = FALSE, ...)
 }
 \arguments{
 \item{x}{numeric vector.}
+
+\item{na.rm}{logical; if true, any NA and NaN's are removed from x before the
+quantiles are computed}
+
+\item{...}{other parameters passed to \code{\link{quantile}}.}
 }
 \value{
 the 75th percentile.

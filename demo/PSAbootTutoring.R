@@ -28,7 +28,7 @@ matrixplot(tutoring.boot)
 
 tutoring.bal <- balance(tutoring.boot)
 tutoring.bal
-plot(tutoring.bal)
+plot(tutoring.bal) + geom_vline(xintercept=.1, linetype=2)
 boxplot(tutoring.bal) + geom_hline(yintercept=.1, color='red')
 
 # We can use a different function to pool the balance statistics (i.e. effect sizes).
