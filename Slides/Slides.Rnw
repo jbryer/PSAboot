@@ -1,0 +1,442 @@
+%\documentclass[handout]{beamer}
+%\documentclass[handout,10pt,slidestop,mathserif]{beamer}
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}
+\documentclass[10pt,slidestop,mathserif,c]{beamer}
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+
+\usepackage{color}
+\usepackage{tabularx}
+\usepackage{verbatim}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{moreverb}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{MnSymbol}
+\usepackage[noae]{Sweave}
+\SweaveOpts{prefix.string=figures/Slides}
+
+\newcommand{\putat}[3]{\begin{picture}(0,0)(0,0)\put(#1,#2){#3}\end{picture}}
+  
+\newenvironment{changemargin}[2]{%
+  \begin{list}{}{%
+    \setlength{\topsep}{0pt}%
+    \setlength{\leftmargin}{#1}%
+    \setlength{\rightmargin}{#2}%
+    \setlength{\listparindent}{\parindent}%
+    \setlength{\itemindent}{\parindent}%
+    \setlength{\parsep}{\parskip}%
+  }%
+  \item[]}{\end{list}}
+
+%% Define a new 'leo' style for the package that will use a smaller font.
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\tiny\ttfamily}}}
+\makeatother
+
+\title{PSAboot: An R Package for Bootstrapping Propensity Score Analysis}
+\subtitle{2014 useR! Conference}
+\author[Bryer]{Jason M. Bryer}
+\institute[Jason.Bryer.org]{\url{http://jason.bryer.org/PSAboot}\\
+\href{mailto:jason@bryer.org}{jason@bryer.org}
+}
+\date[Jul 2, 2014]{July 2, 2014}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+<<setup,echo=FALSE>>=
+options(width=65)
+options(digits=2)
+options(continue="   ")
+options(warn=-1)
+@
+
+\frame{\titlepage}
+%\frame{\frametitle{Agenda}\tableofcontents[hideallsubsections]}
+
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Popularity of Propensity Score Analysis}
+<<popularity,echo=FALSE,fig=TRUE,width=11,height=8,include=FALSE>>=
+require(gdata)
+require(ggplot2)
+
+psm <- read.xls('WebOfScienceResults.xlsx', sheet=1)
+psa <- read.xls('WebOfScienceResults.xlsx', sheet=2)
+ps <- read.xls('WebOfScienceResults.xlsx', sheet=3)
+
+psm$Term <- 'Propensity Score Matching'
+psa$Term <- 'Propensity Score Analysis'
+ps$Term <- 'Propensity Score'
+
+df <- rbind(psm, psa, ps)
+
+df.label <- df[df$Year == max(df$Year),]
+df.label$y <- df.label$Articles
+df.label[1,]$y <- df.label[1,]$y + 30
+df.label[2,]$y <- df.label[2,]$y - 30
+
+p <- ggplot(df, aes(x=Year, y=Articles, group=Term, color=Term)) + 
+	geom_path() + 
+	geom_text(data=df.label, aes(label=Articles, y=y), hjust=-0.05, show_guide=FALSE) +
+	scale_color_hue('Search Term') +
+	ylab("Number of Publications") + xlab("Publication Year") +
+	ggtitle('Number of PSA Publications by Year\n(source: Web of Science)') +
+	theme(legend.position="bottom") + 
+	scale_x_continuous(breaks=seq(min(df$Year), max(df$Year), by=1))
+print(p)
+@
+    \begin{center}
+        \includegraphics{figures/Slides-popularity}
+    \end{center}
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Propensity Score Analysis}
+    \small
+    \begin{itemize}
+        \item The use of propensity score methods for estimating causal effects has been increasing in the social sciences (Thoemmes \& Kim, 2011) and in medical research (Austin, 2008) in the last decade.
+        \item The goal of PSA is to adjust for selection bias in observational studies.
+        \item PSA is conducted in two phases.
+        \begin{itemize}
+            \item \textit{Phase I} Calculate propensity scores using observed covariates then match or stratify rows using the propensity scores.
+            \item \textit{Phase II} Compare the outcome of interest between matched pairs or within strata.
+        \end{itemize}
+        \pause
+        \item The propensity score is the ``conditional probability of assignment to a particular treatment given a vector of observed covariates" (Rosenbaum \& Rubin, 1983, p. 41).
+            $$\pi ({ X }_{ i }) \; \equiv \; Pr({ T }_{ i }=1|{ X }_{ i })$$
+            The balancing property under exogeneity:
+            $${ T }_{ i } \; \upModels { X }_{ i } \;| \; \pi ({ X }_{ i })$$
+            We can then restate the ignorability assumption with the propensity score: 
+            $$({ Y }_{ i }(1),{ Y }_{ i }(0)) \; \upModels \; { T }_{ i } \; | \; \pi({ X }_{ i })$$
+    \end{itemize}
+    Materials for an introduction to PSA here: \url{https://github.com/jbryer/psa}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Propensity Score Methods}
+    There are two broad approaches to conducting propensity score analysis:
+    \begin{itemize}
+        \item Matching - Involves finding matched pairs between the treatment and control groups. There are two R packages that implement matching:
+        \begin{itemize}
+            \item \texttt{Matching} Jasjeet S. Sekhon (2011). Multivariate and Propensity Score Matching Software with Automated Balance Optimization: The Matching Package for R. \textit{Journal of Statistical Software, 42}(7), 1-52. \url{http://www.jstatsoft.org/v42/i07/}
+            \item \texttt{MatchIt} Daniel E. Ho, Kosuke Imai, Gary King, Elizabeth A. Stuart (2011). MatchIt: Nonparametric Preprocessing for Parametric Causal Inference. \textit{Journal of Statistical Software, 42}(8), pp. 1-28. \url{http://www.jstatsoft.org/v42/i08/}
+        \end{itemize}
+        \item Stratification - Involves finding subgroups (i.e. strata) of similar treatment and control units. Some approaches include:
+        \begin{itemize}
+            \item Stratifying on the propensity scores (e.g. quintiles)
+            \item Classification trees (e.g. \texttt{rpart}, \texttt{ctree}, Random Forests)
+        \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Why Bootstrap PSA?}
+    The bootstrap is a great approach to get estimate standard errors.
+    \ \\\ \\\ \\
+    It is good practice to use multiple propensity score methods. See Rosenbaum's (2012) paper, \textit{Testing one hypothesis twice in observational studies}. The \texttt{PSAboot} will test the hypothesis $M x m$ times, where $M$ is the number of bootstrap samples and $m$ is the number of different PSA methods.
+    \ \\\ \\\ \\
+    Many observational studies often have many more control units then treatment units. As the ratio of treatment-to-control increases, the range of propensity scores (i.e. fitted values from a logistic regression) tends to shrink. It may be appropriate to randomly select control units to decrease this ratio.
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Propensity Score Ranges}
+<<psranges,echo=FALSE,results=hide,fig=TRUE,width=8,height=5.5,include=FALSE>>=
+require(multilevelPSA)
+#' This function will create a data frame with three variables (a, b, c) for
+#' two groups.
+getSimulatedData <- function(nvars=3,
+							 ntreat=100, treat.mean=.6, treat.sd=.5,
+							 ncontrol=1000, control.mean=.4, control.sd=.5) {
+	if(length(treat.mean) == 1) { treat.mean = rep(treat.mean, nvars) }
+	if(length(treat.sd) == 1) { treat.sd = rep(treat.sd, nvars) }
+	if(length(control.mean) == 1) { control.mean = rep(control.mean, nvars) }
+	if(length(control.sd) == 1) { control.sd = rep(control.sd, nvars) }
+	
+	df <- c(rep(0, ncontrol), rep(1, ntreat))
+	for(i in 1:nvars) {
+		df <- cbind(df, c(rnorm(ncontrol, mean=control.mean[1], sd=control.sd[1]),
+						  rnorm(ntreat, mean=treat.mean[1], sd=treat.sd[1])))
+	}
+	df <- as.data.frame(df)
+	names(df) <- c('treat', letters[1:nvars])
+	return(df)
+}
+if(file.exists('psranges.Rda')) {
+    load('psranges.Rda')
+} else {
+    test.df1 <- getSimulatedData(ntreat=100, ncontrol=1000)
+    psranges1 <- psrange(test.df1, test.df1$treat, treat ~ ., 
+					samples=seq(100,1000,by=100), nboot=20)
+	save(test.df1, psranges1, file='psranges.Rda')
+}
+p1 <- plot(psranges1)
+print(p1)
+@
+    \begin{center}\includegraphics{figures/Slides-psranges.pdf}\end{center}
+    \ \\ More detailed description here: \url{http://jason.bryer.org/multilevelPSA/psranges.html}
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Bootstrapping Propensity Score Analysis}
+    The \texttt{PSAboot} package/function will:
+    \begin{itemize}
+        \item Estimate the effects using the full dataset (i.e. the non-bootstrapped analysis).
+        \item Draw \textit{M} stratified bootstrap samples. Stratified on the treatment variable so that each bootstrap sample has the same number of treatment and control units.
+        \item For each bootstrap sample, estimate the effect for each method (default is five methods).
+        \item Evaluate the balance for each method and bootstrap sample combination.
+        \item Provide an overall pooled estimate across all bootstrap samples.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example: Tutoring}
+    Students can opt to utilize tutoring services to supplement math courses. Of those who used tutoring services, approximately 58\% of students used the tutoring service once, whereas the remaining 42\% used it more than once. Outcome of interest is course grade.
+    \begin{description}
+        \item[Military] Active military status.
+        \item[Income] Income level.
+        \item[Employment] Employment level.
+        \item[NativeEnglish] Is English their native language
+        \item[EdLevelMother] Education level of their mother.
+        \item[EdLevelFather] Education level of their father.
+        \item[Ethnicity] American Indian or Alaska Native, Asian, Black or African American, Hispanic, Native Hawaiian or Other Pacific Islander, Two or more races, Unknown, White
+        \item[Gender] Male, Female
+        \item[Age] Age at course start.
+        \item[GPA] Student GPA at the beginning of the course.
+    \end{description}
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Installation}
+	The \texttt{PSAboot} is available on CRAN.
+<<installCRAN,eval=FALSE>>=
+install.packages(c("PSAboot"), repos="http://cran.r-project.org")
+@
+    \ \\\ \\
+	Or the latest version can be installed from Github.
+<<installGithub,eval=FALSE>>=
+devtools::install_github("jbryer/PSAboot")
+@
+    \ \\\ \\
+	Then load the package.
+<<loadPackage>>=
+require(PSAboot)
+@
+\end{frame}
+
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Data Preparation}
+<<datasetup1>>=
+data(tutoring, package="TriMatch")
+@
+    \ \\\ \\
+<<datasetup2>>=
+tutoring$treatbool <- tutoring$treat != "Control"
+@
+    \ \\\ \\
+<<datasetup3>>=
+covs <- tutoring[,c("Gender", "Ethnicity", "Military", "ESL",
+					"EdMother", "EdFather",	"Age", "Employment",
+					"Income", "Transfer", "GPA")]
+@
+    \ \\\ \\
+<<datasetup4>>=
+table(tutoring$treatbool)
+@
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Bootstrapping PSA}
+<<PSAbootSetup,eval=TRUE,echo=FALSE,results=hide>>=
+if(file.exists('tutoring.boot.Rda')) {
+    load('tutoring.boot.Rda')
+} else {
+    tutoring.boot <- PSAboot(Tr=tutoring$treatbool, 
+						 Y=tutoring$Grade, 
+						 X=covs, seed=2112)
+	save(tutoring.boot, file='tutoring.boot.Rda')
+}
+@
+<<PSAboot,eval=FALSE,keep.source=TRUE>>=
+tutoring.boot <- PSAboot(Tr=tutoring$treatbool, 
+                         Y=tutoring$Grade, 
+                         X=covs, seed=2112)
+@
+\begin{Schunk}
+\begin{Sinput}
+100 bootstrap samples using 5 methods.
+Bootstrap sample sizes:
+   Treated=224 (100%) with replacement.
+   Control=918 (100%) with replacement.
+\end{Sinput}
+\end{Schunk}
+    \pause
+    \ \\\ \\
+<<>>=
+class(tutoring.boot)
+ls(tutoring.boot)
+@
+\end{frame}
+
+\begin{frame}
+    \frametitle{PSAboot Parameters}
+    \begin{description}
+        \item[Tr] numeric (0 or 1) or logical vector of treatment indicators.
+        \item[Y] vector of outcome varaible.
+        \item[X] matrix or data frame of covariates used to estimate the propensity scores.
+        \item[M] number of bootstrap samples to generate (default is 100).
+        \item[formu] formula used for estimating propensity scores. The default is to use all covariates in X.
+        \item[control.ratio] the ratio of control units to sample relative to the treatment units.
+        \item[control.sample.size] the size of each bootstrap sample of control units.
+        \item[control.replace] whether to use replacement when sampling from control units.
+        \item[treated.sample.size] the size of each bootstrap sample of treatment units. The default uses all treatment units for each boostrap sample.
+        \item[treated.replace] whether to use replacement when sampling from treated units.
+        \item[methods] a named vector of functions for each PSA method to use.
+        \item[seed] random seed. Each iteration, i, will use a seed of seed + i.
+        \item[parallel] whether to run the bootstrap samples in parallel.
+        \item[...] other parameters passed to the PSA methods.
+    \end{description}
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Summary}
+<<PSAbootSummary>>=
+summary(tutoring.boot)
+@
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Summary Data Frame}
+<<PSAbootSummaryDF>>=
+as.data.frame(summary(tutoring.boot))
+@
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+ 	\frametitle{Plotting}
+<<PSAbootPlot,fig=TRUE,height=4.8,include=FALSE>>=
+plot(tutoring.boot)
+@
+    \begin{center}\includegraphics{figures/Slides-PSAbootPlot.pdf}\end{center}
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+ 	\frametitle{Boxplot}
+<<PSAbootBoxplot,fig=TRUE,height=4.8,include=FALSE>>=
+boxplot(tutoring.boot)
+@
+    \begin{center}\includegraphics{figures/Slides-PSAbootBoxplot.pdf}\end{center}
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+ 	\frametitle{Boxplot (Tufte style)}
+<<PSAbootBoxplotTufte,fig=TRUE,height=4.8,include=FALSE>>=
+boxplot(tutoring.boot, tufte=TRUE, bootstrap.ci.size=NA)
+@
+    \begin{center}\includegraphics{figures/Slides-PSAbootBoxplotTufte.pdf}\end{center}
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+ 	\frametitle{Matrix Plot}
+<<PSAbootMatrixplot,fig=TRUE,height=4.8,include=FALSE>>=
+matrixplot(tutoring.boot)
+@
+    \begin{center}\includegraphics{figures/Slides-PSAbootMatrixplot.pdf}\end{center}
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Checking Balance}
+	The estimates are only as good as the balance achieved!
+<<balance>>=
+tutoring.bal <- balance(tutoring.boot)
+tutoring.bal
+@
+    The \texttt{balance} function will calculate the standardized effect sizes for each covariate after adjustment. The \texttt{pool.fun} allows you to define how the balance statistics are combined. It defaults to \texttt{mean}, but other options include \texttt{q25}, \texttt{q75}, \texttt{median} or \texttt{max}.
+<<>>=
+ls(tutoring.bal)
+@
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Checking Balance: Density Plots}
+<<balancePlot,fig=TRUE,height=3.8,include=FALSE>>=
+plot(tutoring.bal) + geom_vline(xintercept=.1, linetype=2)
+@
+    \begin{center}\includegraphics{figures/Slides-balancePlot.pdf}\end{center}
+    
+    {\color{red}Red} line is unadjusted balance; {\color{blue}Blue} line is the non-bootstrap balance; {\color{black}Black} line is the pooled bootstrap balance.
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Checking Balance: Boxplots}
+<<balanceBoxplot,fig=TRUE,height=4.8,include=FALSE>>=
+boxplot(tutoring.bal) + geom_hline(yintercept=.1, color='red', linetype=2)
+@
+    \begin{center}\includegraphics{figures/Slides-balanceBoxplot.pdf}\end{center}
+
+\end{frame}
+
+% \begin{frame}[containsverbatim,fragile]
+% 	\frametitle{}
+% \end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Extending PSAboot for Other Methods}
+    Define a function with the following parameters: \texttt{Tr} (vector of treatment indicators), \texttt{Y} (vector outcome measure), \texttt{X} (data frame of covariates), \texttt{X.trans} (numeric matrix with non-numeric variables dummy coded), \texttt{formu} (the formula used for estimating propensity scores, \texttt{...} (other parameters passed from the user).
+<<matching1to3,eval=FALSE>>=
+boot.matching.1to3 <- function(Tr, Y, X, X.trans, formu, ...) {
+	return(boot.matching(Tr=Tr, Y=Y, X=X,
+	       X.trans=X.trans, 
+	       formu=formu, M=3, ...))
+}
+@
+    \pause
+<<eval=FALSE>>=
+tutoring.boot <- PSAboot(Tr=tutoring$treatbool, 
+						 Y=tutoring$Grade, 
+						 X=covs, 
+						 methods=c("Matcing-1-to-3"=boot.matching.1to3,
+						 		  getPSAbootMethods()))
+@
+    \ \\
+    The \texttt{getPSAbootMethods()} function returns a vector of the five default functions.\\
+    Note that the name of each element in \texttt{methods} will be the name used in the figures.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Getting More Information}
+    \begin{itemize}
+        \item Package Vignette\\
+        \texttt{vignette("PSAboot")}
+        \item Lalonde Demo\\
+        \texttt{demo("PSAbootLalonde")}
+        \item Tutoring Demo\\
+        \texttt{demo("PSAbootTutoring")}
+        \item Programme of International Student Assessment Demo\\
+        \texttt{demo("PSAbootPISA")}
+    \end{itemize}    
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Functions Available}
+<<>>=
+ls("package:PSAboot")
+@
+\end{frame}
+
+
+\begin{frame}[c]
+	\LARGE{Thank You}\\\ \\
+	\normalsize
+	Jason Bryer (jason@bryer.org)\\
+	\url{http://jason.bryer.org/PSAboot}\\
+	\url{http://github.com/jbryer/PSAboot}
+\end{frame}
+
+\end{document}
