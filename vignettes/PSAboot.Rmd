@@ -7,7 +7,7 @@
 
 ## Jason M. Bryer [jason@bryer.org](mailto:jason@bryer.org)
 #### Project website: [jason.bryer.org/PSAboot](http://jason.bryer.org/PSAboot)
-#### Bug Reports: [github.com/jbryer/PSAboot](https://github.com/jbryer/PSAboot)
+#### Bug Reports: [github.com/jbryer/PSAboot/issues](https://github.com/jbryer/PSAboot/issues)
 
 ```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 require(knitr)
