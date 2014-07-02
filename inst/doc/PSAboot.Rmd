@@ -7,9 +7,9 @@
 
 ## Jason M. Bryer [jason@bryer.org](mailto:jason@bryer.org)
 #### Project website: [jason.bryer.org/PSAboot](http://jason.bryer.org/PSAboot)
-#### Bug Reports: [github.com/jbryer/PSAboot](https://github.com/jbryer/PSAboot)
+#### Bug Reports: [github.com/jbryer/PSAboot/issues](https://github.com/jbryer/PSAboot/issues)
 
-```{r, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 require(knitr)
 opts_chunk$set(comment='')
 require(PSAboot)
@@ -27,7 +27,7 @@ As the popularity of propensity score methods for estimating causal effects in o
 
 The latest version of the `PSAboot` package can be downloaded from Github using the `devtools` package.
 
-```{r, eval=FALSE}
+```{r install, eval=FALSE}
 devtools::install_github('PSAboot','jbryer')
 ```
 
@@ -79,7 +79,7 @@ Each method must return a `list` with three elements:
 
 For example, the `boot.matching.1to3` function below wraps the built-in `boot.matching` method but sets the `M` parameter to 3, thereby performing 1-to-3 matching instead of the default 1-to-1 matching. This framework simplifies the process of using, and comparing, slight variations of different propensity score methods. 
 
-```{r}
+```{r defineCustomFunction}
 boot.matching.1to3 <- function(Tr, Y, X, X.trans, formu, ...) {
 	return(boot.matching(Tr=Tr, Y=Y, X=X, X.trans=X.trans, formu=formu, M=3, ...))
 }
@@ -113,7 +113,7 @@ boot.lalonde <- PSAboot(Tr=lalonde$treat,
 
 The `summary` function provides numeric results for each method including the overall estimate and confidence interval using the complete sample as well as the pooled estimates and confidence intervals with percentages of the number of confidence intervals that do not span zero.
 
-```{r}
+```{r lalondeSummary}
 summary(boot.lalonde)
 ```
 
