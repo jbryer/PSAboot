@@ -5,6 +5,6 @@ The `PSAboot` package provides functions to bootstrap propensity score analysis 
 * [Package Vignette](vignettes/PSAboot.md)
 * [useR! 2014 Talk Slides](Slides/Slides.pdf)
 
-![Boxplot](Slides/figures/Slides-PSAbootBoxplotTufte.pdf)
+![Boxplot](https://github.com/jbryer/PSAboot/blob/master/Slides/figures/Slides-PSAbootBoxplotTufte.pdf?raw=true)
 
 ![Matrixplot](Slides/figures/Slides-PSAbootMatrixplot.pdf)
