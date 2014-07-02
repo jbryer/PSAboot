@@ -3,7 +3,7 @@
 \alias{balance}
 \title{Returns a summary of the balance for all bootstrap samples.}
 \usage{
-balance(psaboot, na.rm = TRUE, pool.fun = mean)
+balance(psaboot, na.rm = TRUE, pool.fun = q3)
 }
 \arguments{
 \item{psaboot}{results from \code{\link{PSAboot}}.}
@@ -12,9 +12,9 @@ balance(psaboot, na.rm = TRUE, pool.fun = mean)
 sample for a particular covariate or an unused level.}
 
 \item{pool.fun}{a function specifying how the effect sizes across all covariates
-should be combined. Possible values include \code{mean} (default),
-\code{median}, \code{max}, or any function that takes a vector of numeric
-values.}
+should be combined. Possible values include \code{mean}, \code{\link{q25}},
+\code{\link{q75}} (default), \code{median}, \code{max}, or any function
+that takes a vector of numeric values.}
 }
 \value{
 a list with three elements:

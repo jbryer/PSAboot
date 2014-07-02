@@ -6,9 +6,9 @@
 #' @param na.rm should NAs be removed. NAs generally occur when there is insufficient
 #'        sample for a particular covariate or an unused level.
 #' @param pool.fun a function specifying how the effect sizes across all covariates
-#'        should be combined. Possible values include \code{mean} (default),
-#'        \code{median}, \code{max}, or any function that takes a vector of numeric
-#'        values.
+#'        should be combined. Possible values include \code{mean}, \code{\link{q25}},
+#'        \code{\link{q75}} (default), \code{median}, \code{max}, or any function
+#'        that takes a vector of numeric values.
 #' @return a list with three elements:
 #' \describe{
 #' 	\item{unadjusted}{named numeric vector with unadjusted effect size before
@@ -20,7 +20,7 @@
 #' 	\item{balances}{a list with an M x n covariates matrix for each method.}
 #' }
 #' @export
-balance <- function(psaboot, na.rm=TRUE, pool.fun=mean) {
+balance <- function(psaboot, na.rm=TRUE, pool.fun=q75) {
 	if('factor' %in% sapply(psaboot$X, class)) {
 		X.trans <- cv.trans.psa(psaboot$X)[[1]]
 	} else {

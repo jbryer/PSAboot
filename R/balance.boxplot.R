@@ -7,8 +7,7 @@
 #' @param point.alpha the transparency level for the points.
 #' @param ... other parameters passed to \code{\link{facet_wrap}}
 #' @return a ggplot2 expression.
-#' @method boxplot PSAboot.balance
-#' @export
+#' @export 
 boxplot.PSAboot.balance <- function(x, 								 
 									unadjusted.color='red',
 									pooled.color='blue',
