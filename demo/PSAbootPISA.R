@@ -26,7 +26,7 @@ boxplot(bm.usa)
 hist(bm.usa)
 
 (bm.usa.bal <- balance(bm.usa))
-plot(bm.usa.bal)
+plot(bm.usa.bal) + geom_vline(xintercept=.1, linetype=2)
 boxplot(bm.usa.bal)
 
 ##### Luxembourg
