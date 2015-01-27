@@ -18,6 +18,9 @@ boot.rpart <- function(Tr, Y, X, X.trans, formu, minStrata=5, ...) {
 		X.trans <- X.trans[rows,]
 		strata <- strata[rows]
 	}
+	if(length(unique(strata)) < 2) {
+		stop('Classification tree (rpart) with no splits occurred.')	
+	}
 	strata.results <- psa.strata(Y=Y, Tr=Tr, strata=strata, ...)
 	return(list(
 		summary=c(estimate=strata.results$ATE,

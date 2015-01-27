@@ -20,7 +20,8 @@ summary.PSAboot <- function(object, ...) {
 											   levels=c('TRUE','FALSE')))) * 100
 		
 		m <- mean(rows$estimate, na.rm=TRUE)
-		wm <- weighted.mean(rows$estimate, 
+		wm <- weighted.mean(rows[!is.na(rows$estimate),]$estimate, 
+							# HACK: Occassionally there will be NA estimates
 							1 / apply(bal$balances[[i]], 1, mean), 
 							na.rm=TRUE)
 		ci <- c(m - 2 * sd(rows$estimate, na.rm=TRUE),

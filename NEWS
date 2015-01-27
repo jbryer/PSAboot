@@ -1,4 +1,9 @@
-Version 1.0.1
+Version 1.2
+
+* Fixed an issue where under certain circumnstances there could be a NA effect estimate. These are removed.
+* Added better error checking for when a classification tree with no splits occurs.
+
+Version 1.1
 
 * The summary function now includes a weighted pooled estimate. This estimate is weighted using the inverse balance estimates so that boostrap samples with better balance are weighted more to the estimate than those with worse balance.
 * You can now specify how the balance estimates are aggregated. Possible values include mean (the default), q25, q75, median, or max.
