@@ -11,7 +11,9 @@
 #' @import MatchIt
 #' @import modeltools
 #' @import parallel
-#' @import party
+#' @importFrom party ctree
+#' @importFrom party where
+#' @importFrom ggthemes geom_tufteboxplot
 #' @import reshape2
 #' @import rpart
 #' @import TriMatch

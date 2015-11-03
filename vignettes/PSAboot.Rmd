@@ -13,8 +13,6 @@
 require(knitr)
 opts_chunk$set(comment='')
 require(PSAboot)
-
-boot.M <- 50 # Change for the final version
 ```
 
 # Abstract
@@ -23,12 +21,26 @@ As the popularity of propensity score methods for estimating causal effects in o
 
 -----------------------------
 
+```{r BootSizeWarning, echo=FALSE, results='asis'}
+if(boot.M < 100) {
+	cat(paste0('**NOTE: This vignette uses ', boot.M, ' bootstrap samples. It is ',
+	    'generally recommended to use at least 100 bootstrap samples or more for final publication.**'))
+}
+```
+
+Set the number of bootstrap samples. This should be set to at least 100 but kept small to reduce the execution time for CRAN submissions.
+
+```{r}
+boot.M = 10
+```
+
+
 # Introduction
 
 The latest version of the `PSAboot` package can be downloaded from Github using the `devtools` package.
 
 ```{r install, eval=FALSE}
-devtools::install_github('PSAboot','jbryer')
+devtools::install_github('jbryer/PSAboot')
 ```
 
 
@@ -99,7 +111,7 @@ The `lalonde` data set is included in the `MatchIt` package. The crosstab shows 
 data(lalonde, package='MatchIt')
 table(lalonde$treat)
 ```
-```{r lalonde.boot, cache=TRUE}
+```{r lalonde.boot, cache=FALSE}
 lalonde.formu <- treat ~ age + I(age^2) + educ + I(educ^2) + black +
 	hispan + married + nodegree + re74  + I(re74^2) + re75 + I(re75^2) +
 	re74 + re75
@@ -145,7 +157,7 @@ matrixplot(boot.lalonde)
 
 The strength of propensity score analysis relies on achieving good balance. Typically one would evaluate each covariate separately to ensure that sufficient balance has been achieved. We recommend Helmreich and Pruzek (2009) for a more complete discussion of visualizations to evaluate balance. Given the large number of samples and methods used, it is desirable to have a single metric to evaluate balance. Drawing on the principles of the multiple covariate balance assessment plot (Helmreich & Pruzek, 2009), the `balance` function will estimate the effect of each covariate before and after adjustment. Moreover, to provide a single metric for each sample and method, the mean standardized effect size will be used.
 
-```{r lalonde.balance, cache=TRUE}
+```{r lalonde.balance, cache=FALSE}
 lalonde.bal <- balance(boot.lalonde)
 lalonde.bal
 ```
@@ -181,7 +193,7 @@ covs <- tutoring[,c('Gender', 'Ethnicity', 'Military', 'ESL', 'EdMother', 'EdFat
 table(tutoring$treatbool)
 ```
 
-```{r tutoring.psaboot, cache=TRUE}
+```{r tutoring.psaboot, cache=FALSE}
 tutoring.boot <- PSAboot(Tr=tutoring$treatbool, 
 						 Y=tutoring$Grade, 
 						 X=covs, 

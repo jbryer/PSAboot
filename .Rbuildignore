@@ -6,6 +6,4 @@ README.md
 ^.*\.Rproj$
 ^\.Rproj\.user$
 Slides
-vignettes/PSAboot.md
-vignettes/cache
-vignettes/PSAboot_cache
+cran-comments.md

@@ -44,7 +44,7 @@ boxplot.PSAboot <- function(x,
 					ymax=bootstrap.ci.max), color=bootstrap.ci.color, 
 							   width=bootstrap.ci.width, size=bootstrap.ci.size)
 	}
-	if(tufte & require(ggthemes)) {
+	if(tufte) {
 		p <- p + geom_tufteboxplot()		
 	} else {
 		p <- p + geom_boxplot(alpha=.5)		

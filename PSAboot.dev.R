@@ -9,6 +9,7 @@ check('PSAboot', cran=TRUE)
 build('PSAboot')
 build_vignettes('PSAboot')
 
+release('PSAboot')
 
 ##### Data Setup
 require(pisa)

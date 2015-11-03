@@ -21,29 +21,6 @@ boot.matchit <- function(Tr, Y, X, X.trans, formu, ...) {
 				  t=unname(ttest$statistic),
 				  p=ttest$p.value ),
 		details=list(MatchIt=mi, t.test=ttest),
-		balance=balance.matchit(mi, X.trans)
+		balance=balance.matching(row.names(mi$match.matrix), mi$match.matrix[,1], X.trans)
 	))
-}
-
-#' Returns balance for each covariate using \code{\link{matchit}}
-#' 
-#' @param mi the results of \code{\link{matchit}}
-#' @param covs data frame or matrix of covariates. Factors should already be recoded.
-#'        See \code{\link{cv.trans.psa}}
-#' @return a named vector with one element per covariate.
-#' @export
-balance.matchit <- function(mi, covs) {
-	bal <- c()
-	index.treated <- row.names(mi$match.matrix)
-	index.control <- mi$match.matrix[,1]
-	for(covar in names(covs)) {
-		cov <- data.frame(Treated=covs[index.treated,covar],
-						  Control=covs[index.control,covar])
-		ttest <- t.test(cov$Treated, cov$Control, paired=TRUE)
-		bal[covar] <- ttest$estimate / sd(c(cov[,1],cov[,2]))
-		if(is.nan(bal[covar])) {
-			bal[covar] <- NA
-		}
-	}
-	return(bal)
 }
