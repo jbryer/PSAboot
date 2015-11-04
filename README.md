@@ -1,6 +1,6 @@
 #### An R Package for Bootstrapping Propnesity Score Analysis
 
-[![Build Status](https://travis-ci.org/jbryer/PSAboot?branch=master)](https://travis-ci.org/jbryer/PSAboot)
+[![Build Status](https://travis-ci.org/jbryer/PSAboot?branch=master)](https://api.travis-ci.org/jbryer/PSAboot.svg)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/PSAboot)](http://cran.r-project.org/package=PSAboot)
 
 The `PSAboot` package provides functions to bootstrap propensity score analysis and matching.
