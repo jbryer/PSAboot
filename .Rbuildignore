@@ -7,3 +7,4 @@ README.md
 ^\.Rproj\.user$
 Slides
 cran-comments.md
+.travis.yml

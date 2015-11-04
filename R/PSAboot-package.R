@@ -11,6 +11,7 @@
 #' @import MatchIt
 #' @import modeltools
 #' @import parallel
+#' @importFrom stats as.formula cor density fitted glm predict qnorm qt quantile sd t.test update.formula var weighted.mean
 #' @importFrom party ctree
 #' @importFrom party where
 #' @importFrom ggthemes geom_tufteboxplot
