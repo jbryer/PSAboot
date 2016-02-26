@@ -30,8 +30,8 @@ plot.PSAboot.balance <- function(x,
 	tmp$color <- 'Pooled'
 	p <- ggplot(tmp) + 
 		geom_vline(data=df.pool, aes(xintercept=value, color=color), alpha=1) +
-		geom_vline(data=df.unadj, aes(xintercept=value, color=color), alhpa=.75) + 
-		geom_vline(data=df.complete, aes(xintercept=value, color=color), alhpa=.75) +
+		geom_vline(data=df.unadj, aes(xintercept=value, color=color), alpha=.75) + 
+		geom_vline(data=df.complete, aes(xintercept=value, color=color), alpha=.75) +
 		geom_density(aes(x=value), color='black') +
 		scale_color_manual('Mean Balance', values=c('Pooled'=pooled.color,
 													'Unadjusted'=unadjusted.color,

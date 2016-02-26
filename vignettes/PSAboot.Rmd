@@ -17,21 +17,22 @@ require(PSAboot)
 
 # Abstract
 
-As the popularity of propensity score methods for estimating causal effects in observational studies increase, the choice of specific method has also increased. Rosenbaum (2012) has suggested that there are substantial benefits for testing a hypothesis more than once. Moreover, with the wide availability of high power computers resampling methods such as bootstrapping (Efron, 1979) have become popular for providing more stable estimates of the sampling distribution. This paper introduces the `PSAboot` package for R that provides functions for bootstrapping propensity score methods. It deviates from traditional bootstrapping methods by allowing for different sampling specifications for treatment and control groups. Additionally, this framework will provide estimates using multiple methods for each bootstrap sample. Two examples are discussed: the classic National Work Demonstration and PSID (Lalonde, 1986) study and a study on tutoring effects on student grades.
+As the popularity of propensity score methods for estimating causal effects in observational studies increase, the choices for specific methods for has also increased. Rosenbaum (2012) has suggested that there are substantial benefits for testing a hypothesis more than once. With the wide availability of high power computers resampling methods such as bootstrapping (Efron, 1979) have become popular for providing more stable estimates of the sampling distribution. This paper introduces the `PSAboot` package for R that provides functions for bootstrapping propensity score methods. It deviates from traditional bootstrapping methods by allowing for different sampling specifications for treatment and control groups. Additionally, this framework will provide estimates using multiple methods for each bootstrap sample. Two examples are discussed: the classic National Work Demonstration and PSID (Lalonde, 1986) study and a study on tutoring effects on student grades.
 
 -----------------------------
+
+
+Set the number of bootstrap samples. This should be set to at least 100 but kept small to reduce the execution time for CRAN submissions.
+
+```{r}
+boot.M <- 10
+```
 
 ```{r BootSizeWarning, echo=FALSE, results='asis'}
 if(boot.M < 100) {
 	cat(paste0('**NOTE: This vignette uses ', boot.M, ' bootstrap samples. It is ',
 	    'generally recommended to use at least 100 bootstrap samples or more for final publication.**'))
 }
-```
-
-Set the number of bootstrap samples. This should be set to at least 100 but kept small to reduce the execution time for CRAN submissions.
-
-```{r}
-boot.M = 10
 ```
 
 

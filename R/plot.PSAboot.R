@@ -55,7 +55,7 @@ plot.PSAboot <- function(x, sort='all', ci.sig.color='red',
 	bootsum <- as.data.frame(summary(x))
 	
 	p <- ggplot(results, aes(y=iter, xmin=ci.min, xmax=ci.max, x=estimate, color=sig)) +
-		geom_vline(xintercept=0, size=1.5, alhpa=.25) + 
+		geom_vline(xintercept=0, size=1.5, alpha=.25) + 
 		geom_errorbarh(height=0, alpha=.5) + 
 		geom_point(color='blue')
 	if(plot.overall) {

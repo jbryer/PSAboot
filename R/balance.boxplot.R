@@ -33,7 +33,7 @@ boxplot.PSAboot.balance <- function(x,
 		geom_point(data=tmp2, color=unadjusted.color, 
 				   size=point.size, alpha=point.alpha) +
 		geom_point(data=tmp3, color=pooled.color, 
-				   size=point.size, alhpa=point.alpha) +
+				   size=point.size, alpha=point.alpha) +
 		facet_wrap(~ Method, ...) + coord_flip() + 
 		xlab('Covariate') + ylab('Balance (Effect Size)')
 	return(p)

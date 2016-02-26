@@ -2,7 +2,7 @@ setwd('~/Dropbox/Projects')
 require(devtools)
 
 document('PSAboot')
-check_doc('PSAboot')
+check_man('PSAboot')
 install('PSAboot', build_vignettes=FALSE)
 install('PSAboot')
 check('PSAboot', cran=TRUE)
