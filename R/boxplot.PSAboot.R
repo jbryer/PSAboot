@@ -29,8 +29,10 @@ boxplot.PSAboot <- function(x,
 	sum <- as.data.frame(summary(x))
 	pooled.mean <- mean(x$pooled.summary$estimate, na.rm=TRUE)
 	pooled.sd <- sd(x$pooled.summary$estimate, na.rm=TRUE)
-	pooled.ci <- c(ci.min=pooled.mean - (qnorm(0.975) * pooled.sd/sqrt(x$M)),
-				   ci.max=pooled.mean + (qnorm(0.975) * pooled.sd/sqrt(x$M)))
+	# pooled.ci <- c(ci.min=pooled.mean - (qnorm(0.975) * pooled.sd/sqrt(x$M)),
+	# 			   ci.max=pooled.mean + (qnorm(0.975) * pooled.sd/sqrt(x$M)))
+	pooled.ci <- c(ci.min=pooled.mean - (qnorm(0.975) * pooled.sd),
+				   ci.max=pooled.mean + (qnorm(0.975) * pooled.sd))
 	p <- ggplot(x$pooled.summary, aes(y=estimate, x=method)) +
 		geom_hline(yintercept=0, alpha=.5, size=2)
 	if(!is.na(bootstrap.ci.color)) {
