@@ -1,4 +1,4 @@
-#' Matrix Plot of Boostrapped Propensity Score Analysis
+#' Matrix Plot of Bootstrapped Propensity Score Analysis
 #' 
 #' @param bm result from \code{\link{PSAboot}}.
 #' @export

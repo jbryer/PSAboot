@@ -1,7 +1,7 @@
 #' Stratification using classification trees for bootstrapping.
 #' 
 #' @inheritParams boot.strata
-#' @param minStrata minimum number of treatment or control unitis within a strata 
+#' @param minStrata minimum number of treatment or control units within a strata 
 #'        to include that strata.
 #' @export
 boot.ctree <- function(Tr, Y, X, X.trans, formu, minStrata=5, ...) {

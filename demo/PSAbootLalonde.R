@@ -8,7 +8,7 @@ boot.matchit.genetic <- function(Tr, Y, X, formu, ...) {
 }
 
 #TODO: 
-# Add eta^2 for each boostrap sample. 
+# Add eta^2 for each bootstrap sample. 
 # Get effect size too.
 # Permutation tests
 

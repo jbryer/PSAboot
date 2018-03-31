@@ -6,7 +6,7 @@
 #' @param strata strata identifier.
 #' @param trim allows for a trimmed mean as outcome measure, where trim is from
 #'        0 to .5 (.5 implying median).
-#' @param minStrata minimum number of treatment or control unitis within a strata 
+#' @param minStrata minimum number of treatment or control units within a strata 
 #'        to include that strata.
 #' @export
 psa.strata <- function (Y, Tr, strata, trim = 0, minStrata=5) {

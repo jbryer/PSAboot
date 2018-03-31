@@ -12,7 +12,7 @@
 #' @return a list with three elements:
 #' \describe{
 #' 	\item{unadjusted}{named numeric vector with unadjusted effect size before
-#' 	                  adjustment for each covaraite}
+#' 	                  adjustment for each covariate}
 #' 	\item{complete}{a matrix with adjusted effect size for each covariate (columns)
 #' 	                for each method (rows).}
 #' 	\item{pooled}{a matrix with mean adjusted effect size for all covariates for each

@@ -1,12 +1,12 @@
 utils::globalVariables(c('estimate','method','bootstrap.estimate','bootstrap.ci.min',
 						 'bootstrap.ci.max','variable'))
 
-#' Boxplot of PSA boostrap results.
+#' Boxplot of PSA bootstrap results.
 #' 
 #' @param x result of \code{\link{PSAboot}}.
 #' @param tufte use Tufte's boxplot style. Requires the \code{ggthemes} package.
 #' @param coord.flip Whether to flip the coordinates.
-#' @param bootstrap.mean.color the color of the point for the boostrap mean, or NA
+#' @param bootstrap.mean.color the color of the point for the bootstrap mean, or NA
 #'        to omit.
 #' @param bootstrap.ci.color the color of the confidence intervals of the bootstrap
 #'        samples, or NA to omit.

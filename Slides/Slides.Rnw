@@ -288,14 +288,14 @@ ls(tutoring.boot)
     \frametitle{PSAboot Parameters}
     \begin{description}
         \item[Tr] numeric (0 or 1) or logical vector of treatment indicators.
-        \item[Y] vector of outcome varaible.
+        \item[Y] vector of outcome variable
         \item[X] matrix or data frame of covariates used to estimate the propensity scores.
         \item[M] number of bootstrap samples to generate (default is 100).
         \item[formu] formula used for estimating propensity scores. The default is to use all covariates in X.
         \item[control.ratio] the ratio of control units to sample relative to the treatment units.
         \item[control.sample.size] the size of each bootstrap sample of control units.
         \item[control.replace] whether to use replacement when sampling from control units.
-        \item[treated.sample.size] the size of each bootstrap sample of treatment units. The default uses all treatment units for each boostrap sample.
+        \item[treated.sample.size] the size of each bootstrap sample of treatment units. The default uses all treatment units for each bootstrap sample.
         \item[treated.replace] whether to use replacement when sampling from treated units.
         \item[methods] a named vector of functions for each PSA method to use.
         \item[seed] random seed. Each iteration, i, will use a seed of seed + i.

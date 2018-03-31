@@ -1,3 +1,3 @@
 PSAbootPISA	 This demo performs a propensity score analysis of students who attend private and public school in the United States using the Programme of International Student Assessment (PISA). This demo shows how to bootstrap a dataset when the ratio of treated to control units is large. In these examples we use all treated units but many random smaples of control units to reduce the ratio, and therefore increase the propensity score range (especially when using logistic regression).
-PSAbootLalonde	 This demo performs a propensity score analysis of the classic lalonde dataset. Thid demonstrates how to boostrap both the treatment and control units.
+PSAbootLalonde	 This demo performs a propensity score analysis of the classic lalonde dataset. This demonstrates how to bootstrap both the treatment and control units.
 PSAbootTutoring	 This demo uses the tutoring dataset from the TriMatch package.

@@ -5,7 +5,7 @@
 #'        unadjusted effect size for all covariates.
 #' @param complete.color color of the vertical line representing the mean adjusted
 #'        effect size for all covariates using the complete dataset.
-#' @param pooled.color color of the vertical line represeting the mean adjusted
+#' @param pooled.color color of the vertical line representing the mean adjusted
 #'        effect size for all covariates across all bootstrapped samples.
 #' @param ... currently unused.
 #' @method plot PSAboot.balance
