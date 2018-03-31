@@ -1,0 +1,283 @@
+%\documentclass[handout]{beamer}
+%\documentclass[handout,10pt,slidestop,mathserif]{beamer}
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}
+\documentclass[10pt,slidestop,mathserif,c]{beamer}
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+
+\usepackage{color}
+\usepackage{tabularx}
+\usepackage{verbatim}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{moreverb}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{MnSymbol}
+\usepackage[noae]{Sweave}
+\SweaveOpts{prefix.string=figures/Slides}
+
+\newcommand{\putat}[3]{\begin{picture}(0,0)(0,0)\put(#1,#2){#3}\end{picture}}
+  
+\newenvironment{changemargin}[2]{%
+  \begin{list}{}{%
+    \setlength{\topsep}{0pt}%
+    \setlength{\leftmargin}{#1}%
+    \setlength{\rightmargin}{#2}%
+    \setlength{\listparindent}{\parindent}%
+    \setlength{\itemindent}{\parindent}%
+    \setlength{\parsep}{\parskip}%
+  }%
+  \item[]}{\end{list}}
+
+%% Define a new 'leo' style for the package that will use a smaller font.
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\tiny\ttfamily}}}
+\makeatother
+
+\title[PSAboot]{PSAboot: An R Package for Bootstrapping Propensity Score Analysis}
+\subtitle{2016 Atlantic Causal Inference Conference Lightning Talk}
+\author[Bryer]{Jason Bryer, Ph.D.}
+\institute[Excelsior College]{Excelsior College\\
+\url{http://jason.bryer.org/PSAboot}\\
+\href{mailto:jason@bryer.org}{jason@bryer.org}
+}
+\date[May 26, 2016]{May 26, 2016}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+<<setup,echo=FALSE>>=
+options(width=65)
+options(digits=2)
+options(continue="   ")
+options(warn=-1)
+@
+
+\frame{\titlepage}
+%\frame{\frametitle{Agenda}\tableofcontents[hideallsubsections]}
+
+
+
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Why Bootstrap PSA?}
+    Rosenbaum's (2012) paper, \textit{Testing one hypothesis twice in observational studies}. The \texttt{PSAboot} will test the hypothesis M x m times, where M is the number of bootstrap samples and m is the number of different PSA methods.
+    \ \\\ \\\ \\
+    Many observational studies often have many more control units then treatment units. As the ratio of treatment-to-control increases, the range of propensity scores (i.e. fitted values from a logistic regression) tends to shrink. It may be appropriate to randomly select control units to decrease this ratio. See \url{http://jason.bryer.org/multilevelPSA/psranges.html} for more information.
+\end{frame}
+
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Bootstrapping Propensity Score Analysis}
+    The \texttt{PSAboot} package/function will:
+    \begin{itemize}
+        \item Estimate the effects using the full dataset (i.e. the non-bootstrapped analysis).
+        \item Draw \textit{M} stratified bootstrap samples. Stratified on the treatment variable so that each bootstrap sample has the ratio of treatment to control units.
+        \item For each bootstrap sample, estimate the effect for each method (default is five methods).
+        \item Evaluate the balance for each method and bootstrap sample combination.
+        \item Provide an overall pooled estimate across all bootstrap samples.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example: Tutoring}
+    Students can opt to utilize tutoring services to supplement math courses. Of those who used tutoring services, approximately 58\% of students used the tutoring service once, whereas the remaining 42\% used it more than once. Outcome of interest is course grade.
+    \begin{description}
+        \item[Military] Active military status.
+        \item[Income] Income level.
+        \item[Employment] Employment level.
+        \item[NativeEnglish] Is English their native language
+        \item[EdLevelMother] Education level of their mother.
+        \item[EdLevelFather] Education level of their father.
+        \item[Ethnicity] American Indian or Alaska Native, Asian, Black or African American, Hispanic, Native Hawaiian or Other Pacific Islander, Two or more races, Unknown, White
+        \item[Gender] Male, Female
+        \item[Age] Age at course start.
+        \item[GPA] Student GPA at the beginning of the course.
+    \end{description}
+\end{frame}
+
+
+<<datasetup1,echo=FALSE,results=hide,warning=FALSE,message=FALSE>>=
+library(PSAboot)
+data(tutoring, package="TriMatch")
+tutoring$treatbool <- tutoring$treat != "Control"
+covs <- tutoring[,c("Gender", "Ethnicity", "Military", "ESL",
+                    "EdMother", "EdFather", "Age", "Employment",
+                    "Income", "Transfer", "GPA")]
+@
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Bootstrapping PSA}
+<<PSAbootSetup,eval=TRUE,echo=FALSE,results=hide>>=
+if(file.exists('tutoring.boot.Rda')) {
+    load('tutoring.boot.Rda')
+} else {
+    tutoring.boot <- PSAboot(Tr=tutoring$treatbool, 
+						 Y=tutoring$Grade, 
+						 X=covs, seed=2112)
+	save(tutoring.boot, file='tutoring.boot.Rda')
+}
+@
+<<PSAboot,eval=FALSE,keep.source=TRUE>>=
+tutoring.boot <- PSAboot(Tr=tutoring$treatbool, 
+                         Y=tutoring$Grade, 
+                         X=covs, seed=2112)
+@
+\begin{Schunk}
+\begin{Sinput}
+100 bootstrap samples using 5 methods.
+Bootstrap sample sizes:
+   Treated=224 (100%) with replacement.
+   Control=918 (100%) with replacement.
+\end{Sinput}
+\end{Schunk}
+\end{frame}
+
+\begin{frame}
+    \frametitle{PSAboot Parameters}
+    \begin{description}
+        \item[Tr] numeric (0 or 1) or logical vector of treatment indicators.
+        \item[Y] vector of outcome varaible.
+        \item[X] matrix or data frame of covariates used to estimate the propensity scores.
+        \item[M] number of bootstrap samples to generate (default is 100).
+        \item[formu] formula used for estimating propensity scores. The default is to use all covariates in X.
+        \item[control.ratio] the ratio of control units to sample relative to the treatment units.
+        \item[control.sample.size] the size of each bootstrap sample of control units.
+        \item[control.replace] whether to use replacement when sampling from control units.
+        \item[treated.sample.size] the size of each bootstrap sample of treatment units. The default uses all treatment units for each boostrap sample.
+        \item[treated.replace] whether to use replacement when sampling from treated units.
+        \item[methods] a named vector of functions for each PSA method to use.
+        \item[seed] random seed. Each iteration, i, will use a seed of seed + i.
+        \item[parallel] whether to run the bootstrap samples in parallel.
+        \item[...] other parameters passed to the PSA methods.
+    \end{description}
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Default Methods}
+    \begin{description}
+    	\item[Stratification] Uses quintiles on the propensity scores estimated using logistic regression.
+    	\item[ctree] Estimates strata using conditional inference trees (see \texttt{ctree} in \texttt{party} package)
+    	\item[rpart] Estimates strata using partition trees (see \texttt{rpart})
+    	\item[Matching] Matches using the \texttt{Matching} package. Propensity scores estimated using logistic regression.
+    	\item[MatchIt] Matches using the \texttt{MatchIt} package. Propensity scores estimated using logistic regression.
+	\end{description}
+\end{frame}
+
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Summary}
+<<PSAbootSummary>>=
+summary(tutoring.boot)
+@
+\end{frame}
+
+
+\begin{frame}[containsverbatim,fragile]
+ 	\frametitle{Plotting}
+<<PSAbootPlot,fig=TRUE,height=4.8,include=FALSE>>=
+plot(tutoring.boot)
+@
+    \begin{center}\includegraphics{figures/Slides-PSAbootPlot.pdf}\end{center}
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+ 	\frametitle{Boxplot}
+<<PSAbootBoxplot,fig=TRUE,height=4.8,include=FALSE>>=
+boxplot(tutoring.boot)
+@
+    \begin{center}\includegraphics{figures/Slides-PSAbootBoxplot.pdf}\end{center}
+\end{frame}
+
+
+\begin{frame}[containsverbatim,fragile]
+ 	\frametitle{Matrix Plot}
+<<PSAbootMatrixplot,fig=TRUE,height=4.8,include=FALSE>>=
+matrixplot(tutoring.boot)
+@
+    \begin{center}\includegraphics{figures/Slides-PSAbootMatrixplot.pdf}\end{center}
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Checking Balance}
+	The estimates are only as good as the balance achieved!
+<<balance>>=
+tutoring.bal <- balance(tutoring.boot)
+tutoring.bal
+@
+    The \texttt{balance} function will calculate the standardized effect sizes for each covariate after adjustment. The \texttt{pool.fun} allows you to define how the balance statistics are combined. It defaults to \texttt{mean}, but other options include \texttt{q25}, \texttt{q75}, \texttt{median} or \texttt{max}.
+<<>>=
+ls(tutoring.bal)
+@
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Checking Balance: Density Plots}
+<<balancePlot,fig=TRUE,height=3.8,include=FALSE>>=
+plot(tutoring.bal) + geom_vline(xintercept=.1, linetype=2)
+@
+    \begin{center}\includegraphics{figures/Slides-balancePlot.pdf}\end{center}
+    
+    {\color{red}Red} line is unadjusted balance; {\color{blue}Blue} line is the non-bootstrap balance; {\color{black}Black} line is the pooled bootstrap balance.
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Checking Balance: Boxplots}
+<<balanceBoxplot,fig=TRUE,height=4.8,include=FALSE>>=
+boxplot(tutoring.bal) + geom_hline(yintercept=.1, color='red', linetype=2)
+@
+    \begin{center}\includegraphics{figures/Slides-balanceBoxplot.pdf}\end{center}
+
+\end{frame}
+
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Extending PSAboot for Other Methods}
+    Define a function with the following parameters: \texttt{Tr} (vector of treatment indicators), \texttt{Y} (vector outcome measure), \texttt{X} (data frame of covariates), \texttt{X.trans} (numeric matrix with non-numeric variables dummy coded), \texttt{formu} (the formula used for estimating propensity scores, \texttt{...} (other parameters passed from the user).
+<<matching1to3,eval=FALSE>>=
+boot.matching.1to3 <- function(Tr, Y, X, X.trans, formu, ...) {
+	return(boot.matching(Tr=Tr, Y=Y, X=X,
+	       X.trans=X.trans, 
+	       formu=formu, M=3, ...))
+}
+@
+    \pause
+<<eval=FALSE>>=
+tutoring.boot <- PSAboot(Tr=tutoring$treatbool, 
+                         Y=tutoring$Grade, 
+                         X=covs, 
+            methods=c("Matcing-1-to-3"=boot.matching.1to3,
+                      getPSAbootMethods()))
+@
+    \ \\
+    The \texttt{getPSAbootMethods()} function returns a vector of the five default functions.\\
+    Note that the name of each element in \texttt{methods} will be the name used in the figures.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Getting More Information}
+    \begin{itemize}
+        \item Package Vignette\\
+        \texttt{vignette("PSAboot")}
+        \item Lalonde Demo\\
+        \texttt{demo("PSAbootLalonde")}
+        \item Tutoring Demo\\
+        \texttt{demo("PSAbootTutoring")}
+        \item Programme of International Student Assessment Demo\\
+        \texttt{demo("PSAbootPISA")}
+    \end{itemize}    
+\end{frame}
+
+
+\begin{frame}[c]
+	\LARGE{Thank You}\\\ \\
+	\normalsize
+	Jason Bryer, Ph.D. (jason@bryer.org)\\
+	\url{http://jason.bryer.org/PSAboot}\\
+	\url{http://github.com/jbryer/PSAboot}
+\end{frame}
+
+\end{document}

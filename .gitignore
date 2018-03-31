@@ -13,14 +13,14 @@
 
 /Slides/psranges.Rda
 /Slides/Rplots.pdf
-/Slides/Slides.aux
-/Slides/Slides.log
-/Slides/Slides.nav
-/Slides/Slides.out
-/Slides/Slides.snm
-/Slides/Slides.tex
-/Slides/Slides.toc
-/Slides/Slides.vrb
+/Slides/*.aux
+/Slides/*.log
+/Slides/*.nav
+/Slides/*.out
+/Slides/*.snm
+/Slides/*.tex
+/Slides/*.toc
+/Slides/*.vrb
 /Slides/Sweave.sty
 /Slides/texput.log
 /Slides/tutoring.boot.Rda
