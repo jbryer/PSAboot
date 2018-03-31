@@ -24,4 +24,3 @@ effect size for all covariates across all bootstrapped samples.}
 \description{
 Plot method for balance.
 }
-

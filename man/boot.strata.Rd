@@ -38,4 +38,3 @@ a list with three elements:
 \description{
 Stratification implementation for bootstrapping.
 }
-

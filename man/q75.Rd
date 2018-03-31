@@ -20,4 +20,3 @@ the 75th percentile.
 \description{
 Returns the 75th percentile.
 }
-

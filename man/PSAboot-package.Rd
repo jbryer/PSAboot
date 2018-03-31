@@ -7,4 +7,3 @@
 \description{
 Bootstrapping procedures for Propensity Score Analysis.
 }
-

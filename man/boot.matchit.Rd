@@ -24,4 +24,3 @@ the \code{Tr} vector.}
 \description{
 MatchIt package implementation for bootstrapping.
 }
-

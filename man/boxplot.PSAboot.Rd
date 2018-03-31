@@ -34,4 +34,3 @@ mean, or NA to omit.}
 \description{
 Boxplot of PSA boostrap results.
 }
-

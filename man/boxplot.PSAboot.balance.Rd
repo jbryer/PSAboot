@@ -26,4 +26,3 @@ a ggplot2 expression.
 \description{
 Boxplot of the balance statistics for bootstrapped samples.
 }
-

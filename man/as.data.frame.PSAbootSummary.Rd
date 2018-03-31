@@ -19,4 +19,3 @@
 \description{
 Convert the results of PSAboot summary to a data frame.
 }
-

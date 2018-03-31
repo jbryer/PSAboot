@@ -22,4 +22,3 @@ to include that strata.}
 \description{
 Propensity Score Analysis using Stratification
 }
-

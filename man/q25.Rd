@@ -20,4 +20,3 @@ the 25th percetile.
 \description{
 Return the 25th percentile.
 }
-

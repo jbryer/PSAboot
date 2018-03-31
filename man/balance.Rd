@@ -32,4 +32,3 @@ a list with three elements:
 \description{
 This method provides some crude overall measures of balance.
 }
-

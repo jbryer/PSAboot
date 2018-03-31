@@ -27,4 +27,3 @@ to include that strata.}
 \description{
 Stratification using classification trees for bootstrapping.
 }
-

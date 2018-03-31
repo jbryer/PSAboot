@@ -1,15 +1,14 @@
-setwd('~/Dropbox/Projects')
 require(devtools)
 
-document('PSAboot')
-check_man('PSAboot')
-install('PSAboot', build_vignettes=FALSE)
-install('PSAboot')
-check('PSAboot', cran=TRUE)
-build('PSAboot')
-build_vignettes('PSAboot')
+document()
+check_man()
+install(build_vignettes=FALSE)
+install()
+check(cran=TRUE)
+build()
+build_vignettes()
 
-release('PSAboot')
+release()
 
 ##### Data Setup
 require(pisa)
@@ -17,7 +16,7 @@ require(psych)
 require(mice)
 data(pisa.student)
 data(pisa.school)
-source('PSAboot/Data/pisa.psa.cols.R')
+source('data/pisa.psa.cols.R')
 
 pisa.student$SCHOOLID <- as.integer(pisa.student$SCHOOLID)
 pisa.school$SCHOOLID <- as.integer(pisa.school$SCHOOLID)

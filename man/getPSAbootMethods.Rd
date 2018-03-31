@@ -24,4 +24,3 @@ The default methods can be changed by setting the \code{PSAboot.methods} option
 using \code{options('PSAboot.methods'=c(...))} where \code{...} is a named
 list of functions.
 }
-

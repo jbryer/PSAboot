@@ -20,4 +20,3 @@ a named vector with one element per covariate.
 \description{
 Returns balance for each covariate from propensity score matching.
 }
-

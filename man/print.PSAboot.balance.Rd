@@ -19,4 +19,3 @@ effect sizes are calculated for each covariate. Overall balance statistics are
 the mean of those effect sizes after adjustement for each method across all
 bootstrap samples.
 }
-

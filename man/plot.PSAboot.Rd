@@ -27,4 +27,3 @@ estimate and confidence interval.}
 \description{
 Plot the results of PSAboot
 }
-

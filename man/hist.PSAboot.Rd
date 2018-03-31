@@ -14,4 +14,3 @@
 \description{
 Histogram of PSA bootstrap results
 }
-

@@ -27,4 +27,3 @@ the \code{Tr} vector.}
 \description{
 Matching package implementation for bootstrapping.
 }
-

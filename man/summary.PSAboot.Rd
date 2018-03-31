@@ -17,4 +17,3 @@ a list with pooled summary statistics.
 \description{
 Summary of pooled results from PSAboot
 }
-

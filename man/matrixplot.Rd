@@ -12,4 +12,3 @@ matrixplot(bm)
 \description{
 Matrix Plot of Boostrapped Propensity Score Analysis
 }
-
