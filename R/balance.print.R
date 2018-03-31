@@ -2,7 +2,7 @@
 #' 
 #' This is a crude measure of overall balance. Absolute value of the standardized
 #' effect sizes are calculated for each covariate. Overall balance statistics are
-#' the mean of those effect sizes after adjustement for each method across all
+#' the mean of those effect sizes after adjustment for each method across all
 #' bootstrap samples.
 #' 
 #' @param x results from \code{\link{balance}}.

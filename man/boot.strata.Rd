@@ -16,7 +16,7 @@ boot.strata(Tr, Y, X, X.trans, formu, nstrata = 5, ...)
 \item{X.trans}{a data frame of \code{X} with factors recoded. See \code{\link{cv.trans.psa}}}
 
 \item{formu}{the formula to use to estimate propensity scores. Note that the
-dependent varaible (i.e. treatment variable) name will be updated using
+dependent varaible (i.e. treatment varaible) name will be updated using
 the \code{Tr} vector.}
 
 \item{nstrata}{number of strata to divide the propensity scores.}
