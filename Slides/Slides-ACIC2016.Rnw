@@ -41,7 +41,7 @@
 \subtitle{2016 Atlantic Causal Inference Conference Lightning Talk}
 \author[Bryer]{Jason Bryer, Ph.D.}
 \institute[Excelsior College]{Excelsior College\\
-\url{http://jason.bryer.org/PSAboot}\\
+\url{https://github.com/jbryer/PSAboot}\\
 \href{mailto:jason@bryer.org}{jason@bryer.org}
 }
 \date[May 26, 2016]{May 26, 2016}
@@ -66,7 +66,7 @@ options(warn=-1)
     \frametitle{Why Bootstrap PSA?}
     Rosenbaum's (2012) paper, \textit{Testing one hypothesis twice in observational studies}. The \texttt{PSAboot} will test the hypothesis M x m times, where M is the number of bootstrap samples and m is the number of different PSA methods.
     \ \\\ \\\ \\
-    Many observational studies often have many more control units then treatment units. As the ratio of treatment-to-control increases, the range of propensity scores (i.e. fitted values from a logistic regression) tends to shrink. It may be appropriate to randomly select control units to decrease this ratio. See \url{http://jason.bryer.org/multilevelPSA/psranges.html} for more information.
+    Many observational studies often have many more control units then treatment units. As the ratio of treatment-to-control increases, the range of propensity scores (i.e. fitted values from a logistic regression) tends to shrink. It may be appropriate to randomly select control units to decrease this ratio. See \url{https://github.com/jbryer/multilevelPSA} for more information.
 \end{frame}
 
 
@@ -276,7 +276,6 @@ tutoring.boot <- PSAboot(Tr=tutoring$treatbool,
 	\LARGE{Thank You}\\\ \\
 	\normalsize
 	Jason Bryer, Ph.D. (jason@bryer.org)\\
-	\url{http://jason.bryer.org/PSAboot}\\
 	\url{http://github.com/jbryer/PSAboot}
 \end{frame}
 

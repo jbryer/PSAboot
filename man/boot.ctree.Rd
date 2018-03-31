@@ -19,7 +19,7 @@ boot.ctree(Tr, Y, X, X.trans, formu, minStrata = 5, ...)
 dependent varaible (i.e. treatment variable) name will be updated using
 the \code{Tr} vector.}
 
-\item{minStrata}{minimum number of treatment or control unitis within a strata 
+\item{minStrata}{minimum number of treatment or control units within a strata 
 to include that strata.}
 
 \item{...}{other parameters passed from \code{\link{PSAboot}}}

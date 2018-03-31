@@ -11,12 +11,12 @@
 \item{x}{result of \code{\link{PSAboot}}.}
 
 \item{sort}{how the sort the rows by mean difference. Options are to sort
-using the mean difference from matching, stratificaiton, both 
+using the mean difference from matching, stratification, both 
 individually, or no sorting.}
 
 \item{ci.sig.color}{the color used for confidence intervals that do not span zero.}
 
-\item{plot.overall}{whether to plot vertical lines for the overall (non-bootsrapped)
+\item{plot.overall}{whether to plot vertical lines for the overall (non-bootstrapped)
 estimate and confidence interval.}
 
 \item{plot.bootstrap}{whether to plot vertical lines for the bootstrap pooled

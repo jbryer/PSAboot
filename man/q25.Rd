@@ -15,7 +15,7 @@ quantiles are computed}
 \item{...}{other parameters passed to \code{\link{quantile}}.}
 }
 \value{
-the 25th percetile.
+the 25th percentile.
 }
 \description{
 Return the 25th percentile.

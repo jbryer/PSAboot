@@ -16,7 +16,7 @@ unadjusted effect size for all covariates.}
 \item{complete.color}{color of the vertical line representing the mean adjusted
 effect size for all covariates using the complete dataset.}
 
-\item{pooled.color}{color of the vertical line represeting the mean adjusted
+\item{pooled.color}{color of the vertical line representing the mean adjusted
 effect size for all covariates across all bootstrapped samples.}
 
 \item{...}{currently unused.}

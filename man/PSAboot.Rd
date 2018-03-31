@@ -2,7 +2,7 @@
 % Please edit documentation in R/PSAboot.R
 \name{PSAboot}
 \alias{PSAboot}
-\title{Bootstraping for propensity score analysis}
+\title{Bootstrapping for propensity score analysis}
 \usage{
 PSAboot(Tr, Y, X, M = 100, formu = as.formula(paste0("treat ~ ",
   paste0(names(X), collapse = " + "))), control.ratio = 5,
@@ -14,7 +14,7 @@ PSAboot(Tr, Y, X, M = 100, formu = as.formula(paste0("treat ~ ",
 \arguments{
 \item{Tr}{numeric (0 or 1) or logical vector of treatment indicators.}
 
-\item{Y}{vector of outcome varaible.}
+\item{Y}{vector of outcome variable}
 
 \item{X}{matrix or data frame of covariates used to estimate the propensity scores.}
 
@@ -30,7 +30,7 @@ all covariates in \code{X}.}
 \item{control.replace}{whether to use replacement when sampling from control units.}
 
 \item{treated.sample.size}{the size of each bootstrap sample of treatment units. The
-default uses all treatment units for each boostrap sample.}
+default uses all treatment units for each bootstrap sample.}
 
 \item{treated.replace}{whether to use replacement when sampling from treated units.}
 
@@ -46,11 +46,11 @@ default uses all treatment units for each boostrap sample.}
 a list with following elements:
 		  \describe{
 		  \item{overall.summary}{Data frame with the results using the complete
-		                         dateset (i.e. unboostrapped results).}
+		                         dataset (i.e. unbootstrapped results).}
 		  \item{overall.details}{Objects returned from each method for complete dataset.}
-		  \item{pooled.summary}{Data frame with results of each boostrap sample.}
+		  \item{pooled.summary}{Data frame with results of each bootstrap sample.}
 		  \item{pooled.details}{List of objects returned from each method for each 
-		        boostrap sample.}
+		        bootstrap sample.}
 		  \item{control.sample.size}{sample size used for control units.}
 		  \item{treated.sample.size}{sample size used for treated units.}
 		  \item{control.replace}{whether control units were sampled with replacement.}
@@ -65,7 +65,7 @@ a list with following elements:
 Bootstrapping has become a popular resampling method for estimating sampling
 distributions. And propensity score analysis (PSA) has become popular for estimating
 causal effects in observational studies. This function implements bootstrapping
-specifically for PSA. Like typical bootstrapping methods, this function estiamtes
+specifically for PSA. Like typical bootstrapping methods, this function estimates
 treatment effects for M random samples. However, unlike typical bootstrap methods,
 this function allows for separate sample sizes for treatment and control units.
 That is, under certain circumstances (e.g. when the ratio of treatment-to-control

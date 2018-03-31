@@ -2,7 +2,7 @@
 % Please edit documentation in R/boxplot.PSAboot.R
 \name{boxplot.PSAboot}
 \alias{boxplot.PSAboot}
-\title{Boxplot of PSA boostrap results.}
+\title{Boxplot of PSA bootstrap results.}
 \usage{
 \method{boxplot}{PSAboot}(x, bootstrap.mean.color = "blue",
   bootstrap.ci.color = "green", bootstrap.ci.width = 0.5,
@@ -12,7 +12,7 @@
 \arguments{
 \item{x}{result of \code{\link{PSAboot}}.}
 
-\item{bootstrap.mean.color}{the color of the point for the boostrap mean, or NA
+\item{bootstrap.mean.color}{the color of the point for the bootstrap mean, or NA
 to omit.}
 
 \item{bootstrap.ci.color}{the color of the confidence intervals of the bootstrap
@@ -32,5 +32,5 @@ mean, or NA to omit.}
 \item{...}{unused}
 }
 \description{
-Boxplot of PSA boostrap results.
+Boxplot of PSA bootstrap results.
 }

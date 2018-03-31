@@ -6,7 +6,7 @@
 # Bootstrapping for Propensity Score Analysis
 
 ## Jason M. Bryer [jason@bryer.org](mailto:jason@bryer.org)
-#### Project website: [jason.bryer.org/PSAboot](http://jason.bryer.org/PSAboot)
+#### Project website: [github.com/jbryer/PSAboot](https://github.com/jbryer/PSAboot)
 #### Bug Reports: [github.com/jbryer/PSAboot/issues](https://github.com/jbryer/PSAboot/issues)
 
 ```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
@@ -52,7 +52,7 @@ The `PSAboot` function will perform the actual bootstrapping. It has a number of
 * `X` - a data frame of covaraites.
 * `M` (default is 100) - the number of bootstrap samples to draw.
 * `formu` - the formula for estimating the propensity scores in phase I. Note that the dependent variable does not need to be specified as it will be replaced when combining the `Tr` vector and `X` data frame.
-* `control.ratio` (default is 5) - This specifies the sample size of control units as a ratio of treatment units. For example, with a default value of 5 and 100 treatment units, this methods will sample 500 control units for each sample, or the number of control units if smaller than 500. When the ratio of treatment-to-control units increases, the range of propensity scores (using logistic regression) shrinks. Randomly selecting a subset of control units often results in wider and better overlapping distribution of propensity scores. See the the [`PSranges`](http://jason.bryer.org/multilevelPSA/psranges.html) function in the [`multilevelPSA`](http://jason.bryer.org/multilevelPSA) package for more information or this page: [http://jason.bryer.org/multilevelPSA/psranges.html](http://jason.bryer.org/multilevelPSA/psranges.html).
+* `control.ratio` (default is 5) - This specifies the sample size of control units as a ratio of treatment units. For example, with a default value of 5 and 100 treatment units, this methods will sample 500 control units for each sample, or the number of control units if smaller than 500. When the ratio of treatment-to-control units increases, the range of propensity scores (using logistic regression) shrinks. Randomly selecting a subset of control units often results in wider and better overlapping distribution of propensity scores. See the the [`PSranges`](http://jason.bryer.org/multilevelPSA/psranges.html) function in the [`multilevelPSA`](https://github.com/jbryer/multilevelPSA) package for more information.
 * `control.sample.size` (default is 5 times the number of treatment units) - The number of control units to sample for each bootstrap sample. If specified, this overrides the `control.ratio` parameter.
 * `control.replace` (default is `TRUE`) - Specify whether random sampling of control units does so with replacement.
 * `treated.sample.size` (default is the number of treatment units) - The number of treatment units to sample for each bootstrap sample.
@@ -240,7 +240,7 @@ boxplot(tutoring.bal)
 
 # References
 
-Bryer, J.M. (2013). TriMatch: Propensity Score Matching of Non-Binary Treatments. R package version 0.9.1. http://jason.bryer.org/TriMatch
+Bryer, J.M. (2013). TriMatch: Propensity Score Matching of Non-Binary Treatments. R package version 0.9.1. https://github.com/jbryer/TriMatch
 
 Helmreich, J.E., Pruzek, R.M. (2009). PSAgraphics: An R Package to Support Propensity Score Analysis. Journal of Statistical Software 29(6), 1-23. http://www.jstatsoft.org/v29/i06/.
 

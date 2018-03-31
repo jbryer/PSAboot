@@ -40,7 +40,7 @@
 \title{PSAboot: An R Package for Bootstrapping Propensity Score Analysis}
 \subtitle{2014 useR! Conference}
 \author[Bryer]{Jason M. Bryer}
-\institute[Jason.Bryer.org]{\url{http://jason.bryer.org/PSAboot}\\
+\institute[Jason.Bryer.org]{\url{https://github.com/jbryer/PSAboot}\\
 \href{mailto:jason@bryer.org}{jason@bryer.org}
 }
 \date[Jul 2, 2014]{July 2, 2014}
@@ -179,7 +179,7 @@ p1 <- plot(psranges1)
 print(p1)
 @
     \begin{center}\includegraphics{figures/Slides-psranges.pdf}\end{center}
-    \ \\ More detailed description here: \url{http://jason.bryer.org/multilevelPSA/psranges.html}
+    \ \\ More detailed description here: \url{https://github.com/jbryer/multilevelPSA/}
 \end{frame}
 
 \begin{frame}[containsverbatim,fragile]
@@ -435,8 +435,7 @@ ls("package:PSAboot")
 	\LARGE{Thank You}\\\ \\
 	\normalsize
 	Jason Bryer (jason@bryer.org)\\
-	\url{http://jason.bryer.org/PSAboot}\\
-	\url{http://github.com/jbryer/PSAboot}
+	\url{https://github.com/jbryer/PSAboot}
 \end{frame}
 
 \end{document}

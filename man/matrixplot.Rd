@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.PSAboot.matrix.R
 \name{matrixplot}
 \alias{matrixplot}
-\title{Matrix Plot of Boostrapped Propensity Score Analysis}
+\title{Matrix Plot of Bootstrapped Propensity Score Analysis}
 \usage{
 matrixplot(bm)
 }
@@ -10,5 +10,5 @@ matrixplot(bm)
 \item{bm}{result from \code{\link{PSAboot}}.}
 }
 \description{
-Matrix Plot of Boostrapped Propensity Score Analysis
+Matrix Plot of Bootstrapped Propensity Score Analysis
 }
