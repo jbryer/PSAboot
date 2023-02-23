@@ -4,8 +4,14 @@
 \alias{plot.PSAboot}
 \title{Plot the results of PSAboot}
 \usage{
-\method{plot}{PSAboot}(x, sort = "all", ci.sig.color = "red",
-  plot.overall = FALSE, plot.bootstrap = TRUE, ...)
+\method{plot}{PSAboot}(
+  x,
+  sort = "all",
+  ci.sig.color = "red",
+  plot.overall = FALSE,
+  plot.bootstrap = TRUE,
+  ...
+)
 }
 \arguments{
 \item{x}{result of \code{\link{PSAboot}}.}

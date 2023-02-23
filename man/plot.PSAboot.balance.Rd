@@ -4,8 +4,13 @@
 \alias{plot.PSAboot.balance}
 \title{Plot method for balance.}
 \usage{
-\method{plot}{PSAboot.balance}(x, unadjusted.color = "red",
-  complete.color = "blue", pooled.color = "black", ...)
+\method{plot}{PSAboot.balance}(
+  x,
+  unadjusted.color = "red",
+  complete.color = "blue",
+  pooled.color = "black",
+  ...
+)
 }
 \arguments{
 \item{x}{results from \code{\link{balance}}}

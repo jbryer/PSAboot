@@ -11,9 +11,9 @@
 #' @method plot PSAboot.balance
 #' @export
 plot.PSAboot.balance <- function(x, 
-								 unadjusted.color='red', 
-								 complete.color='blue', 
-								 pooled.color='black', 
+								 unadjusted.color = 'red', 
+								 complete.color = 'blue', 
+								 pooled.color = 'black', 
 								 ...) {
 	df.complete <- x$complete
 	df.complete <- reshape2::melt(apply(df.complete, 1, x$pool.fun, na.rm=TRUE))

@@ -20,7 +20,7 @@
 #'         analysis}
 #'         }
 #' @export
-boot.strata <- function(Tr, Y, X, X.trans, formu, nstrata=5, ...) {
+boot.strata <- function(Tr, Y, X, X.trans, formu, nstrata = 5, ...) {
 	formu <- update.formula(formu, 'treat ~ .')
 	ps <- fitted(glm(formu, data=cbind(treat=Tr, X), family='binomial'))
 	strata <- cut(ps, quantile(ps, seq(0, 1, 1/nstrata)), include.lowest=TRUE, 

@@ -9,10 +9,10 @@
 #' @return a ggplot2 expression.
 #' @export 
 boxplot.PSAboot.balance <- function(x, 								 
-									unadjusted.color='red',
-									pooled.color='blue',
-									point.size=3, 
-									point.alpha=.5, 
+									unadjusted.color = 'red',
+									pooled.color = 'blue',
+									point.size = 3, 
+									point.alpha = .5, 
 									...) {
 	combined <- data.frame()
 	for(i in seq_along(x$balances)) {
@@ -25,7 +25,9 @@ boxplot.PSAboot.balance <- function(x,
 	tmp2 <- as.data.frame(x$unadjusted)
 	names(tmp2) <- 'value'
 	tmp2$variable <- row.names(tmp2)
-	tmp3 <- psych::describeBy(tmp$value, group=list(tmp$Method, tmp$variable), mat=TRUE, skew=FALSE)
+	tmp3 <- psych::describeBy(tmp$value, 
+							  group = list(tmp$Method, tmp$variable), 
+							  mat = TRUE, skew = FALSE)
 	tmp3 <- tmp3[,c('group1', 'group2', 'mean')]
 	names(tmp3) <- c('Method', 'variable', 'value')
 	p <- ggplot(tmp, aes(x=variable, y=value)) + 

@@ -4,8 +4,14 @@
 \alias{boxplot.PSAboot.balance}
 \title{Boxplot of the balance statistics for bootstrapped samples.}
 \usage{
-\method{boxplot}{PSAboot.balance}(x, unadjusted.color = "red",
-  pooled.color = "blue", point.size = 3, point.alpha = 0.5, ...)
+\method{boxplot}{PSAboot.balance}(
+  x,
+  unadjusted.color = "red",
+  pooled.color = "blue",
+  point.size = 3,
+  point.alpha = 0.5,
+  ...
+)
 }
 \arguments{
 \item{x}{results of \code{\link{balance}}}

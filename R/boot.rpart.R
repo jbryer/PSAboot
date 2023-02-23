@@ -4,7 +4,7 @@
 #' @param minStrata minimum number of treatment or control units within a strata 
 #'        to include that strata.
 #' @export
-boot.rpart <- function(Tr, Y, X, X.trans, formu, minStrata=5, ...) {
+boot.rpart <- function(Tr, Y, X, X.trans, formu, minStrata = 5, ...) {
 	formu <- update.formula(formu, 'treat ~ .')
 	tree <- rpart::rpart(formu, data=cbind(treat=Tr, X))
 	strata <- tree$where

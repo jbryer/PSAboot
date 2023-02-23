@@ -5,7 +5,7 @@
 #' @param ... other parameters passed to \code{\link{Match}}.
 #' @inheritParams boot.strata
 #' @export
-boot.matching <- function(Tr, Y, X, X.trans, formu, estimand='ATE', ...) {
+boot.matching <- function(Tr, Y, X, X.trans, formu, estimand = 'ATE', ...) {
 	formu <- update.formula(formu, 'treat ~ .')
 	ps <- fitted(glm(formu, data=cbind(treat=Tr, X), family='binomial'))
 	mr <- Matching::Match(Y=Y, Tr=Tr, X=ps, estimand=estimand, ...)

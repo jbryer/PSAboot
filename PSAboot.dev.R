@@ -1,14 +1,15 @@
 require(devtools)
 
-document()
-check_man()
-install(build_vignettes=FALSE)
-install()
-check(cran=TRUE)
-build()
-build_vignettes()
+usethis::use_tidy_description()
+devtools::document()
+devtools::check_man()
+devtools::install(build_vignettes = FALSE)
+devtools::install(build_vignettes = TRUE)
+devtools::check(cran=TRUE)
+devtools::build()
+devtools::build_vignettes()
 
-release()
+devtools::release()
 
 ##### Data Setup
 require(pisa)

@@ -1,25 +1,37 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Bootstrapping for Propensity Score Analysis}
--->
+---
+title: "Bootstrapping for Propensity Score Analysis"
+author: "Jason Bryer, Ph.D."
+date: "`r Sys.Date()`"
+abstract: "As the popularity of propensity score methods for estimating causal effects in observational studies increase, the choices for specific methods for has also increased. Rosenbaum (2012) has suggested that there are substantial benefits for testing a hypothesis more than once. With the wide availability of high power computers resampling methods such as bootstrapping (Efron, 1979) have become popular for providing more stable estimates of the sampling distribution. This paper introduces the `PSAboot` package for R that provides functions for bootstrapping propensity score methods. It deviates from traditional bootstrapping methods by allowing for different sampling specifications for treatment and control groups. Additionally, this framework will provide estimates using multiple methods for each bootstrap sample. Two examples are discussed: the classic National Work Demonstration and PSID (Lalonde, 1986) study and a study on tutoring effects on student grades."
+output:
+ pdf_document:
+ toc: true
+ toc_depth: 3
+ fig_crop: no
+ citation_package: biblatex
+ number_sections: true
+pkgdown:
+ as_is: false
+fontsize: 11pt
+geometry: = 2in
 
-# Bootstrapping for Propensity Score Analysis
+# Custom YAML Pandoc Variables
+line-numbers: true
+list-tables: true
+list-figures: true
 
-## Jason M. Bryer [jason@bryer.org](mailto:jason@bryer.org)
-#### Project website: [github.com/jbryer/PSAboot](https://github.com/jbryer/PSAboot)
-#### Bug Reports: [github.com/jbryer/PSAboot/issues](https://github.com/jbryer/PSAboot/issues)
+# Package indexing
+vignette: >
+  %\VignetteIndexEntry{Bootstrapping for Propensity Score Analysiss}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
 ```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 require(knitr)
-opts_chunk$set(comment='')
+opts_chunk$set(comment = '')
 require(PSAboot)
 ```
-
-# Abstract
-
-As the popularity of propensity score methods for estimating causal effects in observational studies increase, the choices for specific methods for has also increased. Rosenbaum (2012) has suggested that there are substantial benefits for testing a hypothesis more than once. With the wide availability of high power computers resampling methods such as bootstrapping (Efron, 1979) have become popular for providing more stable estimates of the sampling distribution. This paper introduces the `PSAboot` package for R that provides functions for bootstrapping propensity score methods. It deviates from traditional bootstrapping methods by allowing for different sampling specifications for treatment and control groups. Additionally, this framework will provide estimates using multiple methods for each bootstrap sample. Two examples are discussed: the classic National Work Demonstration and PSID (Lalonde, 1986) study and a study on tutoring effects on student grades.
-
------------------------------
 
 
 Set the number of bootstrap samples. This should be set to at least 100 but kept small to reduce the execution time for CRAN submissions.
@@ -113,15 +125,14 @@ data(lalonde, package='MatchIt')
 table(lalonde$treat)
 ```
 ```{r lalonde.boot, cache=FALSE}
-lalonde.formu <- treat ~ age + I(age^2) + educ + I(educ^2) + black +
-	hispan + married + nodegree + re74  + I(re74^2) + re75 + I(re75^2) +
-	re74 + re75
-boot.lalonde <- PSAboot(Tr=lalonde$treat, 
-						Y=lalonde$re78,
-						X=lalonde,
-						formu=lalonde.formu,
-						M=boot.M, 
-						seed=2112)
+lalonde.formu <- treat ~ age + I(age^2) + educ + I(educ^2) + race +
+	married + nodegree + re74  + I(re74^2) + re75 + I(re75^2)
+boot.lalonde <- PSAboot(Tr = lalonde$treat, 
+						Y = lalonde$re78,
+						X = lalonde,
+						formu = lalonde.formu,
+						M = 100, 
+						seed = 2112)
 ```
 
 The `summary` function provides numeric results for each method including the overall estimate and confidence interval using the complete sample as well as the pooled estimates and confidence intervals with percentages of the number of confidence intervals that do not span zero.

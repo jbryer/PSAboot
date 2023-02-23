@@ -18,13 +18,13 @@ utils::globalVariables(c('estimate','method','bootstrap.estimate','bootstrap.ci.
 #' @method boxplot PSAboot
 #' @export
 boxplot.PSAboot <- function(x,
-							bootstrap.mean.color='blue',
-							bootstrap.ci.color='green',
-							bootstrap.ci.width=0.5,
-							bootstrap.ci.size=3,
-							overall.mean.color='red',
-							tufte=FALSE, 
-							coord.flip=TRUE,
+							bootstrap.mean.color = 'blue',
+							bootstrap.ci.color = 'green',
+							bootstrap.ci.width = 0.5,
+							bootstrap.ci.size = 3,
+							overall.mean.color = 'red',
+							tufte = FALSE, 
+							coord.flip = TRUE,
 							...) {
 	sum <- as.data.frame(summary(x))
 	pooled.mean <- mean(x$pooled.summary$estimate, na.rm=TRUE)

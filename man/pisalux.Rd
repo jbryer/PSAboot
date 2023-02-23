@@ -4,7 +4,8 @@
 \name{pisalux}
 \alias{pisalux}
 \title{Programme of International Student Assessment (PISA) results from the Luxembourg in 2009.}
-\format{a data frame with 4,622 rows and 65 columns.
+\format{
+a data frame with 4,622 rows and 65 columns.
 \describe{
 \item{\code{CNT}}{Country}
 \item{\code{SCHOOLID}}{SchoolID}
@@ -55,7 +56,8 @@
 \item{\code{ST32Q03}}{Out of school lessons in science}
 \item{\code{PUBPRIV}}{Public or private school}
 \item{\code{STRATIO}}{Student to teacher ratio in school}
-}}
+}
+}
 \description{
 Student results from the 2009 Programme of International Student Assessment (PISA)
 as provided by the Organization for Economic Co-operation and Development (OECD).

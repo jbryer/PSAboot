@@ -20,7 +20,7 @@
 #' 	\item{balances}{a list with an M x n covariates matrix for each method.}
 #' }
 #' @export
-balance <- function(psaboot, na.rm=TRUE, pool.fun=mean) {
+balance <- function(psaboot, na.rm = TRUE, pool.fun = mean) {
 	if('factor' %in% sapply(psaboot$X, class)) {
 		X.trans <- cv.trans.psa(psaboot$X)[[1]]
 	} else {

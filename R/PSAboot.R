@@ -17,11 +17,11 @@
 #' @return a vector of methods for use by \code{\link{PSAboot}}
 getPSAbootMethods <- function() {
 	methods <- getOption('PSAboot.methods', default=c(
-		'Stratification'=boot.strata,
-		'ctree'=boot.ctree,
-		'rpart'=boot.rpart,
-		'Matching'=boot.matching,
-		'MatchIt'=boot.matchit))
+		'Stratification' = boot.strata,
+		'ctree' = boot.ctree,
+		'rpart' = boot.rpart,
+		'Matching' = boot.matching,
+		'MatchIt' = boot.matchit))
 	invisible(methods)
 }
 
@@ -73,17 +73,16 @@ getPSAbootMethods <- function() {
 #' 		  }
 #' @seealso getPSAbootMethods
 #' @export
-PSAboot <- function(Tr, Y, X, M=100,
-					formu=as.formula(paste0('treat ~ ', paste0(names(X), collapse=' + '))),
-					control.ratio=5,
-					control.sample.size=min(control.ratio*min(table(Tr)),
-											max(table(Tr))),
-					control.replace=TRUE,
-					treated.sample.size=min(table(Tr)),
-					treated.replace=TRUE,
-					methods=getPSAbootMethods(),
-					parallel=TRUE,
-					seed=NULL,
+PSAboot <- function(Tr, Y, X, M = 100,
+					formu = as.formula(paste0('treat ~ ', paste0(names(X), collapse=' + '))),
+					control.ratio = 5,
+					control.sample.size = min(control.ratio*min(table(Tr)), max(table(Tr))),
+					control.replace = TRUE,
+					treated.sample.size = min(table(Tr)),
+					treated.replace = TRUE,
+					methods = getPSAbootMethods(),
+					parallel = TRUE,
+					seed = NULL,
 					...) {
 	if(length(Tr) != length(Y) & length(Y) != nrow(X)) {
 		stop('The length of Tr and Y and the number of rows of X must be the same!')

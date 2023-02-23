@@ -6,7 +6,7 @@
 #' @param ... other parameters passed to \code{\link{quantile}}.
 #' @export
 #' @return the 25th percentile.
-q25 <- function(x, na.rm=FALSE, ...) {
+q25 <- function(x, na.rm = FALSE, ...) {
 	return(unname(quantile(x, na.rm=na.rm, ...)[2]))
 }
 
@@ -18,6 +18,6 @@ q25 <- function(x, na.rm=FALSE, ...) {
 #' @param ... other parameters passed to \code{\link{quantile}}.
 #' @export
 #' @return the 75th percentile.
-q75 <- function(x, na.rm=FALSE, ...) {
+q75 <- function(x, na.rm = FALSE, ...) {
 	return(unname(quantile(x, na.rm=na.rm, ...)[4]))
 }

@@ -13,8 +13,8 @@ balance.matching <- function(index.treated, index.control, covs) {
 	}
 	bal <- c()
 	for(covar in names(covs)) {
-		cov <- data.frame(Treated=covs[index.treated,covar],
-						  Control=covs[index.control,covar])
+		cov <- data.frame(Treated = covs[index.treated,covar],
+						  Control = covs[index.control,covar])
 		ttest <- t.test(cov$Treated, cov$Control, paired=TRUE)
 		bal[covar] <- ttest$estimate / sd(c(cov[,1],cov[,2]))	
 	}

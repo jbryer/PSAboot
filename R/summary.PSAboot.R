@@ -84,7 +84,7 @@ print.PSAbootSummary <- function(x, digits=3, ...) {
 #' @param ... unused.
 #' @method as.data.frame PSAbootSummary
 #' @export
-as.data.frame.PSAbootSummary <- function(x, row.names=NULL, optional=FALSE, ...) {
+as.data.frame.PSAbootSummary <- function(x, row.names = NULL, optional = FALSE, ...) {
 	df <- data.frame()
 	for(i in names(x)) {
 		complete <- x[[i]]$complete

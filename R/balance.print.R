@@ -10,7 +10,7 @@
 #' @param ... currently unused.
 #' @method print PSAboot.balance
 #' @export
-print.PSAboot.balance <- function(x, na.rm=TRUE, ...) {
+print.PSAboot.balance <- function(x, na.rm = TRUE, ...) {
 	cat(paste0('Unadjusted balance: ', x$pool.fun(x$unadjusted), '\n'))
 	print(cbind(Complete=apply(x$complete, 1, x$pool.fun, na.rm=na.rm),
 				Bootstrap=apply(x$pooled, 2, x$pool.fun)))

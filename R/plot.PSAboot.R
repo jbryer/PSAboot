@@ -15,9 +15,11 @@ utils::globalVariables(c('iter','estimate','sig','bootstrap.estimate','bootstrap
 #' @param ... currently unused.
 #' @method plot PSAboot
 #' @export
-plot.PSAboot <- function(x, sort='all', ci.sig.color='red', 
-						 plot.overall=FALSE,
-						 plot.bootstrap=TRUE,
+plot.PSAboot <- function(x, 
+						 sort = 'all', 
+						 ci.sig.color = 'red', 
+						 plot.overall = FALSE,
+						 plot.bootstrap = TRUE,
 						 ...) {
 	results <- x$pooled.summary
 	results$sig <- results$ci.min > 0 | results$ci.max < 0

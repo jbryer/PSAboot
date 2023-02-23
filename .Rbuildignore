@@ -8,3 +8,6 @@ README.md
 Slides
 cran-comments.md
 .travis.yml
+PSAboot Poster.graffle
+^doc$
+^Meta$
