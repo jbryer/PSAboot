@@ -263,7 +263,7 @@ Lalonde, R. (1986). Evaluating the econometric evaluations of training programs 
 
 Dehejia, R.H. and Wahba, S. (1999). Causal Effects in Nonexperimental Studies: Re-Evaluating the Evaluation of Training Programs. Journal of the American Statistical Association 94: 1053-1062.
 
-R Core Team (2013). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://r-project.org.
+R Core Team (2013). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.r-project.org/.
 
 Rosenbaum, P.R. (2012). Testing one hypothesis twice in observational studies. Biometrika, 99, 4, 763-774.
 

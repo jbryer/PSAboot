@@ -65,8 +65,7 @@ See \url{https://www.oecd.org/pisa/} for more information including the code boo
 }
 \details{
 Note that missing values have been imputed using the 
-\href{mice}{https://cran.r-project.org/web/packages/mice/index.html} package.
-Details on the specific procedure are in the \code{pisa.impute} function
+mice package. Details on the specific procedure are in the \code{pisa.impute} function
 in the \href{https://github.com/jbryer/pisa}{\code{pisa} package}.
 }
 \references{
