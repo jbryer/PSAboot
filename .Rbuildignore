@@ -15,3 +15,4 @@ PSAboot Poster.graffle
 ^docs$
 ^pkgdown$
 .github/
+^CODE_OF_CONDUCT\.md$
