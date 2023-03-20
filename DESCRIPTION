@@ -11,8 +11,8 @@ Description: It is often advantageous to test a hypothesis more than once
     in the context of propensity score analysis (Rosenbaum, 2012). The
     functions in this package facilitate bootstrapping for propensity
     score analysis. By default, bootstrapping using two classification
-    tree methods (using rpart and ctree functions), two matching methods
-    (using Matching and MatchIt packages), and stratification with
+    tree methods (using 'rpart' and 'ctree' functions), two matching methods
+    (using 'Matching' and 'MatchIt' packages), and stratification with
     logistic regression are used. Framework is provided for users to
     implement additional methods. Visualizations are emphasized for
     diagnosing balance; exploring the correlation relationships between

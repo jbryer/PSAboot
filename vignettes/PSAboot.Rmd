@@ -253,9 +253,9 @@ boxplot(tutoring.bal)
 
 Bryer, J.M. (2013). TriMatch: Propensity Score Matching of Non-Binary Treatments. R package version 0.9.1. https://github.com/jbryer/TriMatch
 
-Helmreich, J.E., Pruzek, R.M. (2009). PSAgraphics: An R Package to Support Propensity Score Analysis. Journal of Statistical Software 29(6), 1-23. http://www.jstatsoft.org/v29/i06/.
+Helmreich, J.E., Pruzek, R.M. (2009). PSAgraphics: An R Package to Support Propensity Score Analysis. Journal of Statistical Software 29(6), 1-23. https://www.jstatsoft.org/v29/i06/.
 
-Ho, D.E., Imai, K., King, G., & Stuart, E.A. (2011). MatchIt: Nonparametric Preprocessing for Parametric Causal Inference. Journal of Statistical Software, (42) 8, 1-28. URL http://www.jstatsoft.org/v42/i08/
+Ho, D.E., Imai, K., King, G., & Stuart, E.A. (2011). MatchIt: Nonparametric Preprocessing for Parametric Causal Inference. Journal of Statistical Software, (42) 8, 1-28. URL https://www.jstatsoft.org/v42/i08/
 
 Hothorn, T., Hornik, K., & Zeileis, A. (2006). Unbiased Recursive Partitioning: A Conditional Inference Framework. Journal of Computational and Graphical Statistics, 15(3), 651-674.
 
@@ -269,7 +269,7 @@ Rosenbaum, P.R. (2012). Testing one hypothesis twice in observational studies. B
 
 Rosenbaum, P.R., & Rubin, D.B. (1983). The central role of the propensity score in observational studies for causal effects. Biometrika, 70, 1, 41-55.
 
-Sekhon, J.S. (2011). Multivariate and Propensity Score Matching Software with Automated Balance Optimization: The Matching Package for R. Journal of Statistical Software, 42(7), 1-52. URL http://www.jstatsoft.org/v42/i07/.
+Sekhon, J.S. (2011). Multivariate and Propensity Score Matching Software with Automated Balance Optimization: The Matching Package for R. Journal of Statistical Software, 42(7), 1-52. URL https://www.jstatsoft.org/v42/i07/.
 
 Therneau, T., Atkinson, B., & Ripley, B. (2013). rpart: Recursive Partitioning. R package version 4.1-3. https://cran.r-project.org/package=rpart
 

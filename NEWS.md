@@ -1,4 +1,4 @@
-# PSAboot 1.3.5
+# PSAboot 1.3.6
 
 * Update to re-release to CRAN.
 * Fixes to pass CRAN check. 
