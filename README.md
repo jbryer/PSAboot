@@ -1,5 +1,5 @@
 
-# <img src="man/figures/PSAboot.png" align="right" width="120" align="right" /> An R Package for Bootstrapping Propnesity Score Analysis
+# <img src="man/figures/PSAboot.png" align="right" width="120" align="right" /> An R Package for Bootstrapping Propensity Score Analysis
 
 <!-- badges: start -->
 

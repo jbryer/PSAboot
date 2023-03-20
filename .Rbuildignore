@@ -17,3 +17,4 @@ PSAboot Poster.graffle
 .github/
 ^CODE_OF_CONDUCT\.md$
 build.R
+^CRAN-SUBMISSION$
