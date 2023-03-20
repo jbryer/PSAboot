@@ -84,24 +84,17 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level4">
-<h4 id="an-r-package-for-bootstrapping-propnesity-score-analysis">An R Package for Bootstrapping Propnesity Score Analysis<a class="anchor" aria-label="anchor" href="#an-r-package-for-bootstrapping-propnesity-score-analysis"></a>
-</h4>
-<p><a href="https://travis-ci.org/jbryer/PSAboot?branch=master" class="external-link"><img src="https://api.travis-ci.org/jbryer/PSAboot.svg" alt="Build Status"></a> <a href="http://cran.r-project.org/package=PSAboot" class="external-link"><img src="http://www.r-pkg.org/badges/version/PSAboot" alt="CRAN_Status_Badge"></a></p>
-<p>The <code>PSAboot</code> package provides functions to bootstrap propensity score analysis and matching.</p>
-<ul>
-<li><a href="http://htmlpreview.github.io/?https://github.com/jbryer/PSAboot/blob/master/inst/doc/PSAboot.html" class="external-link">Package Vignette</a></li>
-<li><a href="https://github.com/jbryer/PSAboot/blob/master/Slides/Slides.pdf?raw=true" class="external-link">useR! 2014 Talk Slides</a></li>
-<li><a href="http://cran.r-project.org/web/packages/PSAboot/index.html" class="external-link">CRAN Page</a></li>
-</ul>
-<hr>
-<div class="figure">
-<img src="Slides/figures/Slides-PSAbootBoxplotTufte.png" alt=""><p class="caption">Boxplot</p>
-</div>
-<div class="figure">
-<img src="Slides/figures/Slides-PSAbootMatrixplot.png" alt=""><p class="caption">Matrixplot</p>
-</div>
-</div>
+  <main id="main" class="col-md-9">
+It is often advantageous to test a hypothesis more than once
+    in the context of propensity score analysis (Rosenbaum, 2012). The
+    functions in this package facilitate bootstrapping for propensity
+    score analysis. By default, bootstrapping using two classification
+    tree methods (using rpart and ctree functions), two matching methods
+    (using Matching and MatchIt packages), and stratification with
+    logistic regression are used. Framework is provided for users to
+    implement additional methods. Visualizations are emphasized for
+    diagnosing balance; exploring the correlation relationships between
+    bootstrap samples and methods; and to summarize results.
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
@@ -118,6 +111,12 @@
 </ul>
 </div>
 
+<div class="community">
+<h2 data-toc-skip>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
+</ul>
+</div>
 
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
