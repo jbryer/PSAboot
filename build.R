@@ -73,3 +73,26 @@ table(pisajpn$PUBPRIV)
 
 
 tools::resaveRdaFiles('PSAboot/Data/')
+
+
+##### Hex Logo #################################################################
+# Boot icon from: https://www.flaticon.com/free-icon/boots_3165208
+library(hexSticker)
+library(showtext)
+# font_add_google("Gochi Hand", 'gochi')
+p <- "man/figures/boots.png"
+hexSticker::sticker(p,
+					filename = 'man/figures/PSAboot.png',
+					p_size = 16,
+					package = 'PSAboot',
+					url = "jbryer.github.io/PSAboot",
+					# p_family = 'gochi',
+					u_size = 5.5,
+					s_width = .55, s_height = .55,
+					s_x = 1, s_y = 1.2,
+					p_x = 1, p_y = 0.5,
+					p_color = "#7C717C",
+					h_fill = '#fff7dc',
+					h_color = '#F5BE8D',
+					u_color = '#7C717C',
+					white_around_sticker = FALSE)

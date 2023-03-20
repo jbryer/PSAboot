@@ -1,4 +1,11 @@
-#### An R Package for Bootstrapping Propnesity Score Analysis
+---
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+#### <img src="man/figures/PSAboot.png" align="right" width="120" align="right" /> An R Package for Bootstrapping Propnesity Score Analysis
 
 [![Build Status](https://api.travis-ci.org/jbryer/PSAboot.svg)](https://travis-ci.org/jbryer/PSAboot?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/PSAboot)](http://cran.r-project.org/package=PSAboot)

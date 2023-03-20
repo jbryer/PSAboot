@@ -16,3 +16,4 @@ PSAboot Poster.graffle
 ^pkgdown$
 .github/
 ^CODE_OF_CONDUCT\.md$
+build.R
