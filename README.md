@@ -1,9 +1,15 @@
 
-#### <img src="man/figures/PSAboot.png" align="right" width="120" align="right" /> An R Package for Bootstrapping Propnesity Score Analysis
+# <img src="man/figures/PSAboot.png" align="right" width="120" align="right" /> An R Package for Bootstrapping Propnesity Score Analysis
 
-[![Build
-Status](https://api.travis-ci.org/jbryer/PSAboot.svg)](https://travis-ci.org/jbryer/PSAboot?branch=master)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/PSAboot)](http://cran.r-project.org/package=PSAboot)
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/jbryer/ShinyQDA/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jbryer/ShinyQDA/actions/workflows/R-CMD-check.yaml)
+[![](https://img.shields.io/badge/devel%20version-1.3.6-blue.svg)](https://github.com/jbryer/PSAboot)
+[![](https://www.r-pkg.org/badges/version/PSAboot)](https://cran.r-project.org/package=PSAboot)
+[![CRAN
+checks](https://badges.cranchecks.info/summary/PSAboot.svg)](https://cran.r-project.org/web/checks/check_results_PSAboot.html)
+[![](https://img.shields.io/github/last-commit/jbryer/PSAboot.svg)](https://github.com/jbryer/PSAboot/commits/master)
+<!-- badges: end -->
 
 As the popularity of propensity score methods for estimating causal
 effects in observational studies increase, the choices researchers have
