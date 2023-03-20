@@ -65,6 +65,9 @@
     <a class="dropdown-item" href="articles/MatchingOrder.html">Impact of Data Order for Propensity Score Matching</a>
   </div>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="news/index.html">Changelog</a>
+</li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -84,13 +87,13 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level4">
-<h4 id="id_-an-r-package-for-bootstrapping-propnesity-score-analysis">
-<img src="reference/figures/PSAboot.png" align="right" width="120"> An R Package for Bootstrapping Propnesity Score Analysis<a class="anchor" aria-label="anchor" href="#id_-an-r-package-for-bootstrapping-propnesity-score-analysis"></a>
-</h4>
-<p><a href="https://travis-ci.org/jbryer/PSAboot?branch=master" class="external-link"><img src="https://api.travis-ci.org/jbryer/PSAboot.svg" alt="Build Status"></a> <a href="http://cran.r-project.org/package=PSAboot" class="external-link"><img src="http://www.r-pkg.org/badges/version/PSAboot" alt="CRAN_Status_Badge"></a></p>
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header"><h1 id="id_-an-r-package-for-bootstrapping-propensity-score-analysis">
+<img src="reference/figures/PSAboot.png" align="right" width="120"> An R Package for Bootstrapping Propensity Score Analysis<a class="anchor" aria-label="anchor" href="#id_-an-r-package-for-bootstrapping-propensity-score-analysis"></a>
+</h1></div>
+<!-- badges: start -->
+
 <p>As the popularity of propensity score methods for estimating causal effects in observational studies increase, the choices researchers have for which methods to use has also increased. Rosenbaum (2012) suggested that there are benefits for testing the null hypothesis more than once in observational studies. With the wide availability of high power computers resampling methods such as bootstrapping (Efron, 1979) have become popular for providing more stable estimates of the sampling distribution. This paper introduces the <code>PSAboot</code> package for R that provides functions for bootstrapping propensity score methods. It deviates from traditional bootstrapping methods by allowing for different sampling specifications for treatment and control groups, mainly to ensure the ratio of treatment-to-control observations are maintained. Additionally, this framework will provide estimates using multiple methods for each bootstrap sample. Two examples are discussed: the classic National Work Demonstration and PSID (Lalonde, 1986) study and a study on tutoring effects on student grades.</p>
-</div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -106,7 +109,7 @@
 </h2>
 <p>Please note that the PSAboot project is released with a <a href="https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
-
+</div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
@@ -144,7 +147,15 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/jbryer/PSAboot/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/jbryer/PSAboot/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/jbryer/PSAboot" class="external-link"><img src="https://img.shields.io/badge/devel%20version-1.3.6-blue.svg"></a></li>
+<li><a href="https://cran.r-project.org/package=PSAboot" class="external-link"><img src="https://www.r-pkg.org/badges/version/PSAboot"></a></li>
+<li><a href="https://cran.r-project.org/web/checks/check_results_PSAboot.html" class="external-link"><img src="https://badges.cranchecks.info/summary/PSAboot.svg" alt="CRAN checks"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
