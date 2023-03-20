@@ -1,3 +1,8 @@
+Version 1.3.5
+
+* Update to re-release to CRAN.
+* Fixes to pass CRAN check. 
+
 Version 1.3.4
 
 * Update for compatibility with the multilevelPSA package.
