@@ -5,11 +5,14 @@ devtools::document()
 devtools::check_man()
 devtools::install(build_vignettes = FALSE)
 devtools::install(build_vignettes = TRUE)
-devtools::check(cran=TRUE)
+devtools::check(cran = TRUE)
 devtools::build()
 devtools::build_vignettes()
 
 devtools::release()
+
+usethis::use_pkgdown()
+
 
 ##### Data Setup
 require(pisa)

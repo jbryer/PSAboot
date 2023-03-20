@@ -11,3 +11,7 @@ cran-comments.md
 PSAboot Poster.graffle
 ^doc$
 ^Meta$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+.github/

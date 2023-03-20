@@ -3,7 +3,7 @@ title: "Impact of Data Order for Propensity Score Matching"
 author: "Jason Bryer, Ph.D."
 date: "`r Sys.Date()`"
 output:
- pdf_document:
+ html_document:
  toc: true
  toc_depth: 3
  fig_crop: no
