@@ -3,12 +3,11 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/jbryer/ShinyQDA/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jbryer/ShinyQDA/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/jbryer/PSAboot/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jbryer/PSAboot/actions/workflows/R-CMD-check.yaml)
 [![](https://img.shields.io/badge/devel%20version-1.3.6-blue.svg)](https://github.com/jbryer/PSAboot)
 [![](https://www.r-pkg.org/badges/version/PSAboot)](https://cran.r-project.org/package=PSAboot)
 [![CRAN
 checks](https://badges.cranchecks.info/summary/PSAboot.svg)](https://cran.r-project.org/web/checks/check_results_PSAboot.html)
-[![](https://img.shields.io/github/last-commit/jbryer/PSAboot.svg)](https://github.com/jbryer/PSAboot/commits/master)
 <!-- badges: end -->
 
 As the popularity of propensity score methods for estimating causal
