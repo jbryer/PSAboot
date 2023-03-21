@@ -92,7 +92,6 @@ SimpleMatch <- function(Tr, Y, X, X.trans, formu, caliper = 0.25, ...) {
 
 ```{r setup, echo = FALSE, results = 'hide', message = FALSE}
 library(PSAboot)
-library(multilevelPSA)
 library(reshape2)
 library(ggplot2)
 ```

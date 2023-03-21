@@ -39,9 +39,7 @@ Imports:
     TriMatch,
     utils
 Suggests:
-    devtools,
-    knitr,
-    multilevelPSA
+    knitr
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

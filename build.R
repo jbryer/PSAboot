@@ -11,7 +11,6 @@ devtools::build_vignettes()
 
 devtools::release()
 
-usethis::use_pkgdown()
 
 
 ##### Data Setup
