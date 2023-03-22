@@ -32,3 +32,16 @@ a ggplot2 expression.
 \description{
 Boxplot of the balance statistics for bootstrapped samples.
 }
+\examples{
+\dontrun{
+library(PSAboot)
+data(pisa.psa.cols)
+data(pisausa)
+bm.usa <- PSAboot(Tr = as.integer(pisausa$PUBPRIV) - 1,
+    Y = pisausa$Math,
+    X = pisausa[,pisa.psa.cols],
+    control.ratio = 5, M = 100, seed = 2112)
+bm.usa.bal <- balance(bm.usa)
+boxplot(bm.usa.bal, nrow = 1)
+}
+}

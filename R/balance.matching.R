@@ -1,5 +1,8 @@
 #' Returns balance for each covariate from propensity score matching.
 #' 
+#' This function is function is primarily used by [PSAboot::balance()] and
+#' probably does not need to be called directly.
+#' 
 #' @param index.treated a vector with the index of treated rows in \code{covs}.
 #' @param index.control a vector with the index of control rows in \code{covs}.
 #' @param covs data frame or matrix of covariates. Factors should already be recoded.

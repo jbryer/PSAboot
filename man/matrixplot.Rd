@@ -9,6 +9,9 @@ matrixplot(bm)
 \arguments{
 \item{bm}{result from \code{\link{PSAboot}}.}
 }
+\value{
+Nothing returned. Creates a plot using the [graphics::pairs()] function.
+}
 \description{
 Matrix Plot of Bootstrapped Propensity Score Analysis
 }

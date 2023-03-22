@@ -26,6 +26,22 @@ effect size for all covariates across all bootstrapped samples.}
 
 \item{...}{currently unused.}
 }
+\value{
+a ggplot2 expression.
+}
 \description{
 Plot method for balance.
+}
+\examples{
+\dontrun{
+library(PSAboot)
+data(pisa.psa.cols)
+data(pisausa)
+bm.usa <- PSAboot(Tr = as.integer(pisausa$PUBPRIV) - 1,
+    Y = pisausa$Math,
+    X = pisausa[,pisa.psa.cols],
+    control.ratio = 5, M = 100, seed = 2112)
+bm.usa.bal <- balance(bm.usa)
+plot(bm.usa.bal)
+}
 }

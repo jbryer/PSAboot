@@ -7,10 +7,10 @@ nrow(pisausa)
 table(pisausa$PUBPRIV, useNA='ifany')
 prop.table(table(pisausa$PUBPRIV, useNA='ifany')) * 100
 
-bm.usa <- PSAboot(Tr=as.integer(pisausa$PUBPRIV) - 1,
-			  Y=pisausa$Math,
-			  X=pisausa[,pisa.psa.cols],
-			  control.ratio=5, M=100, seed=2112)
+bm.usa <- PSAboot(Tr = as.integer(pisausa$PUBPRIV) - 1,
+			  Y = pisausa$Math,
+			  X = pisausa[,pisa.psa.cols],
+			  control.ratio = 5, M = 100, seed = 2112)
 
 (bootsum <- summary(bm.usa))
 as.data.frame(bootsum)

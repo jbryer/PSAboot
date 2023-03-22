@@ -11,6 +11,9 @@
 
 \item{...}{other parameters passed to \code{\link{geom_histogram}}}
 }
+\value{
+a ggplot2 expression.
+}
 \description{
 Histogram of PSA bootstrap results
 }

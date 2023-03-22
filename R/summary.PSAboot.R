@@ -4,6 +4,16 @@
 #' @param ... currently unused.
 #' @return a list with pooled summary statistics.
 #' @method summary PSAboot
+#' @return a list with the results from easch PSA method. For each method a list
+#'        contains the following elements:
+#'  \describe{
+#' 		  \item{sig.tot.per}{Percentage of boostrap samples where the confidence interval does not span zero.}
+#' 		  \item{boostrap.mean}{Weighted mean difference across all bootstrap samples.}
+#' 		  \item{boostrap.ci}{Overall confidence interval across all bootstrap samples.}
+#' 		  \item{bootstrap.weighted.mean}{Overall weighted bootstrap mean.}
+#' 		  \item{percent.sig}{Contingency table of the number of bootstrap samples that don't span zero.}
+#' 		  \item{complete}{Results of the summary of the PSA method.}
+#' }
 #' @export
 summary.PSAboot <- function(object, ...) {
 	sum <- list()
@@ -47,6 +57,7 @@ summary.PSAboot <- function(object, ...) {
 #' @param digits desired number of digits after the decimal point.
 #' @param ... unused.
 #' @method print PSAbootSummary
+#' @return Nothing returned.
 #' @export
 print.PSAbootSummary <- function(x, digits=3, ...) {
 	for(i in names(x)) {
@@ -83,6 +94,7 @@ print.PSAbootSummary <- function(x, digits=3, ...) {
 #' @param optional unused.
 #' @param ... unused.
 #' @method as.data.frame PSAbootSummary
+#' @return a data.frame.
 #' @export
 as.data.frame.PSAbootSummary <- function(x, row.names = NULL, optional = FALSE, ...) {
 	df <- data.frame()

@@ -5,9 +5,13 @@ devtools::document()
 devtools::check_man()
 devtools::install(build_vignettes = FALSE)
 devtools::install(build_vignettes = TRUE)
-devtools::check(cran = TRUE)
 devtools::build()
 devtools::build_vignettes()
+
+# Check the package
+devtools::check(cran = TRUE)
+devtools::check_rhub()
+devtools::check_win_devel()
 
 devtools::release()
 

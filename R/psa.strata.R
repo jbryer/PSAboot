@@ -8,6 +8,7 @@
 #'        0 to .5 (.5 implying median).
 #' @param minStrata minimum number of treatment or control units within a strata 
 #'        to include that strata.
+#' @return a character vector containing summary.strata, ATE, se.wtd, approx.t, df, and CI.95.
 #' @export
 psa.strata <- function (Y, Tr, strata, trim = 0, minStrata = 5) {
 	sizes <- reshape2::melt(table(strata, Tr))

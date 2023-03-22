@@ -11,6 +11,9 @@
 
 \item{...}{currently unused.}
 }
+\value{
+Nothing returned. S3 generic function that calls the [PSAboot::summary()] function.
+}
 \description{
 Print results of PSAboot
 }

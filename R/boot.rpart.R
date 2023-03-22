@@ -3,6 +3,16 @@
 #' @inheritParams boot.strata
 #' @param minStrata minimum number of treatment or control units within a strata 
 #'        to include that strata.
+#' @return a list with three elements:
+#'         \describe{
+#'         \item{\code{summary}}{a named numeric vector (with at minimum \code{estimate}, 
+#'         \code{ci.min}, and \code{ci.max} but other values allowed)}
+#'         \item{\code{balance}}{a named numeric vector with one element per 
+#'         covariate listed in \code{X.trans} representing a balance statistic 
+#'         (usually standardized effect size after adjustment)}
+#'         \item{\code{details}}{an arbitrary object that contains the full results of the
+#'         analysis}
+#'         }
 #' @export
 boot.rpart <- function(Tr, Y, X, X.trans, formu, minStrata = 5, ...) {
 	formu <- update.formula(formu, 'treat ~ .')

@@ -13,6 +13,17 @@
 }
 \value{
 a list with pooled summary statistics.
+
+a list with the results from easch PSA method. For each method a list
+       contains the following elements:
+ \describe{
+		  \item{sig.tot.per}{Percentage of boostrap samples where the confidence interval does not span zero.}
+		  \item{boostrap.mean}{Weighted mean difference across all bootstrap samples.}
+		  \item{boostrap.ci}{Overall confidence interval across all bootstrap samples.}
+		  \item{bootstrap.weighted.mean}{Overall weighted bootstrap mean.}
+		  \item{percent.sig}{Contingency table of the number of bootstrap samples that don't span zero.}
+		  \item{complete}{Results of the summary of the PSA method.}
+}
 }
 \description{
 Summary of pooled results from PSAboot

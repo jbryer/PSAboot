@@ -16,6 +16,7 @@ utils::globalVariables(c('estimate','method','bootstrap.estimate','bootstrap.ci.
 #'        mean, or NA to omit.
 #' @param ... unused
 #' @method boxplot PSAboot
+#' @return a ggplot2 expression.
 #' @export
 boxplot.PSAboot <- function(x,
 							bootstrap.mean.color = 'blue',

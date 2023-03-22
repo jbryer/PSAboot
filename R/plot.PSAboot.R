@@ -14,6 +14,7 @@ utils::globalVariables(c('iter','estimate','sig','bootstrap.estimate','bootstrap
 #'        estimate and confidence interval.
 #' @param ... currently unused.
 #' @method plot PSAboot
+#' @return a ggplot2 expression.
 #' @export
 plot.PSAboot <- function(x, 
 						 sort = 'all', 

@@ -30,6 +30,9 @@ estimate and confidence interval.}
 
 \item{...}{currently unused.}
 }
+\value{
+a ggplot2 expression.
+}
 \description{
 Plot the results of PSAboot
 }

@@ -1,6 +1,7 @@
 #' Matrix Plot of Bootstrapped Propensity Score Analysis
 #' 
 #' @param bm result from \code{\link{PSAboot}}.
+#' @return Nothing returned. Creates a plot using the [graphics::pairs()] function.
 #' @export
 matrixplot <- function(bm) {
 	tmp <- reshape2::dcast(bm$pooled.summary[,c('iter','method','estimate')], 

@@ -9,6 +9,7 @@
 #' @param na.rm whether NA balance statistics should be removed before averaging them.
 #' @param ... currently unused.
 #' @method print PSAboot.balance
+#' @return No valued returned.
 #' @export
 print.PSAboot.balance <- function(x, na.rm = TRUE, ...) {
 	cat(paste0('Unadjusted balance: ', x$pool.fun(x$unadjusted), '\n'))

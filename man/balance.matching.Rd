@@ -18,5 +18,6 @@ See \code{\link{cv.trans.psa}}}
 a named vector with one element per covariate.
 }
 \description{
-Returns balance for each covariate from propensity score matching.
+This function is function is primarily used by [PSAboot::balance()] and
+probably does not need to be called directly.
 }

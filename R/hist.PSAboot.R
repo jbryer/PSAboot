@@ -6,6 +6,7 @@ utils::globalVariables(c('estimate'))
 #' @param x result of \code{\link{PSAboot}}.
 #' @param ... other parameters passed to \code{\link{geom_histogram}}
 #' @method hist PSAboot
+#' @return a ggplot2 expression.
 #' @export
 hist.PSAboot <- function(x, ...) {
 	p <- ggplot(x$pooled.summary, aes(x=estimate)) + 

@@ -38,6 +38,9 @@ mean, or NA to omit.}
 
 \item{...}{unused}
 }
+\value{
+a ggplot2 expression.
+}
 \description{
 Boxplot of PSA bootstrap results.
 }

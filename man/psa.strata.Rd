@@ -19,6 +19,9 @@ psa.strata(Y, Tr, strata, trim = 0, minStrata = 5)
 \item{minStrata}{minimum number of treatment or control units within a strata 
 to include that strata.}
 }
+\value{
+a character vector containing summary.strata, ATE, se.wtd, approx.t, df, and CI.95.
+}
 \description{
 Propensity Score Analysis using Stratification
 }
