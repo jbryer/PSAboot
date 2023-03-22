@@ -33,7 +33,7 @@ a ggplot2 expression.
 Boxplot of the balance statistics for bootstrapped samples.
 }
 \examples{
-\dontrun{
+\donttest{
 library(PSAboot)
 data(pisa.psa.cols)
 data(pisausa)

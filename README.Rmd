@@ -25,7 +25,7 @@ You can download from CRAN using:
 install.packages('PSAboot')
 ```
 
-Or the latest development version using the `remotes` pacakge:
+Or the latest development version using the `remotes` package:
 
 ```{r, eval=FALSE}
 remotes::install_github('jbryer/PSAboot')

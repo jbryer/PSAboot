@@ -74,7 +74,7 @@ getPSAbootMethods <- function() {
 #' @seealso getPSAbootMethods
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(PSAboot)
 #' data(pisa.psa.cols)
 #' data(pisausa)

@@ -20,7 +20,7 @@
 #' 	\item{balances}{a list with an M x n covariates matrix for each method.}
 #' }
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(PSAboot)
 #' data(pisa.psa.cols)
 #' data(pisausa)

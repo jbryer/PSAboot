@@ -33,7 +33,7 @@ a list with three elements:
 This method provides some crude overall measures of balance.
 }
 \examples{
-\dontrun{
+\donttest{
 library(PSAboot)
 data(pisa.psa.cols)
 data(pisausa)

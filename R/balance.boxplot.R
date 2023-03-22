@@ -9,7 +9,7 @@
 #' @return a ggplot2 expression.
 #' @export 
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(PSAboot)
 #' data(pisa.psa.cols)
 #' data(pisausa)

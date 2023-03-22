@@ -11,7 +11,7 @@
 #' @method plot PSAboot.balance
 #' @return a ggplot2 expression.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(PSAboot)
 #' data(pisa.psa.cols)
 #' data(pisausa)

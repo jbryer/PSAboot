@@ -84,7 +84,7 @@ this function provides a framework to use multiple PSA methods for each bootstra
 sample.
 }
 \examples{
-\dontrun{
+\donttest{
 library(PSAboot)
 data(pisa.psa.cols)
 data(pisausa)
