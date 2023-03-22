@@ -78,7 +78,7 @@
 
 
 <dt>X.trans</dt>
-<dd><p>a data frame of <code>X</code> with factors recoded. See <code>cv.trans.psa</code></p></dd>
+<dd><p>a data frame of <code>X</code> with factors recoded. See <code><a href="https://rdrr.io/pkg/PSAgraphics/man/cv.trans.psa.html" class="external-link">cv.trans.psa</a></code></p></dd>
 
 
 <dt>formu</dt>
@@ -90,6 +90,27 @@ the <code>Tr</code> vector.</p></dd>
 <dt>...</dt>
 <dd><p>other parameters passed from <code><a href="PSAboot.html">PSAboot</a></code></p></dd>
 
+</dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>a list with three elements:</p>
+<p></p>
+<dl><dt><code>summary</code></dt>
+<dd><p>a named numeric vector (with at minimum <code>estimate</code>, 
+        <code>ci.min</code>, and <code>ci.max</code> but other values allowed)</p></dd>
+
+        <dt><code>balance</code></dt>
+<dd><p>a named numeric vector with one element per 
+        covariate listed in <code>X.trans</code> representing a balance statistic 
+        (usually standardized effect size after adjustment)</p></dd>
+
+        <dt><code>details</code></dt>
+<dd><p>an arbitrary object that contains the full results of the
+        analysis</p></dd>
+
+        
 </dl></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
