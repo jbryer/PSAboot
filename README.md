@@ -7,7 +7,7 @@
 [![](https://img.shields.io/badge/devel%20version-1.3.6-blue.svg)](https://github.com/jbryer/PSAboot)
 [![](https://www.r-pkg.org/badges/version/PSAboot)](https://cran.r-project.org/package=PSAboot)
 [![CRAN
-checks](https://badges.cranchecks.info/summary/PSAboot.svg)](https://cran.r-project.org/web/checks/check_results_PSAboot.html)
+Status](https://badges.cranchecks.info/flavor/release/PSAboot.svg)](https://cran.r-project.org/web/checks/check_results_PSAboot.html)
 <!-- badges: end -->
 
 As the popularity of propensity score methods for estimating causal
@@ -35,7 +35,7 @@ You can download from CRAN using:
 install.packages('PSAboot')
 ```
 
-Or the latest development version using the `remotes` pacakge:
+Or the latest development version using the `remotes` package:
 
 ``` r
 remotes::install_github('jbryer/PSAboot')

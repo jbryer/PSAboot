@@ -11,7 +11,7 @@ editor_options:
 [![R-CMD-check](https://github.com/jbryer/PSAboot/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jbryer/PSAboot/actions/workflows/R-CMD-check.yaml)
 `r badger::badge_devel("jbryer/PSAboot", "blue")`
 `r badger::badge_cran_release("PSAboot")`
-`r badger::badge_cran_checks("PSAboot")`
+[![CRAN Status](https://badges.cranchecks.info/flavor/release/PSAboot.svg)](https://cran.r-project.org/web/checks/check_results_PSAboot.html)
 <!-- badges: end -->
 
 
