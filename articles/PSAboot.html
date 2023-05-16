@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">PSAboot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +78,7 @@
                         <h4 data-toc-skip class="author">Jason Bryer,
 Ph.D.</h4>
             
-            <h4 data-toc-skip class="date">2023-03-23</h4>
+            <h4 data-toc-skip class="date">2023-05-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jbryer/PSAboot/blob/HEAD/vignettes/PSAboot.Rmd" class="external-link"><code>vignettes/PSAboot.Rmd</code></a></small>
       <div class="d-none name"><code>PSAboot.Rmd</code></div>
@@ -121,7 +121,7 @@ final publication.</strong></p>
 <p>The latest version of the <code>PSAboot</code> package can be
 downloaded from Github using the <code>devtools</code> package.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">'jbryer/PSAboot'</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">'jbryer/PSAboot'</span><span class="op">)</span></span></code></pre></div>
 <p>The <code>PSAboot</code> function will perform the actual
 bootstrapping. It has a number of parameters for to specify how the
 bootstrap samples are drawn.</p>
@@ -283,79 +283,76 @@ defacto</em> teaching dataset in PSA since Dehejia and Wahba’s (1999)
 re-examination of the National Supported Work Demonstration (NSW) and
 the Current Population Survey (CPS).</p>
 <p>The <code>lalonde</code> data set is included in the
-<code>MatchIt</code> package. The crosstab shows that there are 429
-control units and 185 treatment units.</p>
+<code>Matching</code> package. The contingency table shows that there
+are 429 control units and 185 treatment units.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">lalonde</span>, package<span class="op">=</span><span class="st">'MatchIt'</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">lalonde</span>, package<span class="op">=</span><span class="st">'Matching'</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">lalonde</span><span class="op">$</span><span class="va">treat</span><span class="op">)</span></span></code></pre></div>
-<pre><code>
-  0   1 
-429 185 </code></pre>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">##   0   1 </span></span>
+<span><span class="co">## 260 185</span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">lalonde.formu</span> <span class="op">&lt;-</span> <span class="va">treat</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">age</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="va">educ</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">educ</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="va">race</span> <span class="op">+</span></span>
-<span>    <span class="va">married</span> <span class="op">+</span> <span class="va">nodegree</span> <span class="op">+</span> <span class="va">re74</span>  <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">re74</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="va">re75</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">re75</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">lalonde.formu</span> <span class="op">&lt;-</span> <span class="va">treat</span><span class="op">~</span><span class="va">age</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">age</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="va">educ</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">educ</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="va">black</span> <span class="op">+</span></span>
+<span>             <span class="va">hisp</span> <span class="op">+</span> <span class="va">married</span> <span class="op">+</span> <span class="va">nodegr</span> <span class="op">+</span> <span class="va">re74</span>  <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">re74</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="va">re75</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">re75</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>             <span class="va">u74</span> <span class="op">+</span> <span class="va">u75</span></span>
 <span><span class="va">boot.lalonde</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/PSAboot.html">PSAboot</a></span><span class="op">(</span>Tr <span class="op">=</span> <span class="va">lalonde</span><span class="op">$</span><span class="va">treat</span>, </span>
 <span>                        Y <span class="op">=</span> <span class="va">lalonde</span><span class="op">$</span><span class="va">re78</span>,</span>
 <span>                        X <span class="op">=</span> <span class="va">lalonde</span>,</span>
 <span>                        formu <span class="op">=</span> <span class="va">lalonde.formu</span>,</span>
 <span>                        M <span class="op">=</span> <span class="fl">100</span>, </span>
 <span>                        seed <span class="op">=</span> <span class="fl">2112</span><span class="op">)</span></span></code></pre></div>
-<pre><code>100 bootstrap samples using 5 methods.
-Bootstrap sample sizes:
-   Treated=185 (100%) with replacement.
-   Control=429 (100%) with replacement.</code></pre>
 <p>The <code>summary</code> function provides numeric results for each
 method including the overall estimate and confidence interval using the
 complete sample as well as the pooled estimates and confidence intervals
 with percentages of the number of confidence intervals that do not span
 zero.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">boot.lalonde</span><span class="op">)</span></span></code></pre></div>
-<pre><code>Stratification Results:
-   Complete estimate = 550
-   Complete CI = [-1168, 2269]
-   Bootstrap pooled estimate = 714
-   Bootstrap weighted pooled estimate = 706
-   Bootstrap pooled CI = [-907, 2335]
-   17% of bootstrap samples have confidence intervals that do not span zero.
-      17% positive.
-      0% negative.
-ctree Results:
-   Complete estimate = 169
-   Complete CI = [-1552, 1891]
-   Bootstrap pooled estimate = 877
-   Bootstrap weighted pooled estimate = 1091
-   Bootstrap pooled CI = [-1130, 2883]
-   19.2% of bootstrap samples have confidence intervals that do not span zero.
-      19.2% positive.
-      0% negative.
-rpart Results:
-   Complete estimate = -875
-   Complete CI = [-2567, 816]
-   Bootstrap pooled estimate = -470
-   Bootstrap weighted pooled estimate = 9.9
-   Bootstrap pooled CI = [-3331, 2392]
-   16% of bootstrap samples have confidence intervals that do not span zero.
-      4% positive.
-      12% negative.
-Matching Results:
-   Complete estimate = -606
-   Complete CI = [-1296, 83.2]
-   Bootstrap pooled estimate = -383
-   Bootstrap weighted pooled estimate = -428
-   Bootstrap pooled CI = [-2624, 1858]
-   58% of bootstrap samples have confidence intervals that do not span zero.
-      16% positive.
-      42% negative.
-MatchIt Results:
-   Complete estimate = 562
-   Complete CI = [-829, 1952]
-   Bootstrap pooled estimate = 387
-   Bootstrap weighted pooled estimate = 399
-   Bootstrap pooled CI = [-1061, 1835]
-   5% of bootstrap samples have confidence intervals that do not span zero.
-      4% positive.
-      1% negative.</code></pre>
+<pre><code><span><span class="co">## Stratification Results:</span></span>
+<span><span class="co">##    Complete estimate = 1493</span></span>
+<span><span class="co">##    Complete CI = [231, 2755]</span></span>
+<span><span class="co">##    Bootstrap pooled estimate = 1426</span></span>
+<span><span class="co">##    Bootstrap weighted pooled estimate = 1376</span></span>
+<span><span class="co">##    Bootstrap pooled CI = [89.1, 2762]</span></span>
+<span><span class="co">##    59% of bootstrap samples have confidence intervals that do not span zero.</span></span>
+<span><span class="co">##       59% positive.</span></span>
+<span><span class="co">##       0% negative.</span></span>
+<span><span class="co">## ctree Results:</span></span>
+<span><span class="co">##    Complete estimate = 1598</span></span>
+<span><span class="co">##    Complete CI = [-6.62, 3203]</span></span>
+<span><span class="co">##    Bootstrap pooled estimate = 1457</span></span>
+<span><span class="co">##    Bootstrap weighted pooled estimate = 1463</span></span>
+<span><span class="co">##    Bootstrap pooled CI = [170, 2743]</span></span>
+<span><span class="co">##    39% of bootstrap samples have confidence intervals that do not span zero.</span></span>
+<span><span class="co">##       39% positive.</span></span>
+<span><span class="co">##       0% negative.</span></span>
+<span><span class="co">## rpart Results:</span></span>
+<span><span class="co">##    Complete estimate = 1332</span></span>
+<span><span class="co">##    Complete CI = [-295, 2959]</span></span>
+<span><span class="co">##    Bootstrap pooled estimate = 1429</span></span>
+<span><span class="co">##    Bootstrap weighted pooled estimate = 1442</span></span>
+<span><span class="co">##    Bootstrap pooled CI = [-136, 2993]</span></span>
+<span><span class="co">##    32% of bootstrap samples have confidence intervals that do not span zero.</span></span>
+<span><span class="co">##       32% positive.</span></span>
+<span><span class="co">##       0% negative.</span></span>
+<span><span class="co">## Matching Results:</span></span>
+<span><span class="co">##    Complete estimate = 1069</span></span>
+<span><span class="co">##    Complete CI = [396, 1742]</span></span>
+<span><span class="co">##    Bootstrap pooled estimate = 1370</span></span>
+<span><span class="co">##    Bootstrap weighted pooled estimate = 1364</span></span>
+<span><span class="co">##    Bootstrap pooled CI = [-322, 3062]</span></span>
+<span><span class="co">##    83% of bootstrap samples have confidence intervals that do not span zero.</span></span>
+<span><span class="co">##       83% positive.</span></span>
+<span><span class="co">##       0% negative.</span></span>
+<span><span class="co">## MatchIt Results:</span></span>
+<span><span class="co">##    Complete estimate = 2059</span></span>
+<span><span class="co">##    Complete CI = [661, 3456]</span></span>
+<span><span class="co">##    Bootstrap pooled estimate = 1694</span></span>
+<span><span class="co">##    Bootstrap weighted pooled estimate = 1708</span></span>
+<span><span class="co">##    Bootstrap pooled CI = [273, 3114]</span></span>
+<span><span class="co">##    69% of bootstrap samples have confidence intervals that do not span zero.</span></span>
+<span><span class="co">##       69% positive.</span></span>
+<span><span class="co">##       0% negative.</span></span></code></pre>
 <p>The <code>plot</code> function plots the estimate (mean difference)
 for each bootstrap sample. The default is to sort from largest to
 smallest estimate for each method separately. That is, rows do not
@@ -368,25 +365,22 @@ horizontal line to the confidence interval. Confidence intervals that do
 not span zero are colored red. The vertical blue line and green lines
 correspond to the overall pooled estimate and confidence for each
 method, respectively.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boot.lalonde</span><span class="op">)</span></span></code></pre></div>
-<pre><code>Warning:  [1m [22mRemoved 1 rows containing missing values (`geom_errorbarh()`).</code></pre>
-<pre><code>Warning:  [1m [22mRemoved 1 rows containing missing values (`geom_point()`).</code></pre>
-<p><img src="PSAboot_files/figure-html/lalonde.plot-1.png" width="700"></p>
+<p><img src="PSAboot_files/figure-html/lalonde.plot-1.png" width="100%" style="display: block; margin: auto;"></p>
 <p>The <code>hist</code> function plots a histogram of the estimates
 across all bootstrap samples for each method.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">boot.lalonde</span><span class="op">)</span></span></code></pre></div>
-<p><img src="PSAboot_files/figure-html/lalonde.histogram-1.png" width="700"></p>
+<p><img src="PSAboot_files/figure-html/lalonde.histogram-1.png" width="100%" style="display: block; margin: auto;"></p>
 <p>The <code>boxplot</code> function depicts the distribution of
 estimates for each method along with confidence intervals in green.
 Additionally, the overall pooled estimate and confidence interval across
 all bootstrap samples and methods are represented by the vertical blue
 and green lines, respectively.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">boxplot</a></span><span class="op">(</span><span class="va">boot.lalonde</span><span class="op">)</span></span></code></pre></div>
-<pre><code>Warning:  [1m [22mRemoved 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
-<p><img src="PSAboot_files/figure-html/lalonde.boxplot-1.png" width="700"></p>
+<p><img src="PSAboot_files/figure-html/lalonde.boxplot-1.png" width="100%" style="display: block; margin: auto;"></p>
 <p>The <code>matrixplot</code> summarizes the estimates across methods
 for each bootstrap sample. The lower half of the matrix are scatter
 plots where each point represents the one bootstrap sample. The red line
@@ -397,9 +391,9 @@ the following example we see that the <code>ctree</code> and
 correlation of 0.63 whereas the <code>rpart</code> and
 <code>MatchIt</code> methods have the least agreement with a correlation
 of 0.22.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/matrixplot.html">matrixplot</a></span><span class="op">(</span><span class="va">boot.lalonde</span><span class="op">)</span></span></code></pre></div>
-<p><img src="PSAboot_files/figure-html/lalonde.matrixplot-1.png" width="700"></p>
+<p><img src="PSAboot_files/figure-html/lalonde.matrixplot-1.png" width="100%" style="display: block; margin: auto;"></p>
 <div class="section level3">
 <h3 id="evaluating-balance">Evaluating Balance<a class="anchor" aria-label="anchor" href="#evaluating-balance"></a>
 </h3>
@@ -414,16 +408,16 @@ principles of the multiple covariate balance assessment plot (Helmreich
 effect of each covariate before and after adjustment. Moreover, to
 provide a single metric for each sample and method, the mean
 standardized effect size will be used.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lalonde.bal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/balance.html">balance</a></span><span class="op">(</span><span class="va">boot.lalonde</span><span class="op">)</span></span>
 <span><span class="va">lalonde.bal</span></span></code></pre></div>
-<pre><code>Unadjusted balance: 0.517863475834602
-                Complete Bootstrap
-Stratification 0.1677778 0.1589444
-ctree          0.2211111        NA
-rpart          0.3244444 0.2955667
-Matching       0.1295874 0.2126619
-MatchIt        0.3151487 0.3202522</code></pre>
+<pre><code><span><span class="co">## Unadjusted balance: 0.122354110755457</span></span>
+<span><span class="co">##                  Complete  Bootstrap</span></span>
+<span><span class="co">## Stratification 0.02400000 0.03798000</span></span>
+<span><span class="co">## ctree          0.07900000         NA</span></span>
+<span><span class="co">## rpart          0.05200000 0.07308000</span></span>
+<span><span class="co">## Matching       0.02683023 0.07148576</span></span>
+<span><span class="co">## MatchIt        0.03987994 0.07897094</span></span></code></pre>
 <p>The <code>plot</code> function provides density plots of the balance
 statistics across all bootstrap samples for each method. The mean
 overall balance is represented by the vertical black lines, the overall
@@ -434,10 +428,9 @@ achieving a balance of less than 0.1 is desirable. In this example we
 see that PSA has reduce the bias in all methods although
 <code>rpart</code>, and to a lesser extent <code>MatchIt</code>, did not
 reduce the bias by as much as would be typically desired.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">lalonde.bal</span><span class="op">)</span></span></code></pre></div>
-<pre><code>Warning:  [1m [22mRemoved 1 rows containing non-finite values (`stat_density()`).</code></pre>
-<p><img src="PSAboot_files/figure-html/lalonde.balance.plot-1.png" width="700"></p>
+<p><img src="PSAboot_files/figure-html/lalonde.balance.plot-1.png" width="100%" style="display: block; margin: auto;"></p>
 <p>The <code>boxplot</code> function provides a more nuanced depiction
 of the balance by separating on the distribution of balance statistics
 by individual covariate. In addition to the boxplot of balance
@@ -454,9 +447,9 @@ to some outlier samples where the adjusted balance for
 <code>educ</code>, <code>re75</code>, and <code>hispan</code> are fairly
 large. It should be noted that with these exceptions, balance for each
 covariates are generally less than the unadjusted balance.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">boxplot</a></span><span class="op">(</span><span class="va">lalonde.bal</span><span class="op">)</span></span></code></pre></div>
-<p><img src="PSAboot_files/figure-html/lalonde.balance.boxplot-1.png" width="700"></p>
+<p><img src="PSAboot_files/figure-html/lalonde.balance.boxplot-1.png" width="100%" style="display: block; margin: auto;"></p>
 <hr>
 </div>
 </div>
@@ -472,24 +465,19 @@ during the course term. The outcome of interest was course grade (0=F,
 1=D, 2=C, 3=B, 4=A). For our purposes here we will consider only one
 treatment group: students who used tutoring services at least once
 during the course.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="http://jason.bryer.org/TriMatch" class="external-link">TriMatch</a></span><span class="op">)</span></span></code></pre></div>
-<pre><code>Loading required package: TriMatch</code></pre>
-<pre><code>Loading required package: scales</code></pre>
-<pre><code>Loading required package: reshape2</code></pre>
-<pre><code>Loading required package: ez</code></pre>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jbryer/PSAboot" class="external-link">PSAboot</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="http://jason.bryer.org/TriMatch" class="external-link">TriMatch</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jbryer/PSAboot" class="external-link">PSAboot</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">tutoring</span>, package<span class="op">=</span><span class="st">'TriMatch'</span><span class="op">)</span></span>
 <span><span class="va">tutoring</span><span class="op">$</span><span class="va">treatbool</span> <span class="op">&lt;-</span> <span class="va">tutoring</span><span class="op">$</span><span class="va">treat</span> <span class="op">!=</span> <span class="st">'Control'</span></span>
 <span><span class="va">covs</span> <span class="op">&lt;-</span> <span class="va">tutoring</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'Gender'</span>, <span class="st">'Ethnicity'</span>, <span class="st">'Military'</span>, <span class="st">'ESL'</span>, <span class="st">'EdMother'</span>, <span class="st">'EdFather'</span>,</span>
 <span>                    <span class="st">'Age'</span>, <span class="st">'Employment'</span>, <span class="st">'Income'</span>, <span class="st">'Transfer'</span>, <span class="st">'GPA'</span><span class="op">)</span><span class="op">]</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">tutoring</span><span class="op">$</span><span class="va">treatbool</span><span class="op">)</span></span></code></pre></div>
-<pre><code>
-FALSE  TRUE 
-  918   224 </code></pre>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## FALSE  TRUE </span></span>
+<span><span class="co">##   918   224</span></span></code></pre>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tutoring.boot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/PSAboot.html">PSAboot</a></span><span class="op">(</span>Tr<span class="op">=</span><span class="va">tutoring</span><span class="op">$</span><span class="va">treatbool</span>, </span>
 <span>                         Y<span class="op">=</span><span class="va">tutoring</span><span class="op">$</span><span class="va">Grade</span>, </span>
 <span>                         X<span class="op">=</span><span class="va">covs</span>, </span>
@@ -504,124 +492,91 @@ FALSE  TRUE
 <span>                                  <span class="st">'Matching-1-to-3'</span><span class="op">=</span><span class="va">boot.matching.1to3</span>,</span>
 <span>                                  <span class="st">'MatchIt'</span><span class="op">=</span><span class="va">boot.matchit</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<pre><code>10 bootstrap samples using 6 methods.
-Bootstrap sample sizes:
-   Treated=224 (100%) with replacement.
-   Control=918 (100%) with replacement.</code></pre>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">tutoring.boot</span><span class="op">)</span></span></code></pre></div>
-<pre><code>Stratification Results:
-   Complete estimate = 0.482
-   Complete CI = [0.3, 0.665]
-   Bootstrap pooled estimate = 0.433
-   Bootstrap weighted pooled estimate = 0.43
-   Bootstrap pooled CI = [0.331, 0.535]
-   100% of bootstrap samples have confidence intervals that do not span zero.
-      100% positive.
-      0% negative.
-ctree Results:
-   Complete estimate = 0.458
-   Complete CI = [0.177, 0.739]
-   Bootstrap pooled estimate = 0.422
-   Bootstrap weighted pooled estimate = 0.423
-   Bootstrap pooled CI = [0.262, 0.582]
-   90% of bootstrap samples have confidence intervals that do not span zero.
-      90% positive.
-      0% negative.
-rpart Results:
-   Complete estimate = 0.475
-   Complete CI = [0.165, 0.784]
-   Bootstrap pooled estimate = 0.384
-   Bootstrap weighted pooled estimate = 0.381
-   Bootstrap pooled CI = [0.183, 0.584]
-   80% of bootstrap samples have confidence intervals that do not span zero.
-      80% positive.
-      0% negative.
-Matching Results:
-   Complete estimate = 0.479
-   Complete CI = [0.388, 0.571]
-   Bootstrap pooled estimate = 0.462
-   Bootstrap weighted pooled estimate = 0.46
-   Bootstrap pooled CI = [0.319, 0.605]
-   100% of bootstrap samples have confidence intervals that do not span zero.
-      100% positive.
-      0% negative.
-Matching-1-to-3 Results:
-   Complete estimate = 0.472
-   Complete CI = [0.411, 0.533]
-   Bootstrap pooled estimate = 0.475
-   Bootstrap weighted pooled estimate = 0.465
-   Bootstrap pooled CI = [0.293, 0.657]
-   100% of bootstrap samples have confidence intervals that do not span zero.
-      100% positive.
-      0% negative.
-MatchIt Results:
-   Complete estimate = 0.442
-   Complete CI = [0.218, 0.666]
-   Bootstrap pooled estimate = 0.533
-   Bootstrap weighted pooled estimate = 0.541
-   Bootstrap pooled CI = [0.319, 0.747]
-   100% of bootstrap samples have confidence intervals that do not span zero.
-      100% positive.
-      0% negative.</code></pre>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<pre><code><span><span class="co">## Stratification Results:</span></span>
+<span><span class="co">##    Complete estimate = 0.482</span></span>
+<span><span class="co">##    Complete CI = [0.3, 0.665]</span></span>
+<span><span class="co">##    Bootstrap pooled estimate = 0.433</span></span>
+<span><span class="co">##    Bootstrap weighted pooled estimate = 0.43</span></span>
+<span><span class="co">##    Bootstrap pooled CI = [0.331, 0.535]</span></span>
+<span><span class="co">##    100% of bootstrap samples have confidence intervals that do not span zero.</span></span>
+<span><span class="co">##       100% positive.</span></span>
+<span><span class="co">##       0% negative.</span></span>
+<span><span class="co">## ctree Results:</span></span>
+<span><span class="co">##    Complete estimate = 0.458</span></span>
+<span><span class="co">##    Complete CI = [0.177, 0.739]</span></span>
+<span><span class="co">##    Bootstrap pooled estimate = 0.422</span></span>
+<span><span class="co">##    Bootstrap weighted pooled estimate = 0.423</span></span>
+<span><span class="co">##    Bootstrap pooled CI = [0.262, 0.582]</span></span>
+<span><span class="co">##    90% of bootstrap samples have confidence intervals that do not span zero.</span></span>
+<span><span class="co">##       90% positive.</span></span>
+<span><span class="co">##       0% negative.</span></span>
+<span><span class="co">## rpart Results:</span></span>
+<span><span class="co">##    Complete estimate = 0.475</span></span>
+<span><span class="co">##    Complete CI = [0.165, 0.784]</span></span>
+<span><span class="co">##    Bootstrap pooled estimate = 0.384</span></span>
+<span><span class="co">##    Bootstrap weighted pooled estimate = 0.381</span></span>
+<span><span class="co">##    Bootstrap pooled CI = [0.183, 0.584]</span></span>
+<span><span class="co">##    80% of bootstrap samples have confidence intervals that do not span zero.</span></span>
+<span><span class="co">##       80% positive.</span></span>
+<span><span class="co">##       0% negative.</span></span>
+<span><span class="co">## Matching Results:</span></span>
+<span><span class="co">##    Complete estimate = 0.479</span></span>
+<span><span class="co">##    Complete CI = [0.388, 0.571]</span></span>
+<span><span class="co">##    Bootstrap pooled estimate = 0.462</span></span>
+<span><span class="co">##    Bootstrap weighted pooled estimate = 0.46</span></span>
+<span><span class="co">##    Bootstrap pooled CI = [0.319, 0.605]</span></span>
+<span><span class="co">##    100% of bootstrap samples have confidence intervals that do not span zero.</span></span>
+<span><span class="co">##       100% positive.</span></span>
+<span><span class="co">##       0% negative.</span></span>
+<span><span class="co">## Matching-1-to-3 Results:</span></span>
+<span><span class="co">##    Complete estimate = 0.472</span></span>
+<span><span class="co">##    Complete CI = [0.411, 0.533]</span></span>
+<span><span class="co">##    Bootstrap pooled estimate = 0.475</span></span>
+<span><span class="co">##    Bootstrap weighted pooled estimate = 0.465</span></span>
+<span><span class="co">##    Bootstrap pooled CI = [0.293, 0.657]</span></span>
+<span><span class="co">##    100% of bootstrap samples have confidence intervals that do not span zero.</span></span>
+<span><span class="co">##       100% positive.</span></span>
+<span><span class="co">##       0% negative.</span></span>
+<span><span class="co">## MatchIt Results:</span></span>
+<span><span class="co">##    Complete estimate = 0.442</span></span>
+<span><span class="co">##    Complete CI = [0.218, 0.666]</span></span>
+<span><span class="co">##    Bootstrap pooled estimate = 0.533</span></span>
+<span><span class="co">##    Bootstrap weighted pooled estimate = 0.541</span></span>
+<span><span class="co">##    Bootstrap pooled CI = [0.319, 0.747]</span></span>
+<span><span class="co">##    100% of bootstrap samples have confidence intervals that do not span zero.</span></span>
+<span><span class="co">##       100% positive.</span></span>
+<span><span class="co">##       0% negative.</span></span></code></pre>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tutoring.boot</span><span class="op">)</span></span></code></pre></div>
-<p><img src="PSAboot_files/figure-html/tutoring.plot-1.png" width="700"></p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<p><img src="PSAboot_files/figure-html/tutoring.plot-1.png" width="100%" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">tutoring.boot</span><span class="op">)</span></span></code></pre></div>
-<p><img src="PSAboot_files/figure-html/tutoring.histogram-1.png" width="700"></p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<p><img src="PSAboot_files/figure-html/tutoring.histogram-1.png" width="100%" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">boxplot</a></span><span class="op">(</span><span class="va">tutoring.boot</span><span class="op">)</span></span></code></pre></div>
-<p><img src="PSAboot_files/figure-html/tutoring.boxplot-1.png" width="700"></p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<p><img src="PSAboot_files/figure-html/tutoring.boxplot-1.png" width="100%" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/matrixplot.html">matrixplot</a></span><span class="op">(</span><span class="va">tutoring.boot</span><span class="op">)</span></span></code></pre></div>
-<pre><code>Warning in par(usr): argument 1 does not name a graphical parameter
-
-Warning in par(usr): argument 1 does not name a graphical parameter
-
-Warning in par(usr): argument 1 does not name a graphical parameter
-
-Warning in par(usr): argument 1 does not name a graphical parameter
-
-Warning in par(usr): argument 1 does not name a graphical parameter
-
-Warning in par(usr): argument 1 does not name a graphical parameter
-
-Warning in par(usr): argument 1 does not name a graphical parameter
-
-Warning in par(usr): argument 1 does not name a graphical parameter
-
-Warning in par(usr): argument 1 does not name a graphical parameter
-
-Warning in par(usr): argument 1 does not name a graphical parameter
-
-Warning in par(usr): argument 1 does not name a graphical parameter
-
-Warning in par(usr): argument 1 does not name a graphical parameter
-
-Warning in par(usr): argument 1 does not name a graphical parameter
-
-Warning in par(usr): argument 1 does not name a graphical parameter
-
-Warning in par(usr): argument 1 does not name a graphical parameter</code></pre>
-<p><img src="PSAboot_files/figure-html/tutoring.matrixplot-1.png" width="700"></p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<p><img src="PSAboot_files/figure-html/tutoring.matrixplot-1.png" width="100%" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tutoring.bal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/balance.html">balance</a></span><span class="op">(</span><span class="va">tutoring.boot</span><span class="op">)</span></span>
 <span><span class="va">tutoring.bal</span></span></code></pre></div>
-<pre><code>Unadjusted balance: 0.117875835338968
-                  Complete  Bootstrap
-Stratification  0.02923077 0.03361538
-ctree           0.04384615 0.07207692
-rpart           0.07846154 0.08769231
-Matching        0.04521604 0.05690085
-Matching-1-to-3 0.03054791 0.05275685
-MatchIt         0.04554364 0.06263306</code></pre>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<pre><code><span><span class="co">## Unadjusted balance: 0.117875835338968</span></span>
+<span><span class="co">##                   Complete  Bootstrap</span></span>
+<span><span class="co">## Stratification  0.02923077 0.03361538</span></span>
+<span><span class="co">## ctree           0.04384615 0.07207692</span></span>
+<span><span class="co">## rpart           0.07846154 0.08769231</span></span>
+<span><span class="co">## Matching        0.04521604 0.05690085</span></span>
+<span><span class="co">## Matching-1-to-3 0.03054791 0.05275685</span></span>
+<span><span class="co">## MatchIt         0.04554364 0.06263306</span></span></code></pre>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tutoring.bal</span><span class="op">)</span></span></code></pre></div>
-<p><img src="PSAboot_files/figure-html/tutroing.balance-1.png" width="700"></p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<p><img src="PSAboot_files/figure-html/tutroing.balance-1.png" width="100%" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">boxplot</a></span><span class="op">(</span><span class="va">tutoring.bal</span><span class="op">)</span></span></code></pre></div>
-<p><img src="PSAboot_files/figure-html/tutroing.balance-2.png" width="700"></p>
+<p><img src="PSAboot_files/figure-html/tutroing.balance-2.png" width="100%" style="display: block; margin: auto;"></p>
 <hr>
 </div>
 <div class="section level2">
