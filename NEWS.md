@@ -1,3 +1,7 @@
+# PSAboot 1.3.7
+
+* Fixed a bug where the balance table wasn't combined correctly if the covariates were not specified in the correct order.
+
 # PSAboot 1.3.6
 
 * Update to re-release to CRAN.

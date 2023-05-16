@@ -31,7 +31,15 @@ boxplot.PSAboot.balance <- function(x,
 		method <- names(x$balances)[i]
 		tmp <- as.data.frame(x$balances[[i]])
 		tmp$Method <- method
-		combined <- rbind(combined, tmp)
+		if(nrow(combined) == 0) {
+			combined <- tmp
+		} else {
+			missing_vars <- names(combined)[!names(combined) %in% names(tmp)]
+			for(i in missing_vars) {
+				tmp[,i] <- NA
+			}
+			combined <- rbind(combined, tmp[,names(combined)])
+		}
 	}
 	tmp <- reshape2::melt(combined, id='Method')
 	tmp2 <- as.data.frame(x$unadjusted)

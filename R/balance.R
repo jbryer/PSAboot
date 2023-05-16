@@ -49,10 +49,10 @@ balance <- function(psaboot, na.rm = TRUE, pool.fun = mean) {
 	index.balance <- which(substr(names(psaboot$complete.details), 1, 8) == 'balance.')
 	index.names <- substr(names(psaboot$complete.details)[index.balance], 9, 
 						  max(nchar(names(psaboot$complete.details))))
-	bal <- psaboot$complete.details[[ index.balance[1] ]]
+	bal_names <- names(psaboot$complete.details[[ index.balance[1] ]])
 	bal <- c()
 	for(i in index.balance) {
-		bal <- rbind(bal, psaboot$complete.details[[ i ]])
+		bal <- rbind(bal, psaboot$complete.details[[ i ]][bal_names])
 	}
 	bal <- abs(bal)
 	dimnames(bal)[[1]] <- index.names

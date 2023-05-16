@@ -29,7 +29,13 @@ vignette: >
 
 ```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 require(knitr)
-opts_chunk$set(comment = '')
+opts_chunk$set(fig.width = 12,
+			   fig.height = 8,
+			   fig.align = 'center',
+			   out.width = '100%',
+			   echo = TRUE,
+			   warning = FALSE,
+			   message = FALSE)
 require(PSAboot)
 ```
 
@@ -118,15 +124,16 @@ The `PSAboot` function returns an object of class `PSAboot`. The following S3 me
 
 The `lalonde` (Lalonde, 1986) has become the *de defacto* teaching dataset in PSA since Dehejia and Wahba's (1999) re-examination of the National Supported Work Demonstration (NSW) and the Current Population Survey (CPS). 
 
-The `lalonde` data set is included in the `MatchIt` package. The crosstab shows that there are 429 control units and 185 treatment units.
+The `lalonde` data set is included in the `Matching` package. The contingency table shows that there are 429 control units and 185 treatment units.
 
 ```{r lalonde.load}
-data(lalonde, package='MatchIt')
+data(lalonde, package='Matching')
 table(lalonde$treat)
 ```
 ```{r lalonde.boot, cache=FALSE}
-lalonde.formu <- treat ~ age + I(age^2) + educ + I(educ^2) + race +
-	married + nodegree + re74  + I(re74^2) + re75 + I(re75^2)
+lalonde.formu <- treat~age + I(age^2) + educ + I(educ^2) + black +
+             hisp + married + nodegr + re74  + I(re74^2) + re75 + I(re75^2) +
+             u74 + u75
 boot.lalonde <- PSAboot(Tr = lalonde$treat, 
 						Y = lalonde$re78,
 						X = lalonde,

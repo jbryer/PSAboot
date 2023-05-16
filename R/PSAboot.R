@@ -87,7 +87,7 @@ getPSAbootMethods <- function() {
 PSAboot <- function(Tr, Y, X, M = 100,
 					formu = as.formula(paste0('treat ~ ', paste0(names(X), collapse=' + '))),
 					control.ratio = 5,
-					control.sample.size = min(control.ratio*min(table(Tr)), max(table(Tr))),
+					control.sample.size = min(control.ratio * min(table(Tr)), max(table(Tr))),
 					control.replace = TRUE,
 					treated.sample.size = min(table(Tr)),
 					treated.replace = TRUE,
@@ -141,11 +141,11 @@ PSAboot <- function(Tr, Y, X, M = 100,
 		complete.details[[paste0('details.', n)]] <- r$details
 		complete.details[[paste0('balance.', n)]] <- r$balance
 		complete.summary <- rbind(complete.summary, data.frame(
-			method=n, 
-			estimate=unname(r$summary['estimate']),
-			ci.min=unname(r$summary['ci.min']),
-			ci.max=unname(r$summary['ci.max']),
-			stringsAsFactors=FALSE))
+			method = n, 
+			estimate = unname(r$summary['estimate']),
+			ci.min = unname(r$summary['ci.min']),
+			ci.max = unname(r$summary['ci.max']),
+			stringsAsFactors = FALSE))
 	}
 	
 	pb <- txtProgressBar(1,M,style=3)
@@ -171,11 +171,11 @@ PSAboot <- function(Tr, Y, X, M = 100,
 				result[[paste0('details.', n)]] <- r$details
 				result[[paste0('balance.', n)]] <- r$balance
 				result[['summary']] <- rbind(result[['summary']], data.frame(
-					Method=n, 
-					estimate=unname(r$summary['estimate']),
-					ci.min=unname(r$summary['ci.min']),
-					ci.max=unname(r$summary['ci.max']),
-					stringsAsFactors=FALSE))
+					Method = n, 
+					estimate = unname(r$summary['estimate']),
+					ci.min = unname(r$summary['ci.min']),
+					ci.max = unname(r$summary['ci.max']),
+					stringsAsFactors = FALSE))
 			}, error=function(e) { 
 				warning(paste0('Error occurred during iteration ', i,
 							   ' for ', n, ' method: ', e))
@@ -207,15 +207,15 @@ PSAboot <- function(Tr, Y, X, M = 100,
 					cols] <- as.numeric((sum[j,cols]))
 		}
 	}
-	r <- list(pooled.summary=summary,
-			  pooled.details=tmp,
-			  complete.summary=complete.summary,
-			  complete.details=complete.details, 
-			  Y=Y, Tr=Tr, X=X, M=M, seed=seed,
-			  control.sample.size=control.sample.size,
-			  treated.sample.size=treated.sample.size,
-			  control.replace=control.replace,
-			  treated.replace=treated.replace)
+	r <- list(pooled.summary = summary,
+			  pooled.details = tmp,
+			  complete.summary = complete.summary,
+			  complete.details = complete.details, 
+			  Y = Y, Tr = Tr, X = X, M = M, seed = seed,
+			  control.sample.size = control.sample.size,
+			  treated.sample.size = treated.sample.size,
+			  control.replace = control.replace,
+			  treated.replace = treated.replace)
 	class(r) <- "PSAboot"
 	return(r)
 }
