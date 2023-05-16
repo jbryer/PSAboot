@@ -1,31 +1,38 @@
 
-# <img src="man/figures/PSAboot.png" align="right" width="120" align="right" /> An R Package for Bootstrapping Propensity Score Analysis
+# <img src="man/figures/PSAboot.png" align="right" width="120" align="right" /> Bootstrapping Propensity Score Analysis
 
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/jbryer/PSAboot/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jbryer/PSAboot/actions/workflows/R-CMD-check.yaml)
-[![](https://img.shields.io/badge/devel%20version-1.3.6-blue.svg)](https://github.com/jbryer/PSAboot)
+[![](https://img.shields.io/badge/devel%20version-1.3.7-blue.svg)](https://github.com/jbryer/PSAboot)
 [![](https://www.r-pkg.org/badges/version/PSAboot)](https://cran.r-project.org/package=PSAboot)
 [![CRAN
 Status](https://badges.cranchecks.info/flavor/release/PSAboot.svg)](https://cran.r-project.org/web/checks/check_results_PSAboot.html)
 <!-- badges: end -->
 
+Package website: <https://jbryer.github.io/PSAboot/>  
+Poster:
+<https://github.com/jbryer/PSAboot/blob/master/Poster/PSAboot_Poster.pdf>
+
 As the popularity of propensity score methods for estimating causal
 effects in observational studies increase, the choices researchers have
-for which methods to use has also increased. Rosenbaum (2012) suggested
-that there are benefits for testing the null hypothesis more than once
-in observational studies. With the wide availability of high power
-computers resampling methods such as bootstrapping (Efron, 1979) have
-become popular for providing more stable estimates of the sampling
-distribution. This paper introduces the `PSAboot` package for R that
-provides functions for bootstrapping propensity score methods. It
-deviates from traditional bootstrapping methods by allowing for
-different sampling specifications for treatment and control groups,
-mainly to ensure the ratio of treatment-to-control observations are
-maintained. Additionally, this framework will provide estimates using
-multiple methods for each bootstrap sample. Two examples are discussed:
-the classic National Work Demonstration and PSID (Lalonde, 1986) study
-and a study on tutoring effects on student grades.
+for which methods to use has also increased. Estimated treatment effects
+may be sensitive to choice of method. One approach to test the
+sensitivity of method choice is to test the null hypothesis more than
+once using more than one method (Rosenbaum, 2012). With the wide
+availability of high power computers resampling methods such as
+bootstrapping (Efron, 1979) have become popular for providing more
+estimates of the sampling distribution. This paper introduces the
+`PSAboot` R package that provides functions for bootstrapping propensity
+score methods. It deviates from traditional bootstrapping methods by
+allowing for different sampling specifications for treatment and control
+groups, mainly to ensure the ratio of treatment-to-control observations
+are consistent. This approach can also be used in situations where there
+is imbalance between the number of treatment and control observations by
+allowing for up and/or down sampling. Lastly, by estimating balance
+statistics and treatment effects for each bootstrap sample we can
+compare the distributions across multiple propensity score methods to
+examine the relative performance of these methods.
 
 ## Installation
 

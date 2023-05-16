@@ -74,7 +74,7 @@ matrixplot(tutoring.boot)
 dev.off()
 
 tutoring.balance <- balance(tutoring.boot)
-summary(tutoring.balance)
+print(tutoring.balance)
 
 plot(tutoring.balance) + theme(legend.position = 'bottom')
 ggsave('Poster/balance.pdf', width = 12, height = 8, units = 'in', dpi = 100)

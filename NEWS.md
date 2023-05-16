@@ -1,5 +1,6 @@
 # PSAboot 1.3.7
 
+* Added propensity score weighting.
 * Fixed a bug where the balance table wasn't combined correctly if the covariates were not specified in the correct order.
 
 # PSAboot 1.3.6

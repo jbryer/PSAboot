@@ -21,7 +21,8 @@ getPSAbootMethods <- function() {
 		'ctree' = boot.ctree,
 		'rpart' = boot.rpart,
 		'Matching' = boot.matching,
-		'MatchIt' = boot.matchit))
+		'MatchIt' = boot.matchit,
+		'Weighting' = boot.weighting))
 	invisible(methods)
 }
 

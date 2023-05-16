@@ -243,7 +243,7 @@ hist(tutoring.boot)
 boxplot(tutoring.boot)
 ```
 
-```{r tutoring.matrixplot}
+```{r tutoring.matrixplot, fig.width = 12, fig.height = 12}
 matrixplot(tutoring.boot)
 ```
 
