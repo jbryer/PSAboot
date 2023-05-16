@@ -90,12 +90,14 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="id_-an-r-package-for-bootstrapping-propensity-score-analysis">
-<img src="reference/figures/PSAboot.png" align="right" width="120"> An R Package for Bootstrapping Propensity Score Analysis<a class="anchor" aria-label="anchor" href="#id_-an-r-package-for-bootstrapping-propensity-score-analysis"></a>
+<div class="page-header"><h1 id="id_-bootstrapping-propensity-score-analysis">
+<img src="reference/figures/PSAboot.png" align="right" width="120"> Bootstrapping Propensity Score Analysis<a class="anchor" aria-label="anchor" href="#id_-bootstrapping-propensity-score-analysis"></a>
 </h1></div>
 <!-- badges: start -->
 
-<p>As the popularity of propensity score methods for estimating causal effects in observational studies increase, the choices researchers have for which methods to use has also increased. Rosenbaum (2012) suggested that there are benefits for testing the null hypothesis more than once in observational studies. With the wide availability of high power computers resampling methods such as bootstrapping (Efron, 1979) have become popular for providing more stable estimates of the sampling distribution. This paper introduces the <code>PSAboot</code> package for R that provides functions for bootstrapping propensity score methods. It deviates from traditional bootstrapping methods by allowing for different sampling specifications for treatment and control groups, mainly to ensure the ratio of treatment-to-control observations are maintained. Additionally, this framework will provide estimates using multiple methods for each bootstrap sample. Two examples are discussed: the classic National Work Demonstration and PSID (Lalonde, 1986) study and a study on tutoring effects on student grades.</p>
+<p>Package website: <a href="https://jbryer.github.io/PSAboot/" class="external-link uri">https://jbryer.github.io/PSAboot/</a><br>
+Poster: <a href="https://github.com/jbryer/PSAboot/blob/master/Poster/PSAboot_Poster.pdf" class="external-link uri">https://github.com/jbryer/PSAboot/blob/master/Poster/PSAboot_Poster.pdf</a></p>
+<p>As the popularity of propensity score methods for estimating causal effects in observational studies increase, the choices researchers have for which methods to use has also increased. Estimated treatment effects may be sensitive to choice of method. One approach to test the sensitivity of method choice is to test the null hypothesis more than once using more than one method (Rosenbaum, 2012). With the wide availability of high power computers resampling methods such as bootstrapping (Efron, 1979) have become popular for providing more estimates of the sampling distribution. This paper introduces the <code>PSAboot</code> R package that provides functions for bootstrapping propensity score methods. It deviates from traditional bootstrapping methods by allowing for different sampling specifications for treatment and control groups, mainly to ensure the ratio of treatment-to-control observations are consistent. This approach can also be used in situations where there is imbalance between the number of treatment and control observations by allowing for up and/or down sampling. Lastly, by estimating balance statistics and treatment effects for each bootstrap sample we can compare the distributions across multiple propensity score methods to examine the relative performance of these methods.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -153,7 +155,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/jbryer/PSAboot/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/jbryer/PSAboot/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://github.com/jbryer/PSAboot" class="external-link"><img src="https://img.shields.io/badge/devel%20version-1.3.6-blue.svg"></a></li>
+<li><a href="https://github.com/jbryer/PSAboot" class="external-link"><img src="https://img.shields.io/badge/devel%20version-1.3.7-blue.svg"></a></li>
 <li><a href="https://cran.r-project.org/package=PSAboot" class="external-link"><img src="https://www.r-pkg.org/badges/version/PSAboot"></a></li>
 <li><a href="https://cran.r-project.org/web/checks/check_results_PSAboot.html" class="external-link"><img src="https://badges.cranchecks.info/flavor/release/PSAboot.svg" alt="CRAN Status"></a></li>
 </ul>

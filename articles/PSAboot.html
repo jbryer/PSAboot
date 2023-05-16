@@ -352,6 +352,15 @@ zero.</p>
 <span><span class="co">##    Bootstrap pooled CI = [273, 3114]</span></span>
 <span><span class="co">##    69% of bootstrap samples have confidence intervals that do not span zero.</span></span>
 <span><span class="co">##       69% positive.</span></span>
+<span><span class="co">##       0% negative.</span></span>
+<span><span class="co">## Weighting Results:</span></span>
+<span><span class="co">##    Complete estimate = 1558</span></span>
+<span><span class="co">##    Complete CI = [310, 2807]</span></span>
+<span><span class="co">##    Bootstrap pooled estimate = 1489</span></span>
+<span><span class="co">##    Bootstrap weighted pooled estimate = 1440</span></span>
+<span><span class="co">##    Bootstrap pooled CI = [126, 2853]</span></span>
+<span><span class="co">##    64% of bootstrap samples have confidence intervals that do not span zero.</span></span>
+<span><span class="co">##       64% positive.</span></span>
 <span><span class="co">##       0% negative.</span></span></code></pre>
 <p>The <code>plot</code> function plots the estimate (mean difference)
 for each bootstrap sample. The default is to sort from largest to
@@ -412,12 +421,13 @@ standardized effect size will be used.</p>
 <code class="sourceCode R"><span><span class="va">lalonde.bal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/balance.html">balance</a></span><span class="op">(</span><span class="va">boot.lalonde</span><span class="op">)</span></span>
 <span><span class="va">lalonde.bal</span></span></code></pre></div>
 <pre><code><span><span class="co">## Unadjusted balance: 0.122354110755457</span></span>
-<span><span class="co">##                  Complete  Bootstrap</span></span>
-<span><span class="co">## Stratification 0.02400000 0.03798000</span></span>
-<span><span class="co">## ctree          0.07900000         NA</span></span>
-<span><span class="co">## rpart          0.05200000 0.07308000</span></span>
-<span><span class="co">## Matching       0.02683023 0.07148576</span></span>
-<span><span class="co">## MatchIt        0.03987994 0.07897094</span></span></code></pre>
+<span><span class="co">##                   Complete  Bootstrap</span></span>
+<span><span class="co">## Stratification 0.024000000 0.03798000</span></span>
+<span><span class="co">## ctree          0.079000000         NA</span></span>
+<span><span class="co">## rpart          0.052000000 0.07308000</span></span>
+<span><span class="co">## Matching       0.026830233 0.07148576</span></span>
+<span><span class="co">## MatchIt        0.039879936 0.07897094</span></span>
+<span><span class="co">## Weighting      0.006256676 0.02756140</span></span></code></pre>
 <p>The <code>plot</code> function provides density plots of the balance
 statistics across all bootstrap samples for each method. The mean
 overall balance is represented by the vertical black lines, the overall

@@ -55,10 +55,16 @@
     <loc>/reference/boot.strata.html</loc>
   </url>
   <url>
+    <loc>/reference/boot.weighting.html</loc>
+  </url>
+  <url>
     <loc>/reference/boxplot.PSAboot.balance.html</loc>
   </url>
   <url>
     <loc>/reference/boxplot.PSAboot.html</loc>
+  </url>
+  <url>
+    <loc>/reference/calculate_ps_weights.html</loc>
   </url>
   <url>
     <loc>/reference/getPSAbootMethods.html</loc>
