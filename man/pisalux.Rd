@@ -70,6 +70,5 @@ in the \href{https://github.com/jbryer/pisa}{\code{pisa} package}.
 }
 \references{
 Organisation for Economic Co-operation and Development (2009).
-            Programme for International Student Assessment (PISA). 
-            \url{https://www.oecd.org/pisa/}
+            Programme for International Student Assessment (PISA).
 }

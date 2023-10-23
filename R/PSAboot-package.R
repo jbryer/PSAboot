@@ -27,7 +27,7 @@ NULL
 #' 
 #' Student results from the 2009 Programme of International Student Assessment (PISA)
 #' as provided by the Organization for Economic Co-operation and Development (OECD).
-#' See \url{https://www.oecd.org/pisa/} for more information including the code book.
+#' See www.oecd.org/pisa/ for more information including the code book.
 #'
 #' Note that missing values have been imputed using the 
 #' mice package. Details on the specific procedure are in the \code{pisa.impute} function
@@ -37,7 +37,6 @@ NULL
 #' @docType data
 #' @references Organisation for Economic Co-operation and Development (2009).
 #'             Programme for International Student Assessment (PISA). 
-#'             \url{https://www.oecd.org/pisa/}
 #' @format a data frame with 5,233 rows and 65 columns.
 #' \describe{
 #' \item{\code{CNT}}{Country}
@@ -106,7 +105,6 @@ NULL
 #' @docType data
 #' @references Organisation for Economic Co-operation and Development (2009).
 #'             Programme for International Student Assessment (PISA). 
-#'             \url{https://www.oecd.org/pisa/}
 #' @format a data frame with 4,622 rows and 65 columns.
 #' \describe{
 #' \item{\code{CNT}}{Country}

@@ -1,4 +1,4 @@
-require(devtools)
+0(devtools)
 
 usethis::use_tidy_description()
 devtools::document()

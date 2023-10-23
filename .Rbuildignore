@@ -1,3 +1,4 @@
+..Rcheck
 PSAboot.dev.R
 PSAboot.Rproj
 README.md
@@ -20,4 +21,3 @@ build.R
 ^CRAN-SUBMISSION$
 README.Rmd
 Poster/
-doc/

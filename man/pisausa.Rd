@@ -62,7 +62,7 @@ a data frame with 5,233 rows and 65 columns.
 \description{
 Student results from the 2009 Programme of International Student Assessment (PISA)
 as provided by the Organization for Economic Co-operation and Development (OECD).
-See \url{https://www.oecd.org/pisa/} for more information including the code book.
+See www.oecd.org/pisa/ for more information including the code book.
 }
 \details{
 Note that missing values have been imputed using the 
@@ -71,6 +71,5 @@ in the \href{https://github.com/jbryer/pisa}{\code{pisa} package}.
 }
 \references{
 Organisation for Economic Co-operation and Development (2009).
-            Programme for International Student Assessment (PISA). 
-            \url{https://www.oecd.org/pisa/}
+            Programme for International Student Assessment (PISA).
 }
