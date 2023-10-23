@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">PSAboot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +78,7 @@
                         <h4 data-toc-skip class="author">Jason Bryer,
 Ph.D.</h4>
             
-            <h4 data-toc-skip class="date">2023-05-16</h4>
+            <h4 data-toc-skip class="date">2023-10-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jbryer/PSAboot/blob/HEAD/vignettes/PSAboot.Rmd" class="external-link"><code>vignettes/PSAboot.Rmd</code></a></small>
       <div class="d-none name"><code>PSAboot.Rmd</code></div>
@@ -345,13 +345,13 @@ zero.</p>
 <span><span class="co">##       83% positive.</span></span>
 <span><span class="co">##       0% negative.</span></span>
 <span><span class="co">## MatchIt Results:</span></span>
-<span><span class="co">##    Complete estimate = 2059</span></span>
-<span><span class="co">##    Complete CI = [661, 3456]</span></span>
-<span><span class="co">##    Bootstrap pooled estimate = 1694</span></span>
-<span><span class="co">##    Bootstrap weighted pooled estimate = 1708</span></span>
-<span><span class="co">##    Bootstrap pooled CI = [273, 3114]</span></span>
-<span><span class="co">##    69% of bootstrap samples have confidence intervals that do not span zero.</span></span>
-<span><span class="co">##       69% positive.</span></span>
+<span><span class="co">##    Complete estimate = 2053</span></span>
+<span><span class="co">##    Complete CI = [657, 3450]</span></span>
+<span><span class="co">##    Bootstrap pooled estimate = 1755</span></span>
+<span><span class="co">##    Bootstrap weighted pooled estimate = 1745</span></span>
+<span><span class="co">##    Bootstrap pooled CI = [356, 3154]</span></span>
+<span><span class="co">##    74% of bootstrap samples have confidence intervals that do not span zero.</span></span>
+<span><span class="co">##       74% positive.</span></span>
 <span><span class="co">##       0% negative.</span></span>
 <span><span class="co">## Weighting Results:</span></span>
 <span><span class="co">##    Complete estimate = 1558</span></span>
@@ -420,13 +420,13 @@ standardized effect size will be used.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lalonde.bal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/balance.html">balance</a></span><span class="op">(</span><span class="va">boot.lalonde</span><span class="op">)</span></span>
 <span><span class="va">lalonde.bal</span></span></code></pre></div>
-<pre><code><span><span class="co">## Unadjusted balance: 0.122354110755457</span></span>
+<pre><code><span><span class="co">## Unadjusted balance: 1.48309081605193</span></span>
 <span><span class="co">##                   Complete  Bootstrap</span></span>
 <span><span class="co">## Stratification 0.024000000 0.03798000</span></span>
 <span><span class="co">## ctree          0.079000000         NA</span></span>
 <span><span class="co">## rpart          0.052000000 0.07308000</span></span>
 <span><span class="co">## Matching       0.026830233 0.07148576</span></span>
-<span><span class="co">## MatchIt        0.039879936 0.07897094</span></span>
+<span><span class="co">## MatchIt        0.054672952 0.08836800</span></span>
 <span><span class="co">## Weighting      0.006256676 0.02756140</span></span></code></pre>
 <p>The <code>plot</code> function provides density plots of the balance
 statistics across all bootstrap samples for each method. The mean
@@ -550,11 +550,11 @@ during the course.</p>
 <span><span class="co">##       100% positive.</span></span>
 <span><span class="co">##       0% negative.</span></span>
 <span><span class="co">## MatchIt Results:</span></span>
-<span><span class="co">##    Complete estimate = 0.442</span></span>
-<span><span class="co">##    Complete CI = [0.218, 0.666]</span></span>
-<span><span class="co">##    Bootstrap pooled estimate = 0.533</span></span>
-<span><span class="co">##    Bootstrap weighted pooled estimate = 0.541</span></span>
-<span><span class="co">##    Bootstrap pooled CI = [0.319, 0.747]</span></span>
+<span><span class="co">##    Complete estimate = 0.513</span></span>
+<span><span class="co">##    Complete CI = [0.264, 0.762]</span></span>
+<span><span class="co">##    Bootstrap pooled estimate = 0.532</span></span>
+<span><span class="co">##    Bootstrap weighted pooled estimate = 0.529</span></span>
+<span><span class="co">##    Bootstrap pooled CI = [0.282, 0.782]</span></span>
 <span><span class="co">##    100% of bootstrap samples have confidence intervals that do not span zero.</span></span>
 <span><span class="co">##       100% positive.</span></span>
 <span><span class="co">##       0% negative.</span></span></code></pre>
@@ -573,14 +573,14 @@ during the course.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tutoring.bal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/balance.html">balance</a></span><span class="op">(</span><span class="va">tutoring.boot</span><span class="op">)</span></span>
 <span><span class="va">tutoring.bal</span></span></code></pre></div>
-<pre><code><span><span class="co">## Unadjusted balance: 0.117875835338968</span></span>
+<pre><code><span><span class="co">## Unadjusted balance: 1.83221548386189</span></span>
 <span><span class="co">##                   Complete  Bootstrap</span></span>
 <span><span class="co">## Stratification  0.02923077 0.03361538</span></span>
 <span><span class="co">## ctree           0.04384615 0.07207692</span></span>
 <span><span class="co">## rpart           0.07846154 0.08769231</span></span>
 <span><span class="co">## Matching        0.04521604 0.05690085</span></span>
 <span><span class="co">## Matching-1-to-3 0.03054791 0.05275685</span></span>
-<span><span class="co">## MatchIt         0.04554364 0.06263306</span></span></code></pre>
+<span><span class="co">## MatchIt         0.05078077 0.06666851</span></span></code></pre>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tutoring.bal</span><span class="op">)</span></span></code></pre></div>
 <p><img src="PSAboot_files/figure-html/tutroing.balance-1.png" width="100%" style="display: block; margin: auto;"></p>
