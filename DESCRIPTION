@@ -1,8 +1,8 @@
 Type: Package
 Package: PSAboot
 Title: Bootstrapping for Propensity Score Analysis
-Version: 1.3.7
-Date: 2023-04-15
+Version: 1.3.8
+Date: 2023-10-23
 Authors@R: 
     person("Jason", "Bryer", , "jason@bryer.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-2454-0402"))
@@ -10,12 +10,12 @@ Maintainer: Jason Bryer <jason@bryer.org>
 Description: It is often advantageous to test a hypothesis more than once
     in the context of propensity score analysis (Rosenbaum, 2012)
     <doi:10.1093/biomet/ass032>. The functions in this package facilitate
-    bootstrapping for propensity score analysis (PSA). By default, bootstrapping
-    using two classification tree methods (using 'rpart' and 'ctree'
-    functions), two matching methods (using 'Matching' and 'MatchIt'
-    packages), and stratification with logistic regression.  A framework
-    is described for users to implement additional propensity score
-    methods.  Visualizations are emphasized for diagnosing balance;
+    bootstrapping for propensity score analysis (PSA). By default,
+    bootstrapping using two classification tree methods (using 'rpart' and
+    'ctree' functions), two matching methods (using 'Matching' and
+    'MatchIt' packages), and stratification with logistic regression.  A
+    framework is described for users to implement additional propensity
+    score methods.  Visualizations are emphasized for diagnosing balance;
     exploring the correlation relationships between bootstrap samples and
     methods; and to summarize results.
 License: GPL

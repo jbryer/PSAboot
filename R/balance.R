@@ -42,7 +42,8 @@ balance <- function(psaboot, na.rm = TRUE, pool.fun = mean) {
 	
 	bal.unadj <- c()
 	for(i in names(X.trans)) {
-		ttest <- t.test(cov ~ treat, data=cbind(treat=Tr, cov=X.trans[,i]), paired=FALSE)
+		# ttest <- t.test(cov ~ treat, data=cbind(treat=Tr, cov=X.trans[,i]), paired=FALSE)
+		ttest <- t.test(X.trans[,i,drop=TRUE], Tr, paired = FALSE)
 		bal.unadj[i] <- abs(diff(ttest$estimate) / sd(X.trans[,i]))
 	}
 
