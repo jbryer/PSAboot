@@ -17,7 +17,7 @@
 )
 }
 \arguments{
-\item{x}{result of \code{\link{PSAboot}}.}
+\item{x}{result of `[PSAboot()]`.}
 
 \item{bootstrap.mean.color}{the color of the point for the bootstrap mean, or NA
 to omit.}

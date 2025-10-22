@@ -14,7 +14,7 @@
 )
 }
 \arguments{
-\item{x}{results of \code{\link{balance}}}
+\item{x}{results of `[balance()]`}
 
 \item{unadjusted.color}{the color used for the unadjusted effect size.}
 
@@ -24,7 +24,7 @@
 
 \item{point.alpha}{the transparency level for the points.}
 
-\item{...}{other parameters passed to \code{\link{facet_wrap}}}
+\item{...}{other parameters passed to `[facet_wrap()]`}
 }
 \value{
 a ggplot2 expression.

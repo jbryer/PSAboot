@@ -15,9 +15,9 @@ calculate_ps_weights(treatment, ps, estimand = "ATE")
 values are 
 ATE (average treatment effect), 
 ATT (average treatment effect for the treated), 
-ATC (average treatement effect for the controls), 
-ATM (Average Treatment Effect Among the Evenly Matchable), 
-ATO (Average Treatment Effect Among the Overlap Populatio)}
+ATC (average treatment effect for the controls), 
+ATM (Average Treatment Effect Among the Evenly Matched), 
+ATO (Average Treatment Effect Among the Overlap Population)}
 }
 \description{
 Calculates propensity score weights.

@@ -1,20 +1,22 @@
-#' Returns a vector with the default methods used by \code{\link{PSAboot}}.
+#' Returns a vector with the default methods used by `PSAboot()`.
 #' 
 #' The current default methods are:
+#' 
 #' \describe{
-#' \item{Stratification}{\code{\link{boot.strata}}}
-#' \item{ctree}{\code{\link{boot.ctree}}}
-#' \item{rpart}{\code{\link{boot.rpart}}}
-#' \item{Matching}{\code{\link{boot.matching}}}
-#' \item{MatchIt}{\code{\link{boot.matchit}}}
+#' \item{Stratification}[boot.strata()]}
+#' \item{ctree}{[boot.ctree()]}
+#' \item{rpart}{[boot.rpart()]}
+#' \item{Matching}{[boot.matching()]}
+#' \item{MatchIt}{[boot.matchit()]}
 #' }
 #' 
-#' The default methods can be changed by setting the \code{PSAboot.methods} option
-#' using \code{options('PSAboot.methods'=c(...))} where \code{...} is a named
+#' The default methods can be changed by setting the `PSAboot.methods` option
+#' using `options('PSAboot.methods'=c(...))` where `...` is a named
 #' list of functions.
 #' 
+#' @rdname PSAboot
 #' @export
-#' @return a vector of methods for use by \code{\link{PSAboot}}
+#' @return a vector of methods for use by `PSAboot()`
 getPSAbootMethods <- function() {
 	methods <- getOption('PSAboot.methods', default=c(
 		'Stratification' = boot.strata,
@@ -39,6 +41,10 @@ getPSAbootMethods <- function() {
 #' this function provides a framework to use multiple PSA methods for each bootstrap
 #' sample.
 #' 
+#' Be sure to check the `PSAboot` vignette for more details. The *Applied Propensity Score
+#' Analysis with R* online book also has some worked examples: https://psa.bryer.org
+#' 
+#' @rdname PSAboot
 #' @param Tr numeric (0 or 1) or logical vector of treatment indicators. 
 #' @param Y vector of outcome variable
 #' @param X matrix or data frame of covariates used to estimate the propensity scores.
@@ -54,7 +60,7 @@ getPSAbootMethods <- function() {
 #' @param methods a named vector of functions for each PSA method to use.
 #' @param seed random seed. Each iteration, i, will use a seed of \code{seed + i}.
 #' @param parallel whether to run the bootstrap samples in parallel.
-#' @param ... other parameters passed to \code{\link{Match}} and \code{\link{psa.strata}}
+#' @param ... other parameters passed to `[Match()]` and `[psa.strata()]`
 #' @return a list with following elements:
 #' 		  \describe{
 #' 		  \item{overall.summary}{Data frame with the results using the complete

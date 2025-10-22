@@ -7,7 +7,7 @@
 matrixplot(bm)
 }
 \arguments{
-\item{bm}{result from \code{\link{PSAboot}}.}
+\item{bm}{result from `[PSAboot()]`.}
 }
 \value{
 Nothing returned. Creates a plot using the [graphics::pairs()] function.

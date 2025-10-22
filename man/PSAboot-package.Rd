@@ -7,3 +7,15 @@
 \description{
 Bootstrapping procedures for Propensity Score Analysis.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/jbryer/PSAboot}
+  \item Report bugs at \url{https://github.com/jbryer/PSAboot/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Jason Bryer \email{jason@bryer.org} (\href{https://orcid.org/0000-0002-2454-0402}{ORCID})
+
+}

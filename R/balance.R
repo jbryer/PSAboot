@@ -2,12 +2,12 @@
 #' 
 #' This method provides some crude overall measures of balance. 
 #' 
-#' @param psaboot results from \code{\link{PSAboot}}.
+#' @param psaboot results from `[PSAboot()]`.
 #' @param na.rm should NAs be removed. NAs generally occur when there is insufficient
 #'        sample for a particular covariate or an unused level.
 #' @param pool.fun a function specifying how the effect sizes across all covariates
-#'        should be combined. Possible values include \code{mean} (default),
-#'        \code{\link{q25}}, \code{\link{q75}}, \code{median}, \code{max}, or 
+#'        should be combined. Possible values include `mean()` (default),
+#'        `q25()`, `q75()`, `median()`, `max()`, or 
 #'        any function that takes a vector of numeric values.
 #' @return a list with three elements:
 #' \describe{

@@ -3,8 +3,8 @@ utils::globalVariables(c('estimate'))
 #' Histogram of PSA bootstrap results
 #' 
 #' 
-#' @param x result of \code{\link{PSAboot}}.
-#' @param ... other parameters passed to \code{\link{geom_histogram}}
+#' @param x result of `[PSAboot()]`.
+#' @param ... other parameters passed to `[ggplot2::geom_histogram()]
 #' @method hist PSAboot
 #' @return a ggplot2 expression.
 #' @export

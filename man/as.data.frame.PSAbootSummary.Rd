@@ -7,7 +7,7 @@
 \method{as.data.frame}{PSAbootSummary}(x, row.names = NULL, optional = FALSE, ...)
 }
 \arguments{
-\item{x}{results of \code{\link{summary.PSAboot}}}
+\item{x}{results of `[summary.PSAboot()]`}
 
 \item{row.names}{row names.}
 

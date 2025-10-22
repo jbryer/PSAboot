@@ -14,7 +14,7 @@
 )
 }
 \arguments{
-\item{x}{result of \code{\link{PSAboot}}.}
+\item{x}{result of `[PSAboot()]`.}
 
 \item{sort}{how the sort the rows by mean difference. Options are to sort
 using the mean difference from matching, stratification, both 

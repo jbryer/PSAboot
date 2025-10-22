@@ -12,7 +12,7 @@ q25(x, na.rm = FALSE, ...)
 \item{na.rm}{logical; if true, any NA and NaN's are removed from x before the
 quantiles are computed}
 
-\item{...}{other parameters passed to \code{\link{quantile}}.}
+\item{...}{other parameters passed to `[PSAboot()]`.}
 }
 \value{
 the 25th percentile.

@@ -1,7 +1,6 @@
 #' Bootstrapping procedures for Propensity Score Analysis.
 #' 
 #' @name PSAboot-package
-#' @docType package
 #' @title Bootstrapping for Propensity Score Analysis
 #' @import ggplot2
 #' @import graphics
@@ -20,7 +19,7 @@
 #' @import TriMatch
 #' @importFrom psych describe
 #' @importFrom psych describeBy
-NULL
+"_PACKAGE"
 
 #' Programme of International Student Assessment (PISA) results from the United
 #' States in 2009.

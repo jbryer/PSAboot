@@ -6,9 +6,9 @@
 #'        values are 
 #'        ATE (average treatment effect), 
 #'        ATT (average treatment effect for the treated), 
-#'        ATC (average treatement effect for the controls), 
-#'        ATM (Average Treatment Effect Among the Evenly Matchable), 
-#'        ATO (Average Treatment Effect Among the Overlap Populatio)
+#'        ATC (average treatment effect for the controls), 
+#'        ATM (Average Treatment Effect Among the Evenly Matched), 
+#'        ATO (Average Treatment Effect Among the Overlap Population)
 calculate_ps_weights <- function(treatment, ps, estimand = 'ATE') {
 	# TODO: this is a copy of a function from the psa package. Use that once it is on CRAN
 	weights <- NA

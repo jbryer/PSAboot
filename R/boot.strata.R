@@ -3,12 +3,12 @@
 #' @param Tr vector indicating treatment assignment.
 #' @param Y vector of outcome.
 #' @param X matrix or data frame of covariates.
-#' @param X.trans a data frame of \code{X} with factors recoded. See \code{\link{cv.trans.psa}}
+#' @param X.trans a data frame of `X` with factors recoded. See `[PSAgraphics::cv.trans.psa()]`
 #' @param formu the formula to use to estimate propensity scores. Note that the
 #'        dependent varaible (i.e. treatment varaible) name will be updated using
 #'        the \code{Tr} vector.
 #' @param nstrata number of strata to divide the propensity scores.
-#' @param ... other parameters passed from \code{\link{PSAboot}}
+#' @param ... other parameters passed from `[PSAboot()]`
 #' @return a list with three elements:
 #'         \describe{
 #'         \item{\code{summary}}{a named numeric vector (with at minimum \code{estimate}, 

@@ -3,7 +3,7 @@ utils::globalVariables(c('iter','estimate','sig','bootstrap.estimate','bootstrap
 
 #' Plot the results of PSAboot
 #' 
-#' @param x result of \code{\link{PSAboot}}.
+#' @param x result of `[PSAboot()]`.
 #' @param sort how the sort the rows by mean difference. Options are to sort
 #'        using the mean difference from matching, stratification, both 
 #'        individually, or no sorting.

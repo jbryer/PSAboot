@@ -1,3 +1,7 @@
+# PSAboot 1.3.9
+
+* Documentation fixes to pass CRAN check.
+
 # PSAboot 1.3.8
 
 * Fix for change in t.test with paired data to not use the formula notation.

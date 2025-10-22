@@ -7,7 +7,7 @@
 \method{print}{PSAboot}(x, ...)
 }
 \arguments{
-\item{x}{result of \code{\link{PSAboot}}.}
+\item{x}{result of `[PSAboot()]`.}
 
 \item{...}{currently unused.}
 }

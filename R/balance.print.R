@@ -5,7 +5,7 @@
 #' the mean of those effect sizes after adjustment for each method across all
 #' bootstrap samples.
 #' 
-#' @param x results from \code{\link{balance}}.
+#' @param x results from `[balance()]`
 #' @param na.rm whether NA balance statistics should be removed before averaging them.
 #' @param ... currently unused.
 #' @method print PSAboot.balance

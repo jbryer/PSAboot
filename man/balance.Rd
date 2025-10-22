@@ -7,14 +7,14 @@
 balance(psaboot, na.rm = TRUE, pool.fun = mean)
 }
 \arguments{
-\item{psaboot}{results from \code{\link{PSAboot}}.}
+\item{psaboot}{results from `[PSAboot()]`.}
 
 \item{na.rm}{should NAs be removed. NAs generally occur when there is insufficient
 sample for a particular covariate or an unused level.}
 
 \item{pool.fun}{a function specifying how the effect sizes across all covariates
-should be combined. Possible values include \code{mean} (default),
-\code{\link{q25}}, \code{\link{q75}}, \code{median}, \code{max}, or 
+should be combined. Possible values include `mean()` (default),
+`q25()`, `q75()`, `median()`, `max()`, or 
 any function that takes a vector of numeric values.}
 }
 \value{

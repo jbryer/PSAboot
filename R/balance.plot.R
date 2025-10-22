@@ -1,6 +1,6 @@
 #' Plot method for balance.
 #' 
-#' @param x results from \code{\link{balance}}
+#' @param x results from `[balance()]`
 #' @param unadjusted.color color of the vertical line representing the mean 
 #'        unadjusted effect size for all covariates.
 #' @param complete.color color of the vertical line representing the mean adjusted

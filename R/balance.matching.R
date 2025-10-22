@@ -6,7 +6,7 @@
 #' @param index.treated a vector with the index of treated rows in \code{covs}.
 #' @param index.control a vector with the index of control rows in \code{covs}.
 #' @param covs data frame or matrix of covariates. Factors should already be recoded.
-#'        See \code{\link{cv.trans.psa}}
+#'        See `[cv.trans.psa()]`
 #' @return a named vector with one element per covariate.
 #' @export
 balance.matching <- function(index.treated, index.control, covs) {

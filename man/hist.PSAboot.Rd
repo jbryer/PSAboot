@@ -7,9 +7,9 @@
 \method{hist}{PSAboot}(x, ...)
 }
 \arguments{
-\item{x}{result of \code{\link{PSAboot}}.}
+\item{x}{result of `[PSAboot()]`.}
 
-\item{...}{other parameters passed to \code{\link{geom_histogram}}}
+\item{...}{other parameters passed to `[ggplot2::geom_histogram()]}
 }
 \value{
 a ggplot2 expression.

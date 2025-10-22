@@ -1,11 +1,11 @@
 #' Boxplot of the balance statistics for bootstrapped samples.
 #' 
-#' @param x results of \code{\link{balance}}
+#' @param x results of `[balance()]`
 #' @param unadjusted.color the color used for the unadjusted effect size.
 #' @param pooled.color the color used for the mean bootstrap effect size.
 #' @param point.size the size of the points.
 #' @param point.alpha the transparency level for the points.
-#' @param ... other parameters passed to \code{\link{facet_wrap}}
+#' @param ... other parameters passed to `[facet_wrap()]`
 #' @return a ggplot2 expression.
 #' @export 
 #' @examples

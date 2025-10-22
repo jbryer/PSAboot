@@ -12,7 +12,7 @@ balance.matching(index.treated, index.control, covs)
 \item{index.control}{a vector with the index of control rows in \code{covs}.}
 
 \item{covs}{data frame or matrix of covariates. Factors should already be recoded.
-See \code{\link{cv.trans.psa}}}
+See `[cv.trans.psa()]`}
 }
 \value{
 a named vector with one element per covariate.

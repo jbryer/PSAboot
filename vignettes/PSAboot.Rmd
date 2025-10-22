@@ -14,17 +14,15 @@ pkgdown:
  as_is: false
 fontsize: 11pt
 geometry: = 2in
-
-# Custom YAML Pandoc Variables
 line-numbers: true
 list-tables: true
 list-figures: true
-
-# Package indexing
 vignette: >
   %\VignetteIndexEntry{Bootstrapping for Propensity Score Analysiss}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}

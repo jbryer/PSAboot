@@ -7,7 +7,7 @@
 \method{print}{PSAboot.balance}(x, na.rm = TRUE, ...)
 }
 \arguments{
-\item{x}{results from \code{\link{balance}}.}
+\item{x}{results from `[balance()]`}
 
 \item{na.rm}{whether NA balance statistics should be removed before averaging them.}
 

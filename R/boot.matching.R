@@ -1,8 +1,8 @@
 #' Matching package implementation for bootstrapping.
 #' 
 #' @param estimand character string for estimand, either ATE, ATT, or ATC. See
-#'        \code{\link{Match}} for more details. 
-#' @param ... other parameters passed to \code{\link{Match}}.
+#'        `[Matching::Match()] for more details. 
+#' @param ... other parameters passed to `[Matching::Match()]`.
 #' @inheritParams boot.strata
 #' @return a list with three elements:
 #'         \describe{

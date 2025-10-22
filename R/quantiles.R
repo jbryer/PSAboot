@@ -3,7 +3,7 @@
 #' @param x numeric vector.
 #' @param na.rm	logical; if true, any NA and NaN's are removed from x before the
 #'        quantiles are computed
-#' @param ... other parameters passed to \code{\link{quantile}}.
+#' @param ... other parameters passed to `[PSAboot()]`.
 #' @export
 #' @return the 25th percentile.
 q25 <- function(x, na.rm = FALSE, ...) {
@@ -15,7 +15,7 @@ q25 <- function(x, na.rm = FALSE, ...) {
 #' @param x numeric vector.
 #' @param na.rm	logical; if true, any NA and NaN's are removed from x before the
 #'        quantiles are computed
-#' @param ... other parameters passed to \code{\link{quantile}}.
+#' @param ... other parameters passed to `[PSAboot()]`.
 #' @export
 #' @return the 75th percentile.
 q75 <- function(x, na.rm = FALSE, ...) {

@@ -13,7 +13,7 @@
 )
 }
 \arguments{
-\item{x}{results from \code{\link{balance}}}
+\item{x}{results from `[balance()]`}
 
 \item{unadjusted.color}{color of the vertical line representing the mean 
 unadjusted effect size for all covariates.}

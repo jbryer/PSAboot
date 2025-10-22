@@ -1,6 +1,6 @@
 #' Summary of pooled results from PSAboot
 #' 
-#' @param object result of \code{\link{PSAboot}}.
+#' @param object result of `[PSAboot()]`.
 #' @param ... currently unused.
 #' @return a list with pooled summary statistics.
 #' @method summary PSAboot
@@ -53,7 +53,7 @@ summary.PSAboot <- function(object, ...) {
 
 #' Print method for PSAboot Summary.
 #' 
-#' @param x result of \code{\link{summary.PSAboot}}
+#' @param x result of `[summary.PSAboot()]`
 #' @param digits desired number of digits after the decimal point.
 #' @param ... unused.
 #' @method print PSAbootSummary
@@ -89,7 +89,7 @@ print.PSAbootSummary <- function(x, digits=3, ...) {
 
 #' Convert the results of PSAboot summary to a data frame.
 #' 
-#' @param x results of \code{\link{summary.PSAboot}}
+#' @param x results of `[summary.PSAboot()]`
 #' @param row.names row names.
 #' @param optional unused.
 #' @param ... unused.
